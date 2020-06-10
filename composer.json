@@ -11,7 +11,14 @@
     ],
     "minimum-stability": "stable",
     "require": {
+        "php": "^7.0|^5.6",
         "google/auth": "^1.9",
-        "hametuha/pattern": "^0.9.0"
+        "hametuha/pattern": "^0.9.0",
+        "hametuha/option-pattern": "^1.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Kunoichi\\GaCommunicator": "src"
+        }
     }
 }

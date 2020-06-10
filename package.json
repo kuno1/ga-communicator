@@ -1,0 +1,28 @@
+{
+  "name": "ga-communicator",
+  "version": "1.0.0",
+  "description": "A PHP library to communicate with Google Analytics API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-env start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "env": "wp-env",
+    "cli": "wp-env run cli wp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuno1/ga-communicator.git"
+  },
+  "keywords": [
+    "wordpress"
+  ],
+  "author": "Kunoichi INC",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/kuno1/ga-communicator/issues"
+  },
+  "homepage": "https://github.com/kuno1/ga-communicator#readme",
+  "devDependencies": {
+    "@wordpress/env": "^1.4.0"
+  }
+}
