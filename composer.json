@@ -10,6 +10,9 @@
         }
     ],
     "minimum-stability": "stable",
+    "scripts": {
+        "test": "phpunit"
+    },
     "require": {
         "php": "^7.0|^5.6",
         "google/auth": "^1.9",
@@ -20,5 +23,8 @@
         "psr-0": {
             "Kunoichi\\GaCommunicator": "src"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
     }
 }

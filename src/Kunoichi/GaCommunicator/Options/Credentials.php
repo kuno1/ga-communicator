@@ -31,7 +31,7 @@ class Credentials extends Settings {
 		return [
 			'label'    => __( 'Credentials', 'ga-communicator' ),
 			'callback' => function () {
-				printf( '<p class="description">%s</p>', esc_html__( 'Please enter Google Analytics Credentials', 'ga-communicator' ) );
+				printf( '<p class="description">%s</p>', esc_html__( 'Please enter Google Analytics Credentials.', 'ga-communicator' ) );
 			},
 		];
 	}

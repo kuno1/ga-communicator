@@ -77,11 +77,86 @@ class Command extends \WP_CLI_Command {
 		$table->display();
 	}
 	
-	public function report() {
+	/**
+	 * Get report and display it in table.
+	 *
+	 * @synopsis [--start=<start>] [--end=<end>] [--filter=<filter>]
+	 * @param array $args
+	 * @param array $assoc
+	 */
+	public function report( $args, $assoc ) {
 		$view_id = get_option( 'ga-profile' );
 		if ( ! $view_id ) {
 			\WP_CLI::error( __( 'Profile is not set.', 'ga-communicator' ) );
 		}
-		print_r( $this->ga()->get_report( [] ) );
+		$replace = [];
+		// Set date ranges.
+		$date_ranges = [];
+		if ( ! empty( $assoc['start'] ) ) {
+			$date_ranges['startDate'] = $assoc['start'];
+		}
+		if ( ! empty( $assoc['end'] ) ) {
+			$date_ranges['endDate'] = $assoc['end'];
+		}
+		if ( ! empty( $date_ranges ) ) {
+			$replace['dateRanges'] = [ $date_ranges ];
+		}
+		// Set filter
+		if ( ! empty( $assoc['filter'] ) ) {
+			list( $dimension, $operator, $expressions ) = explode( ';', $assoc['filter'] );
+			$replace['dimensionFilterClauses'] = [
+				[
+					'operator' => 'AND',
+					'filters' => [
+						[
+							'dimensionName' => $dimension,
+  							'operator' => $operator,
+  							'expressions' => explode( ',', $expressions ),
+						],
+					],
+				],
+			];
+		}
+		$response = $this->ga()->get_report( $replace );
+		if ( is_wp_error( $response ) ) {
+			\WP_CLI::error( $response->get_error_message() );
+		}
+		$table = new Table();
+		$table->setHeaders( [ '#', 'Title', 'Path', 'PV', 'Valid' ] );
+		foreach ( $response as $index => $row ) {
+			list( $path, $title, $pv ) = $row;
+			$table->addRow( [ $index + 1, $title, $path, $pv, url_to_postid( home_url( $path ) ) ? 'Yes' : '---' ] );
+		}
+		$table->display();
+	}
+	
+	/**
+	 * Retrieve popular posts lilst.
+	 *
+	 * @param array $args
+	 * @param array $assoc
+	 * @synopsis <regexp> [--start=<start>] [--end=<end>] [--days_before=<days_before>]  [--offset_days=<offset_days>]
+	 */
+	public function popular_posts( $args, $assoc ) {
+		list( $regexp ) = $args;
+		$request = [
+			'path_regexp' => $regexp,
+		];
+		foreach ( [ 'start', 'end', 'days_before', 'offset_days' ] as $key ) {
+			if ( ! empty( $assoc[ $key ] ) ) {
+				$request[ $key ] = $assoc[ $key ];
+			}
+		}
+		$query = $this->ga()->popular_posts( [], $request );
+		if ( ! $query->have_posts() ) {
+			\WP_CLI::error( __( 'No post found.', 'ga-communicator' ) );
+		}
+		$table = new Table();
+		$table->setHeaders( [ '#', 'Title', 'URL', 'PV' ] );
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			$table->addRow( [ get_post()->rank, get_the_title(), get_permalink(), get_post()->pv ] );
+		}
+		$table->display();
 	}
 }
