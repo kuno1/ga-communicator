@@ -219,6 +219,7 @@ class GaCommunicator extends Singleton {
 		$query = wp_parse_args( $query, [
 			'post_type' => 'post',
 			'post_status' => 'publish',
+			'ignore_sticky_posts' => true,
 		] );
 		$query = array_merge( $query, [
 			'post__in' => array_keys( $post_ids ),
