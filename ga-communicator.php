@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Google Analytics Communicator
  * Plugin URI:  https://github.com/kuno1/ga-communicator
- * Description: Theme customizer helper
+ * Description: Communicate with Google Analytics.
  * Version:     0.0.0
  * Author:      Kunoichi INC.
  * Author URI:  https://kunoichiwp.com

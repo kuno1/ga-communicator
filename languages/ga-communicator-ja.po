@@ -1,0 +1,3198 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-06-12 14:14+0900\n"
+"PO-Revision-Date: 2020-06-12 14:14+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/Kunoichi/GaCommunicator.php:56
+msgid "Failed to API response. Please try again later."
+msgstr "APIからの返答を受け取れませんでした。のちほどやり直してください。"
+
+#: src/Kunoichi/GaCommunicator.php:316
+msgid "Invalid API service key."
+msgstr "APIサービスキーが無効です。"
+
+#: src/Kunoichi/GaCommunicator/Command.php:22
+#: src/Kunoichi/GaCommunicator/Command.php:47
+#: src/Kunoichi/GaCommunicator/Command.php:70
+msgid "No results found."
+msgstr "結果が見つかりませんでした。"
+
+#: src/Kunoichi/GaCommunicator/Command.php:41
+#, php-format
+msgid "Getting web properties of %s..."
+msgstr "%sのWebプロパティを取得しています……"
+
+#: src/Kunoichi/GaCommunicator/Command.php:90
+msgid "Profile is not set."
+msgstr "プロファイルが設定されていません。"
+
+#: src/Kunoichi/GaCommunicator/Command.php:152
+msgid "No post found."
+msgstr "投稿が見つかりませんでした。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:23
+msgid "Account Setting"
+msgstr "アカウント設定"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:25
+msgid ""
+"If you set credentials, please choose Google Analytics account of your site."
+msgstr "認証情報を設定し、Googleアナリティクスのアカウントを選択してください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:34
+msgid "Account"
+msgstr "アカウント"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:37
+msgid "Choose Account"
+msgstr "アカウントを選択"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:42
+msgid "Failed to get accounts. Please save valid service account."
+msgstr ""
+"アカウントの取得に失敗しました。正しいサービスアカウントを保存してください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:51
+msgid "Property"
+msgstr "プロパティ"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:54
+msgid "Choose Property"
+msgstr "プロパティを選択"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:59
+msgid "To display available properties, you should save account id."
+msgstr "利用可能なプロパティを表示するには、アカウントIDを保存してください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:63
+msgid "Failed to get properties. Please check permission."
+msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:73
+msgid "Profile"
+msgstr "プロファイル"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:76
+msgid "Choose Profile"
+msgstr "プロファイルを選択"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:81
+msgid ""
+"To display available profiles, you should save account id and property id."
+msgstr ""
+"利用可能なプロフィールを表示するには、アカウントIDとプロパティIDを保存する必"
+"要があります。"
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:85
+msgid "Failed to get profiles. Please check permission."
+msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:17
+msgid "Google Analytics Setting"
+msgstr "Googleアナリティクス設定"
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:32
+msgid "Credentials"
+msgstr "認証情報"
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:34
+msgid "Please enter Google Analytics Credentials."
+msgstr "Google アナリティクスの認証情報を入力してください。"
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:43
+msgid "Service Account Key"
+msgstr "サービスアカウントキー"
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:45
+#, php-format
+#| msgid ""
+#| "You can get a service account key in JSON format from Google API Library. "
+#| "For more detail, please check the <a href=\"\">document</a>."
+msgid ""
+"You can get a service account key in JSON format from Google API Library. "
+"For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener,noreferrer\">document</a>."
+msgstr ""
+"Google APIライブラリのJSON形式サービスアカウントキー。詳細は<a href=\"%s\" "
+"target=\"_blank\" rel=\"noopener,noreferrer\">ドキュメント</a>をチェックして"
+"ください。"
+
+#: src/Kunoichi/GaCommunicator/Pattern/Widget.php:52
+msgid "Title"
+msgstr "タイトル"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:23
+msgid "Google Analytics Popular Posts"
+msgstr "Googleアナリティクス人気の投稿"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:40
+msgid "Number of Posts"
+msgstr "表示件数"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:47
+msgid "Target Period"
+msgstr "指定期間"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:48
+msgctxt "recent-days"
+msgid "Recent"
+msgstr "最近"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:53
+msgctxt "recent-days"
+msgid "Days"
+msgstr "日"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:57
+msgid "Layout"
+msgstr "レイアウト"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:74
+msgid "Advanced Setting"
+msgstr "上級設定"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:80
+msgid "Filter Expression"
+msgstr "絞り込み文字列"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:86
+msgid "Default: "
+msgstr "デフォルト"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:87
+msgid ""
+"Filtering Regular Expression for URL. If you are not familiar with RegExp, "
+"stay empty. It will filter alongside the permalink structure."
+msgstr ""
+"URLを絞り込む正規表現。正規表現について詳しくない場合は空白のままにしておいて"
+"ください。パーマリンク構造を元に絞り込まれます。"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:92
+msgid "Post Type"
+msgstr "投稿タイプ"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:108
+msgid ""
+"If you change post type to one except post, you also have to change filter "
+"expression."
+msgstr ""
+"投稿以外の投稿タイプに変更した場合、フィルター文字列も変更する必要がありま"
+"す。"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:112
+msgid "Start Date"
+msgstr "開始日"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:113
+msgid "End Date"
+msgstr "終了日"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:123
+msgid "This will override relative days setting above."
+msgstr "これは上記の相対的な日時設定を上書きします。"
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:139
+msgid "Default"
+msgstr "デフォルト"
+
+#. Plugin Name of the plugin/theme
+msgid "Google Analytics Communicator"
+msgstr "Google アナリティクス　コミュニケーターAnalytics Communicator"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/kuno1/ga-communicator"
+msgstr "https://github.com/kuno1/ga-communicator"
+
+#. Description of the plugin/theme
+msgid "Communicate with Google Analytics."
+msgstr "Googleアナリティクスと対話します。"
+
+#. Author of the plugin/theme
+msgid "Kunoichi INC."
+msgstr "株式会社 KUNOICHI"
+
+#. Author URI of the plugin/theme
+msgid "https://kunoichiwp.com"
+msgstr "https://kunoichiwp.com"
+
+#, fuzzy
+#~ msgid "Theme customizer helper"
+#~ msgstr "テーマカスタマイザーのヘルパー"
+
+#, fuzzy
+#~ msgid "Activate"
+#~ msgstr "有効化"
+
+#, fuzzy
+#~ msgid "Password:"
+#~ msgstr "パスワード"
+
+#, fuzzy
+#~ msgctxt "page title"
+#~ msgid "About"
+#~ msgstr "コールトゥアクションについて"
+
+#, fuzzy
+#~ msgid "WordPress"
+#~ msgstr "WordPressユーザー名"
+
+#, fuzzy
+#~ msgid "https://wordpress.org/"
+#~ msgstr "https://ja.wordpress.org/"
+
+#, fuzzy
+#~ msgid "F j, Y"
+#~ msgstr "Y年n月j日"
+
+#, fuzzy
+#~ msgid "g:i a"
+#~ msgstr "Y年n月j日 g:i:s a"
+
+#, fuzzy
+#~ msgid "Import"
+#~ msgstr "B2インポート"
+
+#, fuzzy
+#~ msgctxt "media item"
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgid "Edit Comment"
+#~ msgstr "コメントを編集"
+
+#, fuzzy
+#~ msgid "For more information:"
+#~ msgstr "もっと詳しく"
+
+#, fuzzy
+#~ msgid "Go back"
+#~ msgstr ""
+#~ "何も指定されていません。前のページに戻り、問い合わせたいものを指定してくだ"
+#~ "さい。"
+
+#, fuzzy
+#~ msgid "Author"
+#~ msgstr "投稿者"
+
+#, fuzzy
+#~ msgid "Email"
+#~ msgstr "メールアドレス"
+
+#, fuzzy
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#, fuzzy
+#~ msgid "In Response To"
+#~ msgstr "%d件のレスポンスを取得しました。"
+
+#, fuzzy, php-format
+#~ msgid "In reply to %s."
+#~ msgstr "%sに返信"
+
+#, fuzzy
+#~ msgid "Submitted on"
+#~ msgstr "つぶやきが送信されました。"
+
+#, fuzzy, php-format
+#~ msgid "%1$s at %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgctxt "noun"
+#~ msgid "Comment"
+#~ msgstr "コメント"
+
+#, fuzzy
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
+#, fuzzy
+#~ msgid "Publish"
+#~ msgstr "公開"
+
+#, fuzzy
+#~ msgid "Customize"
+#~ msgstr "カスタマイズ"
+
+#, fuzzy
+#~ msgid "Preview"
+#~ msgstr "プレビュー"
+
+#, fuzzy
+#~ msgid "Help"
+#~ msgstr "ヘルプ"
+
+#, fuzzy
+#~ msgid "Comments"
+#~ msgstr "コメント"
+
+#, fuzzy
+#~ msgid "Edit comment"
+#~ msgstr "コメントを編集"
+
+#, fuzzy
+#~ msgctxt "publish box date format"
+#~ msgid "M j, Y"
+#~ msgstr "Y年n月j日 g:i:s a"
+
+#, fuzzy
+#~ msgid "Thumbnail"
+#~ msgstr "サムネイルリスト"
+
+#, fuzzy
+#~ msgid "Medium"
+#~ msgstr "中"
+
+#, fuzzy
+#~ msgid "Large"
+#~ msgstr "大"
+
+#, fuzzy
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgid "Comment"
+#~ msgstr "コメント"
+
+#, fuzzy
+#~ msgid "Save"
+#~ msgstr "保存する"
+
+#, fuzzy
+#~ msgid "Status:"
+#~ msgstr "ステータス"
+
+#, fuzzy
+#~ msgid "Pending"
+#~ msgstr "承認待ち"
+
+#, fuzzy
+#~ msgctxt "comment status"
+#~ msgid "Pending"
+#~ msgstr "承認待ち"
+
+#, fuzzy, php-format
+#~ msgid "In response to: %s"
+#~ msgstr "%sへの1件の反応"
+
+#, fuzzy, php-format
+#~ msgid "In reply to: %s"
+#~ msgstr "%sに返信"
+
+#, fuzzy
+#~ msgid "Delete Permanently"
+#~ msgstr "完全に削除"
+
+#, fuzzy
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "商品カテゴリーを取得するのに失敗しました。"
+
+#, fuzzy
+#~ msgid "Advanced"
+#~ msgstr "上級者向け"
+
+#, fuzzy
+#~ msgctxt "link"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "link name"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgid "Description"
+#~ msgstr "﻿説明"
+
+#, fuzzy
+#~ msgctxt "term name"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgid "Slug"
+#~ msgstr "ファイル名は slug-x.x.x.zip 形式でなければなりません。"
+
+#, fuzzy
+#~ msgid "None"
+#~ msgstr "なし"
+
+#, fuzzy
+#~ msgid "Delete"
+#~ msgstr "削除"
+
+#, fuzzy
+#~ msgctxt "post type general name"
+#~ msgid "Posts"
+#~ msgstr "%s件の投稿"
+
+#, fuzzy
+#~ msgid "Categories:"
+#~ msgstr "商品カテゴリーを取得するのに失敗しました。"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "すべて"
+
+#, fuzzy
+#~ msgid "Start date:"
+#~ msgstr "開始日"
+
+#, fuzzy
+#~ msgid "End date:"
+#~ msgstr "終了日"
+
+#, fuzzy
+#~ msgid "Pages"
+#~ msgstr "ページ:"
+
+#, fuzzy
+#~ msgid "Media"
+#~ msgstr "掲載された日付"
+
+#, fuzzy
+#~ msgid "https://wordpress.org/plugins/"
+#~ msgstr "https://ja.wordpress.org/plugins/for-your-eyes-only"
+
+#, fuzzy
+#~ msgid "Error:"
+#~ msgstr "エラー: "
+
+#, fuzzy
+#~ msgid "Details"
+#~ msgstr "詳細"
+
+#, fuzzy, php-format
+#~ msgctxt "user autocomplete result"
+#~ msgid "%1$s (%2$s)"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgid "No items found."
+#~ msgstr "アイテムが見つかりませんでした。"
+
+#, fuzzy
+#~ msgid "Type"
+#~ msgstr "型"
+
+#, fuzzy
+#~ msgid "Date"
+#~ msgstr "日付"
+
+#, fuzzy
+#~ msgid "Status"
+#~ msgstr "ステータス"
+
+#, fuzzy
+#~ msgid "(no title)"
+#~ msgstr "タイトルなし"
+
+#, fuzzy
+#~ msgid "Published"
+#~ msgstr "公開済み"
+
+#, fuzzy
+#~ msgid "Draft"
+#~ msgstr "つぶやきの下書きが更新されました。"
+
+#, fuzzy
+#~ msgid "No plugin specified."
+#~ msgstr "プラグインが指定されていません。"
+
+#, fuzzy, php-format
+#~ msgid "Version %s"
+#~ msgstr ""
+#~ "「Clinics」テーマは WordPress %1$s と PHP %2$s が必須ですが、現在 "
+#~ "WordPress %3$s と PHP %4$s を利用されています。WordPress と PHP をそれぞれ"
+#~ "アップグレードしてからもう一度試みてください。"
+
+#, fuzzy
+#~ msgid "Background"
+#~ msgstr "%s色の背景"
+
+#, fuzzy
+#~ msgid "Background Image"
+#~ msgstr "背景画像"
+
+#, fuzzy
+#~ msgid "Select Image"
+#~ msgstr "画像を選択"
+
+#, fuzzy
+#~ msgid "Upload"
+#~ msgstr "アップロード"
+
+#, fuzzy
+#~ msgid "Top"
+#~ msgstr "トップ"
+
+#, fuzzy
+#~ msgid "Left"
+#~ msgstr "左"
+
+#, fuzzy
+#~ msgid "Center"
+#~ msgstr "中央"
+
+#, fuzzy
+#~ msgid "Right"
+#~ msgstr "右"
+
+#, fuzzy
+#~ msgid "Bottom"
+#~ msgstr "下"
+
+#, fuzzy
+#~ msgctxt "Original Size"
+#~ msgid "Original"
+#~ msgstr "オリジナル版を読む"
+
+#, fuzzy
+#~ msgid "Background Color"
+#~ msgstr "背景色"
+
+#, fuzzy
+#~ msgid "Header"
+#~ msgstr "ヘッダー"
+
+#, fuzzy
+#~ msgid "Text Color"
+#~ msgstr "文字色"
+
+#, fuzzy, php-format
+#~ msgctxt "color"
+#~ msgid "Default: %s"
+#~ msgstr "サイトの初期設定(%s)"
+
+#, fuzzy
+#~ msgid "Navigation Label"
+#~ msgstr "%sのナビゲーションラベル"
+
+#, fuzzy
+#~ msgid "Move"
+#~ msgstr "このアイテムをゴミ箱に入れる"
+
+#, fuzzy
+#~ msgid "Remove"
+#~ msgstr "削除"
+
+#, fuzzy
+#~ msgid "Restore"
+#~ msgstr "復元"
+
+#, fuzzy
+#~ msgid "Filter"
+#~ msgstr "絞り込み"
+
+#, fuzzy
+#~ msgctxt "column name"
+#~ msgid "Comment"
+#~ msgstr "コメント"
+
+#, fuzzy
+#~ msgctxt "column name"
+#~ msgid "Submitted On"
+#~ msgstr "つぶやきが送信されました。"
+
+#, fuzzy
+#~ msgctxt "verb"
+#~ msgid "Trash"
+#~ msgstr "ゴミ箱"
+
+#, fuzzy
+#~ msgid "Reply"
+#~ msgstr "返信"
+
+#, fuzzy
+#~ msgid "Show more details"
+#~ msgstr "さらに詳細を表示"
+
+#, fuzzy
+#~ msgctxt "upcoming events month format"
+#~ msgid "F"
+#~ msgstr "Y年n月j日"
+
+#, fuzzy
+#~ msgctxt "upcoming events day format"
+#~ msgid "j"
+#~ msgstr "Y/m/d H:i"
+
+#, fuzzy
+#~ msgctxt "upcoming events year format"
+#~ msgid "Y"
+#~ msgstr "Y年"
+
+#, fuzzy
+#~ msgid "Version"
+#~ msgstr "必須WordPressバージョン"
+
+#, fuzzy
+#~ msgid "Yes"
+#~ msgstr "はい"
+
+#, fuzzy
+#~ msgctxt "comment status"
+#~ msgid "Open"
+#~ msgstr "営業"
+
+#, fuzzy
+#~ msgctxt "comment status"
+#~ msgid "Closed"
+#~ msgstr "%s は %sで自動的に閉じられます"
+
+#, fuzzy
+#~ msgid "Disabled"
+#~ msgstr "許可しない"
+
+#, fuzzy
+#~ msgid "Enabled"
+#~ msgstr "許可する"
+
+#, fuzzy
+#~ msgid "Undefined"
+#~ msgstr "未定義"
+
+#, fuzzy
+#~ msgid "Not available"
+#~ msgstr "利用可能"
+
+#, fuzzy, php-format
+#~ msgid "By %s"
+#~ msgstr "%s後"
+
+#, fuzzy, php-format
+#~ msgid "%1$s (%2$s)"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgid "No comments"
+#~ msgstr "% 件のコメント"
+
+#, fuzzy
+#~ msgid "Previous page"
+#~ msgstr "前のページに戻る"
+
+#, fuzzy, php-format
+#~ msgctxt "paging"
+#~ msgid "%1$s of %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgctxt "attachment filter"
+#~ msgid "Trash"
+#~ msgstr "ゴミ箱"
+
+#, fuzzy
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#, fuzzy
+#~ msgctxt "column name"
+#~ msgid "File"
+#~ msgstr "ファイルが見つかりません。"
+
+#, fuzzy
+#~ msgctxt "column name"
+#~ msgid "Date"
+#~ msgstr "日付"
+
+#, fuzzy
+#~ msgid "Detach"
+#~ msgstr ""
+#~ "すでに公開されているブランドのため、支払い情報を解除することができません。"
+
+#, fuzzy
+#~ msgid "View"
+#~ msgstr "表示"
+
+#, fuzzy
+#~ msgid "Deleted"
+#~ msgstr "APIキーは削除されました。"
+
+#, fuzzy
+#~ msgid "Last Updated"
+#~ msgstr "最終更新日： "
+
+#, fuzzy
+#~ msgctxt "site"
+#~ msgid "Registered"
+#~ msgstr "この顧客はそのカードをすでに登録しています。"
+
+#, fuzzy
+#~ msgid "Users"
+#~ msgstr "ユーザー"
+
+#, fuzzy
+#~ msgid "Actions"
+#~ msgstr "アクション"
+
+#, fuzzy
+#~ msgid "Never"
+#~ msgstr "このコメントに投票していません。"
+
+#, fuzzy
+#~ msgid "Dashboard"
+#~ msgstr "ダッシュボード"
+
+#, fuzzy
+#~ msgctxt "verb; site"
+#~ msgid "Archive"
+#~ msgstr "記事一覧前［一覧ページ］"
+
+#, fuzzy
+#~ msgid "Visit"
+#~ msgstr "Schema.org へ行く"
+
+#, fuzzy
+#~ msgid "Theme"
+#~ msgstr "テーマ"
+
+#, fuzzy
+#~ msgid "Enable"
+#~ msgstr "有効"
+
+#, fuzzy
+#~ msgid "Disable"
+#~ msgstr "無効"
+
+#, fuzzy
+#~ msgid "Select"
+#~ msgstr "選択"
+
+#, fuzzy, php-format
+#~ msgid "Enable %s"
+#~ msgstr "\"%s\" を有効にする。"
+
+#, fuzzy
+#~ msgctxt "user"
+#~ msgid "Registered"
+#~ msgstr "この顧客はそのカードをすでに登録しています。"
+
+#, fuzzy
+#~ msgctxt "name"
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#, fuzzy
+#~ msgid "Search Results"
+#~ msgstr "検索結果"
+
+#, fuzzy
+#~ msgctxt "Plugin Installer"
+#~ msgid "Featured"
+#~ msgstr "おすすめ"
+
+#, fuzzy
+#~ msgctxt "Plugin Installer"
+#~ msgid "Popular"
+#~ msgstr "人気"
+
+#, fuzzy
+#~ msgctxt "Plugin Installer"
+#~ msgid "Recommended"
+#~ msgstr "おすすめ"
+
+#, fuzzy
+#~ msgid "Try Again"
+#~ msgstr "登録できませんでした。時間をおいてからもう一度試してみてください。"
+
+#, fuzzy
+#~ msgctxt "Plugin installer group title"
+#~ msgid "Social"
+#~ msgstr "フッターソーシャルリンク"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Active"
+#~ msgstr "有効"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Installed"
+#~ msgstr "インストールされていません"
+
+#, fuzzy
+#~ msgid "More Details"
+#~ msgstr "さらに詳細を表示"
+
+#, fuzzy
+#~ msgid "Last Updated:"
+#~ msgstr "最終更新日： "
+
+#, fuzzy
+#~ msgid "Plugin"
+#~ msgstr "プラグイン"
+
+#, fuzzy, php-format
+#~ msgid "Active <span class=\"count\">(%s)</span>"
+#~ msgid_plural "Active <span class=\"count\">(%s)</span>"
+#~ msgstr[0] "有効 <span class=\"count\">(%s)</span>"
+
+#, fuzzy
+#~ msgctxt "column name"
+#~ msgid "Title"
+#~ msgstr "タイトル"
+
+#, fuzzy
+#~ msgid "Password"
+#~ msgstr "パスワード"
+
+#, fuzzy
+#~ msgid "Private"
+#~ msgstr "非公開"
+
+#, fuzzy
+#~ msgid "Parent"
+#~ msgstr "親"
+
+#, fuzzy
+#~ msgid "Order"
+#~ msgstr "順番"
+
+#, fuzzy
+#~ msgid "Template"
+#~ msgstr "テンプレートID"
+
+#, fuzzy
+#~ msgctxt "post format"
+#~ msgid "Format"
+#~ msgstr "無効な結果が返ってきました。"
+
+#, fuzzy
+#~ msgid "Retry"
+#~ msgstr "更新をもう一度試す"
+
+#, fuzzy
+#~ msgid "Table of Contents"
+#~ msgstr "目次"
+
+#, fuzzy
+#~ msgid "Analytics"
+#~ msgstr "解析"
+
+#, fuzzy
+#~ msgctxt "Welcome panel"
+#~ msgid "Welcome"
+#~ msgstr "ようこそ、%sさん！"
+
+#, fuzzy
+#~ msgid "Pagination"
+#~ msgstr "ページネーション。"
+
+#, fuzzy
+#~ msgid "Error"
+#~ msgstr "エラー"
+
+#, fuzzy
+#~ msgid "Warning"
+#~ msgstr "警告"
+
+#, fuzzy
+#~ msgid "Passed"
+#~ msgstr "引数が適切に渡されており、投稿が存在するかチェックする"
+
+#, fuzzy
+#~ msgid "WordPress Version"
+#~ msgstr "必須WordPressバージョン"
+
+#, fuzzy
+#~ msgid "Links"
+#~ msgstr "フッターソーシャルリンク"
+
+#, fuzzy
+#~ msgctxt "Number/count of items"
+#~ msgid "Count"
+#~ msgstr "数"
+
+#, fuzzy
+#~ msgid "No description"
+#~ msgstr "説明なし"
+
+#, fuzzy
+#~ msgctxt "themes"
+#~ msgid "Featured"
+#~ msgstr "おすすめ"
+
+#, fuzzy
+#~ msgctxt "themes"
+#~ msgid "Latest"
+#~ msgstr "最新"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Installed"
+#~ msgstr "インストールされていません"
+
+#, fuzzy
+#~ msgid "Close"
+#~ msgstr "閉じる"
+
+#, fuzzy
+#~ msgid "Install"
+#~ msgstr "インストール"
+
+#, fuzzy
+#~ msgid "Version:"
+#~ msgstr "API バージョン"
+
+#, fuzzy
+#~ msgid "Change"
+#~ msgstr "クリックして画像を変更"
+
+#, fuzzy
+#~ msgid "Posts"
+#~ msgstr "%s件の投稿"
+
+#, fuzzy
+#~ msgctxt "no user roles"
+#~ msgid "None"
+#~ msgstr "なし"
+
+#, fuzzy
+#~ msgid "Etc"
+#~ msgstr ""
+#~ "ここにブランドを入力してください。店舗名、会社名、エージェント名など。"
+
+#, fuzzy
+#~ msgid "Submit"
+#~ msgstr "送信"
+
+#, fuzzy, php-format
+#~ msgid "%s Page"
+#~ msgid_plural "%s Pages"
+#~ msgstr[0] ""
+#~ "Googleへの接続が有効ではありません。<a href=\"%s\">設定ページ</a>へ行き、"
+#~ "有効にしてください。"
+
+#, fuzzy, php-format
+#~ msgid "%s user"
+#~ msgid_plural "%s users"
+#~ msgstr[0] "%s (ユーザー)"
+
+#, fuzzy
+#~ msgid "Content"
+#~ msgstr "コンテンツ"
+
+#, fuzzy
+#~ msgctxt "draft_length"
+#~ msgid "10"
+#~ msgstr "ブランドについて40文字程度で説明してください。"
+
+#, fuzzy
+#~ msgid "[Pending]"
+#~ msgstr "承認待ち"
+
+#, fuzzy, php-format
+#~ msgctxt "dashboard"
+#~ msgid "%1$s %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy, php-format
+#~ msgctxt "dashboard"
+#~ msgid "%1$s, %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgid "News"
+#~ msgstr "速報のタイトル「速報」「緊急速報」など。"
+
+#, fuzzy
+#~ msgid "City:"
+#~ msgstr "市区町村"
+
+#, fuzzy
+#~ msgid "Sidebar"
+#~ msgstr "サイドバー"
+
+#, fuzzy
+#~ msgid "Search Form"
+#~ msgstr "検索フォーム"
+
+#, fuzzy
+#~ msgid "Archives"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy
+#~ msgid "Single Page"
+#~ msgstr "一覧ページと記事ページで表示されます。"
+
+#, fuzzy
+#~ msgid "Proceed"
+#~ msgstr "支払い情報入力フォームに進む"
+
+#, fuzzy
+#~ msgid "Gallery"
+#~ msgstr "サムネイルギャラリーの画像"
+
+#, fuzzy, php-format
+#~ msgid "\"%1$s\" from %2$s."
+#~ msgstr "%2$sから%1$s"
+
+#, fuzzy, php-format
+#~ msgid "\"%1$s\" by %2$s."
+#~ msgstr "%2$sから%1$s"
+
+#, fuzzy, php-format
+#~ msgid "\"%s\"."
+#~ msgstr "%s後"
+
+#, fuzzy, php-format
+#~ msgid "%1$s by %2$s."
+#~ msgstr "%2$sから%1$s"
+
+#, fuzzy
+#~ msgid "Saved."
+#~ msgstr "アクセストークンが保存されました。"
+
+#, fuzzy
+#~ msgid "Size"
+#~ msgstr "サイズ"
+
+#, fuzzy
+#~ msgid "Link URL"
+#~ msgstr "リンクURL"
+
+#, fuzzy
+#~ msgid "Alignment"
+#~ msgstr "テキスト位置"
+
+#, fuzzy
+#~ msgid "Show"
+#~ msgstr "表示する投稿の件数："
+
+#, fuzzy
+#~ msgid "Hide"
+#~ msgstr "隠す"
+
+#, fuzzy
+#~ msgid "Continue"
+#~ msgstr "続ける"
+
+#, fuzzy
+#~ msgid "Ascending"
+#~ msgstr "昇順"
+
+#, fuzzy
+#~ msgid "Descending"
+#~ msgstr "降順"
+
+#, fuzzy
+#~ msgctxt "verb"
+#~ msgid "Clear"
+#~ msgstr "クリア"
+
+#, fuzzy
+#~ msgid "Menu order"
+#~ msgstr "優先順位"
+
+#, fuzzy
+#~ msgid "Random"
+#~ msgstr "ランダム"
+
+#, fuzzy
+#~ msgid "Order:"
+#~ msgstr "順番"
+
+#, fuzzy
+#~ msgid "Image"
+#~ msgstr "BASE64エンコードされた画像データ。"
+
+#, fuzzy
+#~ msgid "Length:"
+#~ msgstr "長さ"
+
+#, fuzzy
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#, fuzzy
+#~ msgid "Visibility:"
+#~ msgstr "表示"
+
+#, fuzzy
+#~ msgid "Password protected"
+#~ msgstr ""
+#~ "この投稿はパスワード保護されています。コメントを見たり投稿したりするため"
+#~ "に、パスワードを入力してください。"
+
+#, fuzzy
+#~ msgid "Public"
+#~ msgstr "公開"
+
+#, fuzzy
+#~ msgctxt "post action/button label"
+#~ msgid "Schedule"
+#~ msgstr "スケジュール"
+
+#, fuzzy
+#~ msgid "Add"
+#~ msgstr "追加"
+
+#, fuzzy, php-format
+#~ msgid "+ %s"
+#~ msgstr "（%s）"
+
+#, fuzzy
+#~ msgid "Excerpt"
+#~ msgstr "抜粋文"
+
+#, fuzzy
+#~ msgid "(no parent)"
+#~ msgstr "関連なし"
+
+#, fuzzy
+#~ msgid "rel:"
+#~ msgstr ""
+#~ "スレッドを開始するには、 <a class=\"alert-link\" rel=\"nofollow\" href="
+#~ "\"%s\">ログイン</a>してください。"
+
+#, fuzzy
+#~ msgid "identity"
+#~ msgstr ""
+#~ "ブランドアイコンはマーケットプレース内でブランドの象徴として表示されます。"
+#~ "正方形（1024x1024）がオススメです。"
+
+#, fuzzy
+#~ msgid "contact"
+#~ msgstr "コンタクト"
+
+#, fuzzy
+#~ msgid "none"
+#~ msgstr "なし"
+
+#, fuzzy
+#~ msgid "family"
+#~ msgstr "名字（漢字）"
+
+#, fuzzy
+#~ msgid "parent"
+#~ msgstr "親"
+
+#, fuzzy
+#~ msgid "date"
+#~ msgstr "日付"
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "勤務日に関する注記"
+
+#, fuzzy
+#~ msgid "Back"
+#~ msgstr "前のページに戻る"
+
+#, fuzzy
+#~ msgid "English"
+#~ msgstr "英語"
+
+#, fuzzy
+#~ msgid "Info"
+#~ msgstr "お知らせ"
+
+#, fuzzy
+#~ msgid "Themes"
+#~ msgstr "%s テーマ"
+
+#, fuzzy
+#~ msgid "Settings"
+#~ msgstr "設定"
+
+#, fuzzy
+#~ msgctxt "nav menu home label"
+#~ msgid "Home"
+#~ msgstr "ホーム"
+
+#, fuzzy
+#~ msgid "Page"
+#~ msgstr "ページ"
+
+#, fuzzy
+#~ msgid "Warning:"
+#~ msgstr "警告"
+
+#, fuzzy
+#~ msgid "Note:"
+#~ msgstr ""
+#~ "<strong>※:</strong> リダイレクトは様々なシチュエーションで行われます。もし"
+#~ "あなたがWordPressのURL処理について詳しくない場合、トラブルの原因になること"
+#~ "があります。"
+
+#, fuzzy
+#~ msgid "Log In"
+#~ msgstr "ログイン"
+
+#, fuzzy, php-format
+#~ msgid "%s plugin"
+#~ msgstr "%s プラグイン"
+
+#, fuzzy, php-format
+#~ msgid "%s plugins"
+#~ msgstr "%s プラグイン"
+
+#, fuzzy
+#~ msgctxt "Plugin Installer"
+#~ msgid "Tag"
+#~ msgstr "タグマネージャーコンテナID"
+
+#, fuzzy
+#~ msgctxt "Plugin installer section title"
+#~ msgid "Description"
+#~ msgstr "﻿説明"
+
+#, fuzzy
+#~ msgctxt "Plugin installer section title"
+#~ msgid "FAQ"
+#~ msgstr "よくある質問"
+
+#, fuzzy
+#~ msgid "Author:"
+#~ msgstr "作者："
+
+#, fuzzy, php-format
+#~ msgid "By %s."
+#~ msgstr "%s後"
+
+#, fuzzy
+#~ msgid "Widgets"
+#~ msgstr "ウジェットその他のためのブランディング設定"
+
+#, fuzzy
+#~ msgid "Invalid action."
+#~ msgstr "無効なアクションです。"
+
+#, fuzzy
+#~ msgctxt "personal data group label"
+#~ msgid "About"
+#~ msgstr "コールトゥアクションについて"
+
+#, fuzzy
+#~ msgctxt "Button label for a previous revision"
+#~ msgid "Previous"
+#~ msgstr "前へ"
+
+#, fuzzy
+#~ msgctxt "Button label for a next revision"
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#, fuzzy
+#~ msgctxt "Followed by post revision info"
+#~ msgid "From:"
+#~ msgstr "開始日時"
+
+#, fuzzy
+#~ msgctxt "default GMT offset or timezone string"
+#~ msgid "0"
+#~ msgstr "0は親投稿がないことを意味します。"
+
+#, fuzzy
+#~ msgctxt "start of week"
+#~ msgid "1"
+#~ msgstr "カテゴリー %1$s"
+
+#, fuzzy
+#~ msgctxt "meta name"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgid "Value"
+#~ msgstr "価なし"
+
+#, fuzzy
+#~ msgid "Key"
+#~ msgstr "Consumer Key"
+
+#, fuzzy
+#~ msgid "Month"
+#~ msgstr "月"
+
+#, fuzzy, php-format
+#~ msgid "%1$s-%2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgid "Day"
+#~ msgstr "日"
+
+#, fuzzy
+#~ msgid "Year"
+#~ msgstr "年"
+
+#, fuzzy
+#~ msgid "Hour"
+#~ msgstr "%d時間前"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Password protected"
+#~ msgstr ""
+#~ "この投稿はパスワード保護されています。コメントを見たり投稿したりするため"
+#~ "に、パスワードを入力してください。"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Private"
+#~ msgstr "非公開"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Draft"
+#~ msgstr "つぶやきの下書きが更新されました。"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Pending"
+#~ msgstr "承認待ち"
+
+#, fuzzy
+#~ msgctxt "page label"
+#~ msgid "Front Page"
+#~ msgstr "フロントページ"
+
+#, fuzzy
+#~ msgid "Logo"
+#~ msgstr "カスタムロゴを表示する"
+
+#, fuzzy
+#~ msgid "Type of search"
+#~ msgstr "タイプして検索…"
+
+#, fuzzy
+#~ msgctxt "Theme Installer"
+#~ msgid "Tag"
+#~ msgstr "タグマネージャーコンテナID"
+
+#, fuzzy
+#~ msgid "Search by keyword"
+#~ msgstr "検索キーワード……"
+
+#, fuzzy
+#~ msgid "Subject"
+#~ msgstr "メール件名"
+
+#, fuzzy
+#~ msgid "Blog"
+#~ msgstr "ブログ"
+
+#, fuzzy
+#~ msgid "Portfolio"
+#~ msgstr "ポートフォリオ"
+
+#, fuzzy
+#~ msgid "Features"
+#~ msgstr "Elasticsearch のための追加機能です。"
+
+#, fuzzy
+#~ msgid "Footer Widgets"
+#~ msgstr "フッターウィジェット"
+
+#, fuzzy, php-format
+#~ msgid "Version: %s"
+#~ msgstr ""
+#~ "「Clinics」テーマは WordPress %1$s と PHP %2$s が必須ですが、現在 "
+#~ "WordPress %3$s と PHP %4$s を利用されています。WordPress と PHP をそれぞれ"
+#~ "アップグレードしてからもう一度試みてください。"
+
+#, fuzzy
+#~ msgid "Tags:"
+#~ msgstr "記事内広告のあいだのタグ数。最小は5です。"
+
+#, fuzzy
+#~ msgid "Latest"
+#~ msgstr "最新"
+
+#, fuzzy
+#~ msgid "Notice:"
+#~ msgstr "注意"
+
+#, fuzzy
+#~ msgctxt "widget"
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgctxt "widget"
+#~ msgid "Add"
+#~ msgstr "追加"
+
+#, fuzzy
+#~ msgid "Navigation"
+#~ msgstr "メインナビゲーションメニュー"
+
+#, fuzzy
+#~ msgctxt "Howdy"
+#~ msgid "Welcome"
+#~ msgstr "ようこそ、%sさん！"
+
+#, fuzzy
+#~ msgid "Site Title"
+#~ msgstr "%sのサイトタイトル"
+
+#, fuzzy
+#~ msgid "(required)"
+#~ msgstr "必須"
+
+#, fuzzy
+#~ msgid "Success!"
+#~ msgstr "成功"
+
+#, fuzzy
+#~ msgctxt "file"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgid "Main menu"
+#~ msgstr "PCメインメニュー"
+
+#, fuzzy
+#~ msgid "Home"
+#~ msgstr "ホーム"
+
+#, fuzzy
+#~ msgid "Library"
+#~ msgstr ""
+#~ "<a href=\"https://gumroad.com/library\">ライブラリー</a>ページで、私たちの"
+#~ "メンバーシップを見つけてください。"
+
+#, fuzzy
+#~ msgid "Appearance"
+#~ msgstr "外観"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "user"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgid "Your Profile"
+#~ msgstr "あなたのプロフィール"
+
+#, fuzzy
+#~ msgctxt "settings screen"
+#~ msgid "General"
+#~ msgstr "一般"
+
+#, fuzzy
+#~ msgid "Reading"
+#~ msgstr "%sの続きを読む"
+
+#, fuzzy
+#~ msgctxt "site"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "menu"
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgid "Plugins"
+#~ msgstr "おすすめプラグイン"
+
+#, fuzzy
+#~ msgid "Attributes"
+#~ msgstr "属性"
+
+#, fuzzy
+#~ msgctxt "email \"From\" field"
+#~ msgid "Site Admin"
+#~ msgstr "サイト管理者"
+
+#, fuzzy
+#~ msgid "Confirm"
+#~ msgstr "確認"
+
+#, fuzzy, php-format
+#~ msgctxt "theme"
+#~ msgid "%1$s by %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgid "last"
+#~ msgstr "最後の注文日"
+
+#, fuzzy
+#~ msgid "first"
+#~ msgstr "最初の更新: %s"
+
+#, fuzzy
+#~ msgid "newer"
+#~ msgstr "新着順"
+
+#, fuzzy
+#~ msgid "Blank"
+#~ msgstr ""
+#~ "お探しの条件に合うものはありませんでした。<br />条件を変更するか、<a href="
+#~ "\"%s\" target=\"_blank\">新規作成</a>してください。"
+
+#, fuzzy
+#~ msgid "Membership"
+#~ msgstr "会員"
+
+#, fuzzy
+#~ msgid "Date Format"
+#~ msgstr "%sの日付書式"
+
+#, fuzzy
+#~ msgid "Custom:"
+#~ msgstr "カスタム"
+
+#, fuzzy
+#~ msgid "Preview:"
+#~ msgstr "プレビュー"
+
+#, fuzzy
+#~ msgid "Time Format"
+#~ msgstr "%sの時間書式"
+
+#, fuzzy
+#~ msgid "Width"
+#~ msgstr "全幅ヘッダーなし"
+
+#, fuzzy
+#~ msgid "Max Width"
+#~ msgstr "最大幅"
+
+#, fuzzy
+#~ msgctxt "sample permalink base"
+#~ msgid "archives"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy
+#~ msgid "Optional"
+#~ msgstr "（任意）"
+
+#, fuzzy
+#~ msgid "There are no pages."
+#~ msgstr "ページ数"
+
+#, fuzzy
+#~ msgid "posts"
+#~ msgstr "%s件の投稿"
+
+#, fuzzy
+#~ msgid "items"
+#~ msgstr "アイテム"
+
+#, fuzzy
+#~ msgid "Port"
+#~ msgstr "ポート"
+
+#, fuzzy
+#~ msgid "WARNING!"
+#~ msgstr "警告"
+
+#, fuzzy
+#~ msgid "Documentation:"
+#~ msgstr "ドキュメント"
+
+#, fuzzy, php-format
+#~ msgctxt "plugin"
+#~ msgid "%1$s by %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgctxt "example password"
+#~ msgid "password"
+#~ msgstr "パスワード"
+
+#, fuzzy
+#~ msgctxt "Site Health"
+#~ msgid "Status"
+#~ msgstr "ステータス"
+
+#, fuzzy
+#~ msgctxt "Site Health"
+#~ msgid "Info"
+#~ msgstr "お知らせ"
+
+#, fuzzy
+#~ msgid "Copied!"
+#~ msgstr "クリップボードにデータがコピーされました。"
+
+#, fuzzy
+#~ msgctxt "themes"
+#~ msgid "Popular"
+#~ msgstr "人気"
+
+#, fuzzy
+#~ msgid "Clear"
+#~ msgstr "クリア"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Active:"
+#~ msgstr "有効"
+
+#, fuzzy
+#~ msgctxt "theme name"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgid "Translations"
+#~ msgstr "翻訳"
+
+#, fuzzy
+#~ msgid "Language"
+#~ msgstr "言語"
+
+#, fuzzy
+#~ msgid "First Name"
+#~ msgstr "名"
+
+#, fuzzy
+#~ msgid "Last Name"
+#~ msgstr "姓"
+
+#, fuzzy
+#~ msgid "Nickname"
+#~ msgstr "ニックネーム"
+
+#, fuzzy
+#~ msgid "Website"
+#~ msgstr ""
+#~ "掲載された場所のURL。ウェブサイトや特定のページ、ウェブサービス、関連サイ"
+#~ "ト等。（任意）"
+
+#, fuzzy
+#~ msgid "Profile Picture"
+#~ msgstr "プロフィール画像"
+
+#, fuzzy
+#~ msgid "New Password"
+#~ msgstr "新しいパスワード"
+
+#, fuzzy
+#~ msgid "Update Profile"
+#~ msgstr "プロフィールを更新"
+
+#, fuzzy
+#~ msgid "Position"
+#~ msgstr "位置"
+
+#, fuzzy
+#~ msgid "Enter an API Key"
+#~ msgstr ""
+#~ "Hamailの設定値です。SendGrid APIキーを入力してください。Mail Sendパーミッ"
+#~ "ションが最低限必要です。"
+
+#, fuzzy
+#~ msgid "API Key"
+#~ msgstr "APIキー"
+
+#, fuzzy
+#~ msgid "(%1$s%)"
+#~ msgstr "%2$sへの%1$s件の反応"
+
+#, fuzzy
+#~ msgid "Title:"
+#~ msgstr "タイトル："
+
+#, fuzzy
+#~ msgid "Comment not found."
+#~ msgstr "コメントが見つかりません。"
+
+#, fuzzy
+#~ msgid "Disabled."
+#~ msgstr "許可しない"
+
+#, fuzzy
+#~ msgid "Enabled."
+#~ msgstr "許可する"
+
+#, fuzzy
+#~ msgid "Cancelled"
+#~ msgstr "キャンセル済"
+
+#, fuzzy
+#~ msgid "Missing"
+#~ msgstr ""
+#~ "うーん、composerファイルが見つかりません。composer installを実行してくださ"
+#~ "い。"
+
+#, fuzzy
+#~ msgid "Active"
+#~ msgstr "有効"
+
+#, fuzzy
+#~ msgid "Upgrade"
+#~ msgstr "アップグレード"
+
+#, fuzzy, php-format
+#~ msgid "%s <span class=\"screen-reader-text says\">says:</span>"
+#~ msgstr "%s <span class=\"screen-reader-text says\">の発言:</span>"
+
+#, fuzzy
+#~ msgid "Your comment is awaiting moderation."
+#~ msgstr "コメントは承認待ちです。"
+
+#, fuzzy
+#~ msgid "Previous"
+#~ msgstr "前へ"
+
+#, fuzzy
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#, fuzzy
+#~ msgid "Comments are closed."
+#~ msgstr "コメント欄は閉じられました。"
+
+#, fuzzy
+#~ msgid "Footer Menu"
+#~ msgstr "フッターメニュー"
+
+#, fuzzy
+#~ msgid "Primary"
+#~ msgstr "メイン"
+
+#, fuzzy
+#~ msgid "Small"
+#~ msgstr "スモール"
+
+#, fuzzy
+#~ msgid "S"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgid "Normal"
+#~ msgstr "通常"
+
+#, fuzzy
+#~ msgid "M"
+#~ msgstr "M"
+
+#, fuzzy
+#~ msgid "L"
+#~ msgstr "L"
+
+#, fuzzy
+#~ msgid "Huge"
+#~ msgstr "特大"
+
+#, fuzzy
+#~ msgid "XL"
+#~ msgstr "XL"
+
+#, fuzzy
+#~ msgid "Blue"
+#~ msgstr "青"
+
+#, fuzzy
+#~ msgid "Light Gray"
+#~ msgstr "薄いグレー"
+
+#, fuzzy
+#~ msgid "White"
+#~ msgstr "白"
+
+#, fuzzy
+#~ msgid "Footer"
+#~ msgstr "フッター"
+
+#, fuzzy
+#~ msgid "Skip to content"
+#~ msgstr "コンテンツへスキップ"
+
+#, fuzzy
+#~ msgid "Pages:"
+#~ msgstr "ページ:"
+
+#, fuzzy
+#~ msgid "Primary Color"
+#~ msgstr "メインカラー"
+
+#, fuzzy
+#~ msgctxt "primary color"
+#~ msgid "Default"
+#~ msgstr "デフォルト"
+
+#, fuzzy
+#~ msgctxt "primary color"
+#~ msgid "Custom"
+#~ msgstr "カスタム"
+
+#, fuzzy
+#~ msgctxt "yearly archives date format"
+#~ msgid "Y"
+#~ msgstr "Y年"
+
+#, fuzzy
+#~ msgctxt "monthly archives date format"
+#~ msgid "F Y"
+#~ msgstr "Y年n月"
+
+#, fuzzy
+#~ msgid "Archives:"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy
+#~ msgid "More"
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgid "Posted by"
+#~ msgstr "投稿日時 %s"
+
+#, fuzzy, php-format
+#~ msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+#~ msgstr ""
+#~ "<span class=\"screen-reader-text\"> %s</span>にコメントを残してください"
+
+#, fuzzy
+#~ msgid "Posted in"
+#~ msgstr "投稿日時 %s"
+
+#, fuzzy, php-format
+#~ msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+#~ msgstr "<span class=“screen-reader-text”>%s</span> を編集"
+
+#, fuzzy
+#~ msgid "Search results for: "
+#~ msgstr "検索結果はありませんでした。"
+
+#, fuzzy
+#~ msgid "Next Post"
+#~ msgstr "次の投稿"
+
+#, fuzzy
+#~ msgid "Next post:"
+#~ msgstr "次の投稿"
+
+#, fuzzy
+#~ msgid "Previous Post"
+#~ msgstr "前の投稿"
+
+#, fuzzy
+#~ msgid "Previous post:"
+#~ msgstr "前の投稿"
+
+#, fuzzy
+#~ msgctxt "post"
+#~ msgid "Featured"
+#~ msgstr "おすすめ"
+
+#, fuzzy
+#~ msgid "Nothing Found"
+#~ msgstr "申し訳ございません、お探しのものは見つかりませんでした。"
+
+#, fuzzy
+#~ msgid "Light"
+#~ msgstr "明るい"
+
+#, fuzzy
+#~ msgid "Dark"
+#~ msgstr "暗い"
+
+#, fuzzy
+#~ msgid "Custom"
+#~ msgstr "カスタム"
+
+#, fuzzy, php-format
+#~ msgid "by %s"
+#~ msgstr "作者 %s"
+
+#, fuzzy
+#~ msgid "Tags"
+#~ msgstr "記事内広告のあいだのタグ数。最小は5です。"
+
+#, fuzzy, php-format
+#~ msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+#~ msgstr "<span class=“screen-reader-text”>%s</span> を編集"
+
+#, fuzzy, php-format
+#~ msgid "Search Results for: %s"
+#~ msgstr "「%s」の検索結果"
+
+#, fuzzy
+#~ msgctxt "label"
+#~ msgid "Search for:"
+#~ msgstr "検索……"
+
+#, fuzzy
+#~ msgctxt "submit button"
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#, fuzzy
+#~ msgid "Menu"
+#~ msgstr "メニュー"
+
+#, fuzzy
+#~ msgid "Page Not Found"
+#~ msgstr "ページが見つかりませんでした。"
+
+#, fuzzy
+#~ msgid "404 not found"
+#~ msgstr "404 見つかりませんでした"
+
+#, fuzzy
+#~ msgctxt "copyright date format"
+#~ msgid "Y"
+#~ msgstr "Y年"
+
+#, fuzzy
+#~ msgid "Mobile Menu"
+#~ msgstr "モバイルメニュー"
+
+#, fuzzy
+#~ msgid "Secondary"
+#~ msgstr "サブ"
+
+#, fuzzy
+#~ msgctxt "Name of the small font size in the block editor"
+#~ msgid "Small"
+#~ msgstr "スモール"
+
+#, fuzzy
+#~ msgctxt "Short name of the small font size in the block editor."
+#~ msgid "S"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgctxt "Short name of the regular font size in the block editor."
+#~ msgid "M"
+#~ msgstr "M"
+
+#, fuzzy
+#~ msgctxt "Name of the large font size in the block editor"
+#~ msgid "Large"
+#~ msgstr "大"
+
+#, fuzzy
+#~ msgctxt "Short name of the large font size in the block editor."
+#~ msgid "L"
+#~ msgstr "L"
+
+#, fuzzy
+#~ msgctxt "Short name of the larger font size in the block editor."
+#~ msgid "XL"
+#~ msgstr "XL"
+
+#, fuzzy
+#~ msgid "Horizontal"
+#~ msgstr "横"
+
+#, fuzzy
+#~ msgid "Read More"
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgid "Search:"
+#~ msgstr "検索:"
+
+#, fuzzy
+#~ msgid "Search for:"
+#~ msgstr "検索……"
+
+#, fuzzy
+#~ msgid "Continue reading"
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgid "Social links"
+#~ msgstr "ソーシャルリンク"
+
+#, fuzzy
+#~ msgid "Mobile"
+#~ msgstr "モバイルメインメニュー"
+
+#, fuzzy
+#~ msgid "Post"
+#~ msgstr "投稿"
+
+#, fuzzy
+#~ msgid "Documentation"
+#~ msgstr "ドキュメント"
+
+#, fuzzy
+#~ msgid "Support"
+#~ msgstr "サポート"
+
+#, fuzzy, php-format
+#~ msgid "Howdy, %s"
+#~ msgstr "こんにちは、%sさん！"
+
+#, fuzzy
+#~ msgid "Log Out"
+#~ msgstr "ログアウト"
+
+#, fuzzy
+#~ msgctxt "add new from admin bar"
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#, fuzzy
+#~ msgctxt "add new from admin bar"
+#~ msgid "User"
+#~ msgstr "ユーザー"
+
+#, fuzzy
+#~ msgctxt "admin bar menu group label"
+#~ msgid "New"
+#~ msgstr "新規"
+
+#, fuzzy, php-format
+#~ msgid "Posts by %s"
+#~ msgstr "%sの投稿一覧"
+
+#, fuzzy
+#~ msgid "Select Category"
+#~ msgstr "カテゴリーを選択してください。"
+
+#, fuzzy, php-format
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgid "Read more"
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgctxt "User role"
+#~ msgid "Administrator"
+#~ msgstr "管理者"
+
+#, fuzzy
+#~ msgctxt "User role"
+#~ msgid "Editor"
+#~ msgstr "編集者"
+
+#, fuzzy
+#~ msgctxt "User role"
+#~ msgid "Author"
+#~ msgstr "投稿者"
+
+#, fuzzy
+#~ msgctxt "User role"
+#~ msgid "Contributor"
+#~ msgstr "貢献者"
+
+#, fuzzy
+#~ msgctxt "User role"
+#~ msgid "Subscriber"
+#~ msgstr "購読者"
+
+#, fuzzy
+#~ msgid "No categories"
+#~ msgstr "病気の種類"
+
+#, fuzzy
+#~ msgid "Tags: "
+#~ msgstr "記事内広告のあいだのタグ数。最小は5です。"
+
+#, fuzzy
+#~ msgid "Error "
+#~ msgstr "エラー: "
+
+#, fuzzy
+#~ msgid "(Edit)"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgid "Invalid value."
+#~ msgstr "不正な値です。"
+
+#, fuzzy
+#~ msgid "Copy"
+#~ msgstr "コピー"
+
+#, fuzzy
+#~ msgid "Copied"
+#~ msgstr "クリップボードにデータがコピーされました。"
+
+#, fuzzy
+#~ msgctxt "customizer changeset action/button label"
+#~ msgid "Schedule"
+#~ msgstr "スケジュール"
+
+#, fuzzy
+#~ msgctxt "Default Preset"
+#~ msgid "Default"
+#~ msgstr "デフォルト"
+
+#, fuzzy
+#~ msgctxt "Custom Preset"
+#~ msgid "Custom"
+#~ msgstr "カスタム"
+
+#, fuzzy
+#~ msgid "No items"
+#~ msgstr "アイテム"
+
+#, fuzzy
+#~ msgctxt "Move widget"
+#~ msgid "Move"
+#~ msgstr "このアイテムをゴミ箱に入れる"
+
+#, fuzzy
+#~ msgctxt "Name for the Text editor tab (formerly HTML)"
+#~ msgid "Text"
+#~ msgstr "テキスト"
+
+#, fuzzy
+#~ msgctxt "HTML tag"
+#~ msgid "Address"
+#~ msgstr "発送元住所1（番地まで）"
+
+#, fuzzy
+#~ msgid "Underline"
+#~ msgstr "下線"
+
+#, fuzzy
+#~ msgid "Code"
+#~ msgstr "<code>%s</code>を選択"
+
+#, fuzzy
+#~ msgid "Font Family"
+#~ msgstr "フォントファミリー"
+
+#, fuzzy
+#~ msgctxt "list style"
+#~ msgid "Square"
+#~ msgstr "正方形"
+
+#, fuzzy
+#~ msgctxt "list style"
+#~ msgid "Default"
+#~ msgstr "デフォルト"
+
+#, fuzzy
+#~ msgctxt "Name of link anchor (TinyMCE)"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#, fuzzy
+#~ msgctxt "Link anchor (TinyMCE)"
+#~ msgid "Anchor"
+#~ msgstr ""
+#~ "この文字列はすべてのページで表示されます。リンク(a)タグとiタグ、strongタグ"
+#~ "だけが動作します。"
+
+#, fuzzy
+#~ msgctxt "Id for link anchor (TinyMCE)"
+#~ msgid "Id"
+#~ msgstr "ID"
+
+#, fuzzy
+#~ msgid "Keywords"
+#~ msgstr "キーワード"
+
+#, fuzzy
+#~ msgid "General"
+#~ msgstr "一般"
+
+#, fuzzy
+#~ msgid "Source"
+#~ msgstr "出典"
+
+#, fuzzy
+#~ msgid "Style"
+#~ msgstr "スタイル"
+
+#, fuzzy
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#, fuzzy
+#~ msgid "Color"
+#~ msgstr "色"
+
+#, fuzzy
+#~ msgctxt "label for custom color"
+#~ msgid "Custom..."
+#~ msgstr "カスタム"
+
+#, fuzzy
+#~ msgid "No color"
+#~ msgstr "色"
+
+#, fuzzy
+#~ msgctxt "Short for green in RGB"
+#~ msgid "G"
+#~ msgstr "Y年n月j日 g:i:s a"
+
+#, fuzzy
+#~ msgctxt "find/replace"
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#, fuzzy
+#~ msgctxt "find/replace"
+#~ msgid "Find"
+#~ msgstr ""
+#~ "アドオンに興味を持っていただけましたか？　<a href=\"%s\">gianism.info</a>"
+#~ "でもっと沢山紹介しています！"
+
+#, fuzzy
+#~ msgid "Row"
+#~ msgstr "時間帯を追加"
+
+#, fuzzy
+#~ msgctxt "table column"
+#~ msgid "Column"
+#~ msgstr "カラム"
+
+#, fuzzy
+#~ msgctxt "table header"
+#~ msgid "Header"
+#~ msgstr "ヘッダー"
+
+#, fuzzy
+#~ msgctxt "table footer"
+#~ msgid "Footer"
+#~ msgstr "フッター"
+
+#, fuzzy
+#~ msgctxt "table cell alignment attribute"
+#~ msgid "None"
+#~ msgstr "なし"
+
+#, fuzzy
+#~ msgid "Background color"
+#~ msgstr "背景色"
+
+#, fuzzy
+#~ msgid "Text color"
+#~ msgstr "文字色"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "Insert"
+#~ msgstr "挿入"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "File"
+#~ msgstr "ファイルが見つかりません。"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "View"
+#~ msgstr "表示"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "Table"
+#~ msgstr "テーブルが作成されました。"
+
+#, fuzzy
+#~ msgctxt "TinyMCE menu"
+#~ msgid "Format"
+#~ msgstr "無効な結果が返ってきました。"
+
+#, fuzzy
+#~ msgid "Read more..."
+#~ msgstr "続きを読む"
+
+#, fuzzy
+#~ msgid "No alignment"
+#~ msgstr "テキスト位置"
+
+#, fuzzy
+#~ msgid "Letter"
+#~ msgstr "%s文字"
+
+#, fuzzy
+#~ msgid "Action"
+#~ msgstr "無効なアクションです。"
+
+#, fuzzy
+#~ msgid "Sunday"
+#~ msgstr "日曜日"
+
+#, fuzzy
+#~ msgid "Monday"
+#~ msgstr "月曜日"
+
+#, fuzzy
+#~ msgid "Tuesday"
+#~ msgstr "火曜日"
+
+#, fuzzy
+#~ msgid "Wednesday"
+#~ msgstr "水曜日"
+
+#, fuzzy
+#~ msgid "Thursday"
+#~ msgstr "木曜日"
+
+#, fuzzy
+#~ msgid "Friday"
+#~ msgstr "金曜日"
+
+#, fuzzy
+#~ msgid "Saturday"
+#~ msgstr "土曜日"
+
+#, fuzzy
+#~ msgctxt "Sunday initial"
+#~ msgid "S"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgctxt "Monday initial"
+#~ msgid "M"
+#~ msgstr "M"
+
+#, fuzzy
+#~ msgctxt "Friday initial"
+#~ msgid "F"
+#~ msgstr "Y年n月j日"
+
+#, fuzzy
+#~ msgctxt "Saturday initial"
+#~ msgid "S"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgid "Sun"
+#~ msgstr "日"
+
+#, fuzzy
+#~ msgid "Mon"
+#~ msgstr "月"
+
+#, fuzzy
+#~ msgid "Tue"
+#~ msgstr "火"
+
+#, fuzzy
+#~ msgid "Wed"
+#~ msgstr "水"
+
+#, fuzzy
+#~ msgid "Thu"
+#~ msgstr "木"
+
+#, fuzzy
+#~ msgid "Fri"
+#~ msgstr "金"
+
+#, fuzzy
+#~ msgid "Sat"
+#~ msgstr "土"
+
+#, fuzzy
+#~ msgid "May"
+#~ msgstr ""
+#~ "%s に関して有用なドキュメントを見つけることができるかもしれません。もし見"
+#~ "つからない場合はお気軽にリクエストをしてください。"
+
+#, fuzzy
+#~ msgctxt "genitive"
+#~ msgid "May"
+#~ msgstr ""
+#~ "%s に関して有用なドキュメントを見つけることができるかもしれません。もし見"
+#~ "つからない場合はお気軽にリクエストをしてください。"
+
+#, fuzzy
+#~ msgctxt "May abbreviation"
+#~ msgid "May"
+#~ msgstr ""
+#~ "%s に関して有用なドキュメントを見つけることができるかもしれません。もし見"
+#~ "つからない場合はお気軽にリクエストをしてください。"
+
+#, fuzzy
+#~ msgid "Deleted:"
+#~ msgstr "削除されたユーザー"
+
+#, fuzzy
+#~ msgid "Black"
+#~ msgstr "黒"
+
+#, fuzzy
+#~ msgid "Green"
+#~ msgstr "みどり"
+
+#, fuzzy
+#~ msgid "Orange"
+#~ msgstr "オレンジ"
+
+#, fuzzy
+#~ msgid "Red"
+#~ msgstr "赤"
+
+#, fuzzy
+#~ msgid "Yellow"
+#~ msgstr "黄色"
+
+#, fuzzy
+#~ msgctxt "Comment number declension: on or off"
+#~ msgid "off"
+#~ msgstr "オフ"
+
+#, fuzzy
+#~ msgid "No Comments"
+#~ msgstr "% 件のコメント"
+
+#, fuzzy
+#~ msgid "1 Comment"
+#~ msgstr "1件のコメント"
+
+#, fuzzy, php-format
+#~ msgid "Reply to %s"
+#~ msgstr "%sに返信"
+
+#, fuzzy
+#~ msgid "Post Comment"
+#~ msgstr "コメントを投稿する"
+
+#, fuzzy
+#~ msgctxt "comment status"
+#~ msgid "Trash"
+#~ msgstr "ゴミ箱"
+
+#, fuzzy
+#~ msgid "Time"
+#~ msgstr "タイムシフト"
+
+#, fuzzy
+#~ msgid "Select image"
+#~ msgstr "画像を選択"
+
+#, fuzzy
+#~ msgid "Choose file"
+#~ msgstr "ファイルを選択"
+
+#, fuzzy, php-format
+#~ msgctxt "menu location"
+#~ msgid "(Current: %s)"
+#~ msgstr "現在の%s"
+
+#, fuzzy, php-format
+#~ msgctxt "theme author"
+#~ msgid "By %s"
+#~ msgstr "%s後"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Change"
+#~ msgstr "クリックして画像を変更"
+
+#, fuzzy, php-format
+#~ msgid "%s themes"
+#~ msgstr "%s テーマ"
+
+#, fuzzy
+#~ msgid "Last updated"
+#~ msgstr "最終更新日： "
+
+#, fuzzy, php-format
+#~ msgid "Continue reading %s"
+#~ msgstr "%sの続きを読む"
+
+#, fuzzy, php-format
+#~ msgid "By: %s"
+#~ msgstr "%s後"
+
+#, fuzzy, php-format
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s時間前"
+
+#, fuzzy, php-format
+#~ msgid "%s month"
+#~ msgid_plural "%s months"
+#~ msgstr[0] "%sヵ月前"
+
+#, fuzzy, php-format
+#~ msgid "%s year"
+#~ msgid_plural "%s years"
+#~ msgstr[0] "%s年"
+
+#, fuzzy
+#~ msgctxt "Word count type. Do not translate!"
+#~ msgid "words"
+#~ msgstr "%s単語"
+
+#, fuzzy, php-format
+#~ msgid "%1$s, %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy, php-format
+#~ msgid "%1$s, and %2$s"
+#~ msgstr "%2$sから%1$s"
+
+#, fuzzy, php-format
+#~ msgid "%1$s and %2$s"
+#~ msgstr "%2$sから%1$s"
+
+#, fuzzy
+#~ msgctxt "decline months names: on or off"
+#~ msgid "off"
+#~ msgstr "オフ"
+
+#, fuzzy
+#~ msgid "Please try again."
+#~ msgstr "登録できませんでした。時間をおいてからもう一度試してみてください。"
+
+#, fuzzy
+#~ msgid "[deleted]"
+#~ msgstr "削除されたユーザー"
+
+#, fuzzy
+#~ msgid "Log in"
+#~ msgstr "ログイン"
+
+#, fuzzy
+#~ msgid "Log out"
+#~ msgstr "ログアウト"
+
+#, fuzzy
+#~ msgid "Register"
+#~ msgstr "利用規約に同意して登録"
+
+#, fuzzy
+#~ msgid "Site Admin"
+#~ msgstr "サイト管理者"
+
+#, fuzzy
+#~ msgid "Page not found"
+#~ msgstr "ページが見つかりませんでした。"
+
+#, fuzzy
+#~ msgctxt "daily archives date format"
+#~ msgid "F j, Y"
+#~ msgstr "Y年n月j日"
+
+#, fuzzy
+#~ msgctxt "post format archive title"
+#~ msgid "Images"
+#~ msgstr "サムネイルギャラリーの画像"
+
+#, fuzzy
+#~ msgctxt "post format archive title"
+#~ msgid "Links"
+#~ msgstr "フッターソーシャルリンク"
+
+#, fuzzy, php-format
+#~ msgid "Archives: %s"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy, php-format
+#~ msgid "%1$s: %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy, php-format
+#~ msgctxt "calendar caption"
+#~ msgid "%1$s %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgctxt "admin color scheme"
+#~ msgid "Default"
+#~ msgstr "デフォルト"
+
+#, fuzzy
+#~ msgctxt "admin color scheme"
+#~ msgid "Light"
+#~ msgstr "明るい"
+
+#, fuzzy
+#~ msgctxt "admin color scheme"
+#~ msgid "Blue"
+#~ msgstr "青"
+
+#, fuzzy
+#~ msgctxt "translations"
+#~ msgid "Installed"
+#~ msgstr "インストールされていません"
+
+#, fuzzy
+#~ msgctxt "default site language"
+#~ msgid "Site Default"
+#~ msgstr "サイトの初期設定(%s)"
+
+#, fuzzy
+#~ msgctxt "translations"
+#~ msgid "Available"
+#~ msgstr "利用可能"
+
+#, fuzzy
+#~ msgctxt "previous set of posts"
+#~ msgid "Previous"
+#~ msgstr "前へ"
+
+#, fuzzy
+#~ msgctxt "next set of posts"
+#~ msgid "Next"
+#~ msgstr "次へ"
+
+#, fuzzy
+#~ msgctxt "media modal menu actions"
+#~ msgid "Actions"
+#~ msgstr "アクション"
+
+#, fuzzy
+#~ msgctxt "media modal menu"
+#~ msgid "Menu"
+#~ msgstr "メニュー"
+
+#, fuzzy
+#~ msgid "Artist"
+#~ msgstr "アーティスト"
+
+#, fuzzy
+#~ msgid "Album"
+#~ msgstr "アルバム"
+
+#, fuzzy
+#~ msgid "Copy Link"
+#~ msgstr "リンクをコピー"
+
+#, fuzzy
+#~ msgid "Link To"
+#~ msgstr "リンクなし"
+
+#, fuzzy
+#~ msgid "Align"
+#~ msgstr "テキスト寄せ"
+
+#, fuzzy
+#~ msgid "Image URL"
+#~ msgstr "画像URL"
+
+#, fuzzy
+#~ msgid "Genre"
+#~ msgstr "ジャンル"
+
+#, fuzzy
+#~ msgctxt "video or audio"
+#~ msgid "Length"
+#~ msgstr "長さ"
+
+#, fuzzy
+#~ msgid "(no author)"
+#~ msgstr "作者："
+
+#, fuzzy
+#~ msgctxt "noun"
+#~ msgid "Trash"
+#~ msgstr "ゴミ箱"
+
+#, fuzzy
+#~ msgid "That user does not exist."
+#~ msgstr "ユーザーは存在しません。"
+
+#, fuzzy
+#~ msgid "Site title."
+#~ msgstr "%sのサイトタイトル"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Standard"
+#~ msgstr "例・スタンダード"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Gallery"
+#~ msgstr "サムネイルギャラリーの画像"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Link"
+#~ msgstr "リンク"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Image"
+#~ msgstr "BASE64エンコードされた画像データ。"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Quote"
+#~ msgstr "すべての引用文を見る"
+
+#, fuzzy
+#~ msgctxt "Post format"
+#~ msgid "Status"
+#~ msgstr "ステータス"
+
+#, fuzzy, php-format
+#~ msgctxt "Post custom field name"
+#~ msgid "%s:"
+#~ msgstr "#%s"
+
+#, fuzzy
+#~ msgctxt "post password form"
+#~ msgid "Enter"
+#~ msgstr "お知らせのタイトルをここに入力"
+
+#, fuzzy
+#~ msgctxt "add new from admin bar"
+#~ msgid "Post"
+#~ msgstr "投稿"
+
+#, fuzzy
+#~ msgctxt "add new from admin bar"
+#~ msgid "Page"
+#~ msgstr "ページ"
+
+#, fuzzy
+#~ msgctxt "post type general name"
+#~ msgid "Media"
+#~ msgstr "掲載された日付"
+
+#, fuzzy
+#~ msgctxt "add new from admin bar"
+#~ msgid "Media"
+#~ msgstr "掲載された日付"
+
+#, fuzzy
+#~ msgctxt "add new media"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "Customize Changeset"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "post type singular name"
+#~ msgid "Block"
+#~ msgstr "Kunoichi ブロックライブラリー"
+
+#, fuzzy
+#~ msgctxt "add new on admin bar"
+#~ msgid "Block"
+#~ msgstr "Kunoichi ブロックライブラリー"
+
+#, fuzzy
+#~ msgctxt "Block"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Published"
+#~ msgstr "公開済み"
+
+#, fuzzy
+#~ msgctxt "post status"
+#~ msgid "Trash"
+#~ msgstr "ゴミ箱"
+
+#, fuzzy
+#~ msgctxt "request status"
+#~ msgid "Pending"
+#~ msgstr "承認待ち"
+
+#, fuzzy
+#~ msgctxt "request status"
+#~ msgid "Failed"
+#~ msgstr "失敗"
+
+#, fuzzy
+#~ msgid "Failed"
+#~ msgstr "失敗"
+
+#, fuzzy
+#~ msgctxt "post type general name"
+#~ msgid "Pages"
+#~ msgstr "ページ:"
+
+#, fuzzy
+#~ msgctxt "post type singular name"
+#~ msgid "Post"
+#~ msgstr "投稿"
+
+#, fuzzy
+#~ msgctxt "post type singular name"
+#~ msgid "Page"
+#~ msgstr "ページ"
+
+#, fuzzy
+#~ msgctxt "post"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgctxt "page"
+#~ msgid "Add New"
+#~ msgstr "新規追加"
+
+#, fuzzy
+#~ msgid "All Posts"
+#~ msgstr "すべての投稿を見る"
+
+#, fuzzy
+#~ msgid "All Pages"
+#~ msgstr "全ページのヘッダー直後に表示されます。"
+
+#, fuzzy
+#~ msgid "Posts list"
+#~ msgstr "投稿リスト"
+
+#, fuzzy
+#~ msgid "Images"
+#~ msgstr "サムネイルギャラリーの画像"
+
+#, fuzzy
+#~ msgid "Documents"
+#~ msgstr "ドキュメント"
+
+#, fuzzy
+#~ msgctxt "file type group"
+#~ msgid "Archives"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy
+#~ msgid "URL of the user."
+#~ msgstr "プラグインユーザーのサイトURL。"
+
+#, fuzzy
+#~ msgid "M j, Y g:i a"
+#~ msgstr "Y年n月j日 g:i:s a"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "日本語"
+
+#, fuzzy
+#~ msgctxt "password strength"
+#~ msgid "Medium"
+#~ msgstr "中"
+
+#, fuzzy
+#~ msgctxt "password strength"
+#~ msgid "Strong"
+#~ msgstr "<strong>+%d%%</strong> のスペシャルオファーを受けています！"
+
+#, fuzzy
+#~ msgid "Invalid"
+#~ msgstr "無効"
+
+#, fuzzy
+#~ msgid "Saved"
+#~ msgstr "アクセストークンが保存されました。"
+
+#, fuzzy
+#~ msgid "(Untitled)"
+#~ msgstr "タイトルなし"
+
+#, fuzzy
+#~ msgid "Publish on:"
+#~ msgstr "投稿可能"
+
+#, fuzzy
+#~ msgid "Schedule for:"
+#~ msgstr "スケジュール"
+
+#, fuzzy
+#~ msgid "Published on:"
+#~ msgstr "公開済み"
+
+#, fuzzy
+#~ msgid "Password Protected"
+#~ msgstr ""
+#~ "この投稿はパスワード保護されています。コメントを見たり投稿したりするため"
+#~ "に、パスワードを入力してください。"
+
+#, fuzzy
+#~ msgid "Submitted on:"
+#~ msgstr "つぶやきが送信されました。"
+
+#, fuzzy
+#~ msgid "Plugin:"
+#~ msgstr "プラグイン"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Updated!"
+#~ msgstr "更新日時"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Updated!"
+#~ msgstr "更新日時"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Installed!"
+#~ msgstr "インストールされていません"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Installed!"
+#~ msgstr "インストールされていません"
+
+#, fuzzy
+#~ msgctxt "plugin"
+#~ msgid "Deleted!"
+#~ msgstr "削除されたユーザー"
+
+#, fuzzy
+#~ msgctxt "theme"
+#~ msgid "Deleted!"
+#~ msgstr "削除されたユーザー"
+
+#, fuzzy
+#~ msgid "Saving..."
+#~ msgstr "保存中……"
+
+#, fuzzy
+#~ msgid "Navigation Menu"
+#~ msgstr "このテーマにはナビゲーションメニューが登録されていません。"
+
+#, fuzzy
+#~ msgctxt "taxonomy general name"
+#~ msgid "Tags"
+#~ msgstr "記事内広告のあいだのタグ数。最小は5です。"
+
+#, fuzzy
+#~ msgctxt "taxonomy general name"
+#~ msgid "Categories"
+#~ msgstr "商品カテゴリーを取得するのに失敗しました。"
+
+#, fuzzy
+#~ msgctxt "taxonomy singular name"
+#~ msgid "Tag"
+#~ msgstr "タグマネージャーコンテナID"
+
+#, fuzzy
+#~ msgctxt "taxonomy singular name"
+#~ msgid "Category"
+#~ msgstr "カテゴリー"
+
+#, fuzzy
+#~ msgid "No tags"
+#~ msgstr "記事内広告のあいだのタグ数。最小は5です。"
+
+#, fuzzy
+#~ msgid ""
+#~ "This post is password protected. Enter the password to view comments."
+#~ msgstr ""
+#~ "この投稿はパスワード保護されています。コメントを見るにはパスワードを入力し"
+#~ "てください。"
+
+#, fuzzy, php-format
+#~ msgid "One response to %s"
+#~ msgstr "%sへの1件の反応"
+
+#, fuzzy, php-format
+#~ msgid "%1$s response to %2$s"
+#~ msgid_plural "%1$s responses to %2$s"
+#~ msgstr[0] "%2$sへの%1$s件の反応"
+
+#, fuzzy
+#~ msgid "F, Y"
+#~ msgstr "Y年n月"
+
+#, fuzzy
+#~ msgid "Meta"
+#~ msgstr "メタ"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Address"
+#~ msgstr "発送元住所1（番地まで）"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Hours"
+#~ msgstr "%s時間"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Archives"
+#~ msgstr "アーカイブ: %s"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Categories"
+#~ msgstr "商品カテゴリーを取得するのに失敗しました。"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Meta"
+#~ msgstr "メタ"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Recent Posts"
+#~ msgstr "最近の投稿"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Home"
+#~ msgstr "ホーム"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Email"
+#~ msgstr "メールアドレス"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Facebook"
+#~ msgstr ""
+#~ "FacebookのアプリIDを入力してください。これはFacebookのウォールに表示されま"
+#~ "す。"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "GitHub"
+#~ msgstr ""
+#~ "このプラグインは <a href=\"%s\" target=\"_blank\">github</a> にホストされ"
+#~ "ています。プルリクエストをお待ちしています！"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Twitter"
+#~ msgstr "twitterボット"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "About"
+#~ msgstr "コールトゥアクションについて"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Contact"
+#~ msgstr "コンタクト"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "Blog"
+#~ msgstr "ブログ"
+
+#, fuzzy
+#~ msgctxt "Theme starter content"
+#~ msgid "News"
+#~ msgstr "速報のタイトル「速報」「緊急速報」など。"
+
+#, fuzzy, php-format
+#~ msgctxt "user dropdown"
+#~ msgid "%1$s (%2$s)"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy, php-format
+#~ msgctxt "Display name based on first name and last name"
+#~ msgid "%1$s %2$s"
+#~ msgstr "%1$s: %2$s"
+
+#, fuzzy
+#~ msgid "WordPress User"
+#~ msgstr "WordPressユーザー名"
+
+#, fuzzy
+#~ msgid "User ID"
+#~ msgstr "ユーザーID"
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "ユーザー"
+
+#, fuzzy
+#~ msgid "City"
+#~ msgstr "市区町村"
+
+#, fuzzy
+#~ msgid "Country"
+#~ msgstr "国"
+
+#, fuzzy
+#~ msgid "Untitled"
+#~ msgstr "タイトルなし"
+
+#, fuzzy
+#~ msgid "Content:"
+#~ msgstr "コンテンツ"
+
+#, fuzzy
+#~ msgctxt "Links widget"
+#~ msgid "Random"
+#~ msgstr "ランダム"
+
+#, fuzzy
+#~ msgid "Link to:"
+#~ msgstr "リンクなし"
+
+#, fuzzy, php-format
+#~ msgctxt "widgets"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s %2$s"
+
+#, fuzzy
+#~ msgid "Recent Posts"
+#~ msgstr "最近の投稿"
+
+#, fuzzy
+#~ msgid "Number of posts to show:"
+#~ msgstr "表示する投稿の件数："
+
+#, fuzzy
+#~ msgctxt "Search widget"
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#, fuzzy
+#~ msgid "Taxonomy:"
+#~ msgstr "タクソノミー"
+
+#, fuzzy
+#~ msgid "Text"
+#~ msgstr "テキスト"
+
+#, fuzzy
+#~ msgid "New password"
+#~ msgstr "新しいパスワード"
+
+#, fuzzy, php-format
+#~ msgid "Author is %s"
+#~ msgstr "\"%s\"の作者"
+
+#, fuzzy
+#~ msgid "Site Title:"
+#~ msgstr "%sのサイトタイトル"
+
+#, fuzzy
+#~ msgid "Please wait..."
+#~ msgstr "しばらくお待ちください……"

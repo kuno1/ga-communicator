@@ -42,7 +42,7 @@ class Credentials extends Settings {
 				'id' => 'ga-service-key',
 				'title' => __( 'Service Account Key', 'ga-communicator' ),
 				'type' => 'textarea',
-				'help' => sprintf( __( 'You can get a service account key in JSON format from Google API Library. For more detail, please check the <a href="">document</a>.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/authorization' ),
+				'help' => sprintf( __( 'You can get a service account key in JSON format from Google API Library. For more detail, please check the <a href="%s" target="_blank" rel="noopener,noreferrer">document</a>.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/authorization' ),
 				'placeholder' => 'e.g. {"type": "service_account", "project_id": "example.com:api-project-000000","private_key_id": "bf8ea16a0978be19b5ce9780c3482202c145e9eb892c"......',
 			],
 		];

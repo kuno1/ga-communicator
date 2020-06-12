@@ -1,0 +1,225 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Google Analytics Communicator\n"
+"POT-Creation-Date: 2020-06-12 14:14+0900\n"
+"PO-Revision-Date: 2020-06-12 13:57+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ga-communicator.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: wp\n"
+"X-Poedit-SearchPathExcluded-4: tests\n"
+
+#: src/Kunoichi/GaCommunicator.php:56
+msgid "Failed to API response. Please try again later."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator.php:316
+msgid "Invalid API service key."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:22
+#: src/Kunoichi/GaCommunicator/Command.php:47
+#: src/Kunoichi/GaCommunicator/Command.php:70
+msgid "No results found."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:41
+#, php-format
+msgid "Getting web properties of %s..."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:90
+msgid "Profile is not set."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:152
+msgid "No post found."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:23
+msgid "Account Setting"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:25
+msgid ""
+"If you set credentials, please choose Google Analytics account of your site."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:34
+msgid "Account"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:37
+msgid "Choose Account"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:42
+msgid "Failed to get accounts. Please save valid service account."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:51
+msgid "Property"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:54
+msgid "Choose Property"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:59
+msgid "To display available properties, you should save account id."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:63
+msgid "Failed to get properties. Please check permission."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:73
+msgid "Profile"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:76
+msgid "Choose Profile"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:81
+msgid ""
+"To display available profiles, you should save account id and property id."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Accounts.php:85
+msgid "Failed to get profiles. Please check permission."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:17
+msgid "Google Analytics Setting"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:32
+msgid "Credentials"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:34
+msgid "Please enter Google Analytics Credentials."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:43
+msgid "Service Account Key"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Options/Credentials.php:45
+#, php-format
+msgid ""
+"You can get a service account key in JSON format from Google API Library. "
+"For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener,noreferrer\">document</a>."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Pattern/Widget.php:52
+msgid "Title"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:23
+msgid "Google Analytics Popular Posts"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:40
+msgid "Number of Posts"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:47
+msgid "Target Period"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:48
+msgctxt "recent-days"
+msgid "Recent"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:53
+msgctxt "recent-days"
+msgid "Days"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:57
+msgid "Layout"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:74
+msgid "Advanced Setting"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:80
+msgid "Filter Expression"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:86
+msgid "Default: "
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:87
+msgid ""
+"Filtering Regular Expression for URL. If you are not familiar with RegExp, "
+"stay empty. It will filter alongside the permalink structure."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:92
+msgid "Post Type"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:108
+msgid ""
+"If you change post type to one except post, you also have to change filter "
+"expression."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:112
+msgid "Start Date"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:113
+msgid "End Date"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:123
+msgid "This will override relative days setting above."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:139
+msgid "Default"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Google Analytics Communicator"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/kuno1/ga-communicator"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Communicate with Google Analytics."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Kunoichi INC."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://kunoichiwp.com"
+msgstr ""

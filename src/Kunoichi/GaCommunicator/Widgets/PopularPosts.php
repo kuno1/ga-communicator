@@ -46,7 +46,7 @@ class PopularPosts extends Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'days' ) ?>"><?php esc_html_e( 'Target Period', 'ga-communicator' ) ?></label><br />
 			<?php echo esc_html_x( 'Recent', 'recent-days', 'ga-communicator' ) ?>
-			<input type="number" style="width: 3em; box-sizing: border-box; text-align: right;" min="0"
+			<input type="number" style="width: 4.5em; box-sizing: border-box; text-align: right;" min="0"
 				   name="<?php echo $this->get_field_name( 'days' ) ?>" id="<?php echo $this->get_field_id( 'days' ) ?>"
 				   value="<?php echo esc_attr( $instance['days'] ) ?>" placeholder="30"
 			/>
