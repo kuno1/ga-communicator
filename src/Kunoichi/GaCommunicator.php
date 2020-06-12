@@ -27,7 +27,18 @@ class GaCommunicator extends Singleton {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			\WP_CLI::add_command( 'ga', GaCommunicator\Command::class );
 		}
+		// Load local.
+		$this->locale();
+		// Load options.
 		BulkRegister::enable( "Kunoichi\\GaCommunicator\\Options", __DIR__ . '/GaCommunicator/Options' );
+	}
+	
+	public function locale() {
+		$locale = get_locale();
+		$mo = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
+		if ( file_exists( $mo ) ) {
+			load_textdomain( 'ga-communicator', $mo );
+		}
 	}
 	
 	/**
@@ -194,8 +205,7 @@ class GaCommunicator extends Singleton {
 				'pv' => $pv,
 				'rank' => 0,
 			];
-			$post_ids[] = $value;
-			// $post_ids[ $id ] = $value;
+			$post_ids[ $id ] = $value;
 		}
 		foreach ( $post_ids as &$post ) {
 			$more = 0;

@@ -19,3 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require __DIR__ . '/vendor/autoload.php';
 
 \Kunoichi\GaCommunicator::get_instance();
+
+add_action( 'widgets_init', function() {
+	register_widget( \Kunoichi\GaCommunicator\Widgets\PopularPosts::class );
+} );
