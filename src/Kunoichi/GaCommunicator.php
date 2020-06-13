@@ -200,7 +200,7 @@ class GaCommunicator extends Singleton {
 		// Build results array.
 		$post_ids = [];
 		foreach( $response as list( $path, $title, $pv ) ) {
-			$id = url_to_postid( home_url( $path ) );
+			$id = url_to_postid( $this->path_to_url( $path ) );
 			$value = [
 				'pv' => $pv,
 				'rank' => 0,
@@ -297,6 +297,17 @@ class GaCommunicator extends Singleton {
 				'code' => $e->getCode(),
 			] );
 		}
+	}
+	
+	/**
+	 * Convert path to post id.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	public function path_to_url( $path ) {
+		list( $protocol, $domain ) = array_values( array_filter( explode( '/', home_url( '/' ) ) ) );
+		return sprintf( '%s//%s/%s', $protocol, $domain, ltrim( $path, '/' ) );
 	}
 	
 	/**

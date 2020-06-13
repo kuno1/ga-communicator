@@ -22,4 +22,17 @@ class UtilityTest extends WP_UnitTestCase {
 			$this->assertRegExp( "#{$regexp}#", $permalink, sprintf( '%s not match %s', $regexp, $permalink ) );
 		}
 	}
+	
+	/**
+	 * Check path to post id.
+	 */
+	public function test_path_to_post_id() {
+		$url = \Kunoichi\GaCommunicator::get_instance()->path_to_url( 'hoge' );
+		$this->assertEquals( 'http://example.org/hoge', $url );
+		// Change url to subdomain installation.
+		update_option( 'home', 'https://example.org/wp' );
+		update_option( 'site_url', 'https://example.org/wp' );
+		$url = \Kunoichi\GaCommunicator::get_instance()->path_to_url( '/wp/hoge' );
+		$this->assertEquals( 'https://example.org/wp/hoge', $url );
+	}
 }
