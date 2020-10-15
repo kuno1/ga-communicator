@@ -6,3 +6,4 @@ bin/ export-ignore
 .wp-env.json export-ignore
 phpunit.xml.dist export-ignore
 ga-communicator.php export-ignore
+ga-communicator doc export-ignore
