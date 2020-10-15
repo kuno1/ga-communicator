@@ -93,7 +93,7 @@ To get posts well visited in recent 7 days(e.g. weekly ranking), specify `days_b
 // Get Sun-Mon last week ranking.
 $contiond = [
 	'days_before' => 7,
-	'offset_days' => -1 * date_i18n( 'w' ), // Set origin to Sunday.
+	'offset_days' => date_i18n( 'w' ), // Set origin to Sunday.
 ];
 ```
 
