@@ -44,7 +44,7 @@ A service account is something like a bot which has email and perform like a vir
 3. Enable **Analytics Reporting API** and **Google Analytics API** for the project.
 4. Copy the email address of the service account and add it to a member of your Google Analytics account(properties, views and so on).
 5. Go to your WordPress admin **Setting > Google Analytics Setting** and save the private key which you get at step 2.  
-**NOTICE:** Save whole credentials including empty line with <kbd>⌘</kdb>+<kbd>A</kbd> and <kdb>⌘</kdb>+<kbd>C</kdb>. Otherwise, your key will be considered as invalid by Google's API.
+**NOTICE:** Save whole credentials including empty line with <kbd>⌘</kbd>+<kbd>A</kbd> and <kbd>⌘</kbd>+<kbd>C</kbd>. Otherwise, your key will be considered as invalid by Google's API.
 
 ## Examples
 
