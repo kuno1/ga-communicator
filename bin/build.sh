@@ -14,3 +14,4 @@ rm -rf ./.wp-env.json
 rm -rf ./composer.lock
 rm -rf ./package-lock.json
 rm -rf ./phpunit.xml.dit
+rm -rf ./doc

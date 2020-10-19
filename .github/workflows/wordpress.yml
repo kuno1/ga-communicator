@@ -51,7 +51,7 @@ jobs:
         run: composer test
 
   release:
-    name: Build Theme
+    name: Release build
     needs: test
     if: contains(github.ref, 'tags/')
     runs-on: ubuntu-16.04

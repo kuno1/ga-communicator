@@ -110,7 +110,8 @@ class GaCommunicator extends Singleton {
 			if ( is_null( $callback ) ) {
 				$callback = [ $this, 'parse_report_result' ];
 			}
-			return array_map( $callback, $result['reports'][0]['data']['rows'] );
+			$results = empty( $result['reports'][0]['data']['rows'] ) ? [] : $result['reports'][0]['data']['rows'];
+			return array_map( $callback, $results );
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
 				'response' => $e->getCode(),
