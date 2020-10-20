@@ -1,123 +1,63 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-06-12 14:14+0900\n"
-"PO-Revision-Date: 2020-06-12 14:14+0900\n"
+"POT-Creation-Date: 2020-10-20 17:18+0900\n"
+"PO-Revision-Date: 2020-10-20 17:20+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: \n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/Kunoichi/GaCommunicator.php:56
+#: src/Kunoichi/GaCommunicator.php:57
 msgid "Failed to API response. Please try again later."
 msgstr "APIからの返答を受け取れませんでした。のちほどやり直してください。"
 
-#: src/Kunoichi/GaCommunicator.php:316
+#: src/Kunoichi/GaCommunicator.php:330
 msgid "Invalid API service key."
 msgstr "APIサービスキーが無効です。"
 
-#: src/Kunoichi/GaCommunicator/Command.php:22
-#: src/Kunoichi/GaCommunicator/Command.php:47
-#: src/Kunoichi/GaCommunicator/Command.php:70
+#: src/Kunoichi/GaCommunicator/Command.php:27
+#: src/Kunoichi/GaCommunicator/Command.php:51
+#: src/Kunoichi/GaCommunicator/Command.php:74
 msgid "No results found."
 msgstr "結果が見つかりませんでした。"
 
-#: src/Kunoichi/GaCommunicator/Command.php:41
+#: src/Kunoichi/GaCommunicator/Command.php:45
 #, php-format
 msgid "Getting web properties of %s..."
 msgstr "%sのWebプロパティを取得しています……"
 
-#: src/Kunoichi/GaCommunicator/Command.php:90
+#: src/Kunoichi/GaCommunicator/Command.php:94
 msgid "Profile is not set."
 msgstr "プロファイルが設定されていません。"
 
-#: src/Kunoichi/GaCommunicator/Command.php:152
+#: src/Kunoichi/GaCommunicator/Command.php:174
 msgid "No post found."
 msgstr "投稿が見つかりませんでした。"
 
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:23
-msgid "Account Setting"
-msgstr "アカウント設定"
+#: src/Kunoichi/GaCommunicator/Pattern/Widget.php:52
+msgid "Title"
+msgstr "タイトル"
 
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:25
-msgid ""
-"If you set credentials, please choose Google Analytics account of your site."
-msgstr "認証情報を設定し、Googleアナリティクスのアカウントを選択してください。"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:34
-msgid "Account"
-msgstr "アカウント"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:37
-msgid "Choose Account"
-msgstr "アカウントを選択"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:42
-msgid "Failed to get accounts. Please save valid service account."
-msgstr ""
-"アカウントの取得に失敗しました。正しいサービスアカウントを保存してください。"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:51
-msgid "Property"
-msgstr "プロパティ"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:54
-msgid "Choose Property"
-msgstr "プロパティを選択"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:59
-msgid "To display available properties, you should save account id."
-msgstr "利用可能なプロパティを表示するには、アカウントIDを保存してください。"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:63
-msgid "Failed to get properties. Please check permission."
-msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:73
-msgid "Profile"
-msgstr "プロファイル"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:76
-msgid "Choose Profile"
-msgstr "プロファイルを選択"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:81
-msgid ""
-"To display available profiles, you should save account id and property id."
-msgstr ""
-"利用可能なプロフィールを表示するには、アカウントIDとプロパティIDを保存する必"
-"要があります。"
-
-#: src/Kunoichi/GaCommunicator/Options/Accounts.php:85
-msgid "Failed to get profiles. Please check permission."
-msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
-
-#: src/Kunoichi/GaCommunicator/Options/Credentials.php:17
-msgid "Google Analytics Setting"
-msgstr "Googleアナリティクス設定"
-
-#: src/Kunoichi/GaCommunicator/Options/Credentials.php:32
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:86
 msgid "Credentials"
 msgstr "認証情報"
 
-#: src/Kunoichi/GaCommunicator/Options/Credentials.php:34
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:87
 msgid "Please enter Google Analytics Credentials."
 msgstr "Google アナリティクスの認証情報を入力してください。"
 
-#: src/Kunoichi/GaCommunicator/Options/Credentials.php:43
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:89
 msgid "Service Account Key"
 msgstr "サービスアカウントキー"
 
-#: src/Kunoichi/GaCommunicator/Options/Credentials.php:45
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:95
 #, php-format
-#| msgid ""
-#| "You can get a service account key in JSON format from Google API Library. "
-#| "For more detail, please check the <a href=\"\">document</a>."
 msgid ""
 "You can get a service account key in JSON format from Google API Library. "
 "For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
@@ -127,9 +67,76 @@ msgstr ""
 "target=\"_blank\" rel=\"noopener,noreferrer\">ドキュメント</a>をチェックして"
 "ください。"
 
-#: src/Kunoichi/GaCommunicator/Pattern/Widget.php:52
-msgid "Title"
-msgstr "タイトル"
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:103
+msgid "Account Setting"
+msgstr "アカウント設定"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:104
+msgid ""
+"If you set credentials, please choose Google Analytics account of your site. "
+"Account, property, and profile are required."
+msgstr ""
+"認証情報を設定し、Googleアナリティクスのアカウントを選択してください。アカウ"
+"ント、プロパティ、プロファイルがすべて必要です。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:108
+msgid "Account"
+msgstr "アカウント"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:109
+msgid "Google Analytics account."
+msgstr "Google アナリティクスアカウント。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:112
+msgid "Property"
+msgstr "プロパティ"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:113
+msgid "Google Analytics property like <code>UA-0000000-11</code>."
+msgstr "<code>UA-0000000-11</code>形式のGoogle Analyticsプロパティ。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:116
+msgid "Profile"
+msgstr "プロファイル"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:117
+msgid "Profile formerly known as \"View\". e.g. All website data."
+msgstr "プロファイル（以前はビュー）。例・すべてのウェブサイトのデータ"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:145
+msgid ""
+"No account found. Please check your service account is registered as Google "
+"Analytics user."
+msgstr ""
+"アカウントが見つかりませんでした。サービスアカウントがGoogle Analyticsのユー"
+"ザーとして登録されているか確認してください。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:154
+msgid "To display available properties, you should save account id."
+msgstr "利用可能なプロパティを表示するには、アカウントIDを保存してください。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:160
+msgid "Failed to get properties. Please check permission."
+msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:169
+msgid ""
+"To display available profiles, you should save account id and property id."
+msgstr ""
+"利用可能なプロフィールを表示するには、アカウントIDとプロパティIDを保存する必"
+"要があります。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:175
+msgid "Failed to get profiles. Please check permission."
+msgstr "プロパティの取得に失敗しました。許可設定をチェックしてください。"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:189
+msgid "Please select"
+msgstr "選択してください"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:219
+msgid "Google Analytics Setting"
+msgstr "Googleアナリティクス設定"
 
 #: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:23
 msgid "Google Analytics Popular Posts"
@@ -207,7 +214,7 @@ msgstr "デフォルト"
 
 #. Plugin Name of the plugin/theme
 msgid "Google Analytics Communicator"
-msgstr "Google アナリティクス　コミュニケーターAnalytics Communicator"
+msgstr "Google アナリティクス　コミュニケーター"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/kuno1/ga-communicator"
@@ -224,6 +231,20 @@ msgstr "株式会社 KUNOICHI"
 #. Author URI of the plugin/theme
 msgid "https://kunoichiwp.com"
 msgstr "https://kunoichiwp.com"
+
+#~ msgid "Choose Account"
+#~ msgstr "アカウントを選択"
+
+#~ msgid "Failed to get accounts. Please save valid service account."
+#~ msgstr ""
+#~ "アカウントの取得に失敗しました。正しいサービスアカウントを保存してくださ"
+#~ "い。"
+
+#~ msgid "Choose Property"
+#~ msgstr "プロパティを選択"
+
+#~ msgid "Choose Profile"
+#~ msgstr "プロファイルを選択"
 
 #, fuzzy
 #~ msgid "Theme customizer helper"
