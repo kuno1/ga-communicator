@@ -32,7 +32,6 @@ class Command extends \WP_CLI_Command {
 			return [ $account['id'], $account['name'], $account['created'] ];
 		}, $accounts ) );
 		$table->display();
-		print_r( $accounts );
 	}
 	
 	/**

@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use Hametuha\SingletonPattern\Singleton;
 use Hametuha\SingletonPattern\BulkRegister;
+use Kunoichi\GaCommunicator\Screen\Settings;
 
 /**
  * Google Analytics Communicator
@@ -29,8 +30,8 @@ class GaCommunicator extends Singleton {
 		}
 		// Load local.
 		$this->locale();
-		// Load options.
-		BulkRegister::enable( "Kunoichi\\GaCommunicator\\Options", __DIR__ . '/GaCommunicator/Options' );
+		// Load Setting Screen
+		Settings::get_instance();
 	}
 	
 	public function locale() {
