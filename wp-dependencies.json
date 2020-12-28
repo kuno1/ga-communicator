@@ -1,0 +1,28 @@
+[
+	{
+		"handle": "ga-communicator-setting",
+		"path": "dist/css/ga-communicator-setting.css",
+		"ext": "css",
+		"hash": "4ee69c7f4d25c2310b272bc107f45875",
+		"version": "0.0.0",
+		"deps": [
+			"dashicons"
+		],
+		"footer": true,
+		"media": "all"
+	},
+	{
+		"handle": "ga-communicator-setting",
+		"path": "dist/js/ga-communicator-setting.js",
+		"ext": "js",
+		"hash": "5eb76402875f37b09b778a1c6c8224ff",
+		"version": "0.0.0",
+		"deps": [
+			"wp-api-fetch",
+			"jquery",
+			"wp-i18n"
+		],
+		"footer": true,
+		"media": "all"
+	}
+]

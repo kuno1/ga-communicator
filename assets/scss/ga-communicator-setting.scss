@@ -1,0 +1,50 @@
+/*!
+ * Setting screen UI for ga-communicator.
+ *
+ * @deps dashicons
+ */
+
+.ga-heading span {
+	vertical-align: middle;
+	font-size: 1em;
+	width: 1em;
+	height: 1em;
+}
+
+.ga-error {
+	color: #e24949;
+	font-weight: bold;
+}
+
+@keyframes ga-rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(270deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.ga-setting {
+	&-row {
+		position: relative;
+
+		.dashicons {
+			display: none;
+		}
+
+		&.loading .dashicons {
+			color: #ddd;
+			display: inline-block;
+			animation: ga-rotation 1s ease-in-out infinite;
+			vertical-align: middle;
+		}
+
+		.notice {
+			position: relative;
+		}
+	}
+}
