@@ -1,9 +1,17 @@
 tests/ export-ignore
 bin/ export-ignore
+node_modules/ export-ignore
+.browserslistrc export-ignore
+.editorconfig export-ignore
+.eslintrc export-ignore
+.stylelintrc.json export-ignore
 .github/ export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
 .wp-env.json export-ignore
-phpunit.xml.dist export-ignore
+composer.lock export-ignore
 ga-communicator.php export-ignore
-ga-communicator doc export-ignore
+gulpfile.js export-ignore
+phpunit.xml.dist export-ignore
+webpack.config.js export-ignore
+phpunit.xml.dist export-ignore
