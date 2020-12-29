@@ -11,18 +11,17 @@ const { sprintf } = wp.i18n;
 const { apiFetch } = wp;
 
 const addError = ( key, message ) => {
-	console.log( key, message );
 	const $message = $( sprintf( '<div class="notice notice-error">%s<span class="notice-dismiss"></span></div>', message ) );
-	$( `div[data-key="${key}"]` ).append( $message );
+	$( `div[data-key="${ key }"]` ).append( $message );
 	setTimeout( () => {
 		$message.remove();
 	}, 3000 );
 };
 
 const update = ( div ) => {
-	 const key = $( div ).attr( 'data-key' );
-	 $( div ).addClass( 'loading' );
-	 // Fetch request.
+	const key = $( div ).attr( 'data-key' );
+	$( div ).addClass( 'loading' );
+	// Fetch request.
 	$( div ).addClass( 'loading' );
 	$( div ).find( 'option[class!="ga-setting-choices-default"]' ).remove();
 	apiFetch( {
@@ -37,18 +36,11 @@ const update = ( div ) => {
 			}
 			$select.append( $option );
 		} );
-
 	} ).catch( ( res ) => {
 		addError( key, res.message );
 	} ).finally( () => {
 		$( div ).removeClass( 'loading' );
 	} );
-	console.log( getValue( key ) );
-	 switch ( key ) {
-		 case 'ga':
-		 	break;
-	 }
-	 console.log( key );
 };
 
 /**
@@ -70,7 +62,7 @@ const onChange = ( div ) => {
 			break;
 	}
 	for ( let i = 0; i < index; i++ ) {
-		update( $( `div[data-key="${keys[i]}"]` ) );
+		update( $( `div[data-key="${ keys[ i ] }"]` ) );
 	}
 };
 
@@ -90,7 +82,7 @@ const getPath = ( key ) => {
 			path += sprintf( '/properties/%s', getValue( 'ga-account' ) || ' ' );
 			break;
 		case 'ga-profile':
-			const account  = getValue( 'ga-account' );
+			const account = getValue( 'ga-account' );
 			const property = getValue( 'ga-property' );
 			path += sprintf( '/profiles/%s/%s', getValue( 'ga-account' ) || ' ', getValue( 'ga-property' ) || ' ' );
 			break;
@@ -105,7 +97,7 @@ const getPath = ( key ) => {
  * @returns {string}
  */
 const getPredefined = ( key ) => {
-	const $predefined = $( `code[data-predefined="${key}"]` );
+	const $predefined = $( `code[data-predefined="${ key }"]` );
 	if ( $predefined.length ) {
 		return $predefined.text();
 	} else {
@@ -120,14 +112,32 @@ const getPredefined = ( key ) => {
  * @returns {string}
  */
 const getValue = ( key ) => {
-	return getPredefined( key ) || $( `input[name="${key}"]` ).val();
+	return getPredefined( key ) || $( `input[name="${ key }"]` ).val();
 }
 
+const toggleExample = ( key ) => {
+	$( '.ga-setting-example' ).each( function( index, pre ) {
+		if ( key === $( pre ).attr( 'data-sample' ) ) {
+			$( pre ).addClass( 'toggle' );
+		} else {
+			$( pre ).removeClass( 'toggle' );
+		}
+	} );
+};
+
 $( () => {
-	$( '.ga-setting-row' ).each( function( index, div ) {
+	$( '.ga-setting-row' ).each( function ( index, div ) {
 		update( div );
-		$( div ).find( 'select' ).change( function() {
+		$( div ).find( 'select' ).change( function () {
 			onChange( div );
 		} );
 	} );
+
+	const $select = $( 'select#ga-tag' );
+	if ( $select.length ) {
+		toggleExample( $select.val() );
+		$select.change( function() {
+			toggleExample( $( this ).val() );
+		} );
+	}
 } );

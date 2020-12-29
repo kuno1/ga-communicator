@@ -4,16 +4,18 @@ namespace Kunoichi\GaCommunicator\Screen;
 
 use \Hametuha\SingletonPattern\Singleton;
 use Kunoichi\GaCommunicator\Utility\GaClientHolder;
+use Kunoichi\GaCommunicator\Utility\PlaceHolders;
 
 /**
  * Setting screen for Ga Communicator
  *
  * @package ga-communicator
- * @property-read string $capability
- * @property-read string $title
- * @property-read string $account
- * @property-read string $property
- * @property-read string $profile
+ * @property-read string       $capability
+ * @property-read string       $title
+ * @property-read string       $account
+ * @property-read string       $property
+ * @property-read string       $profile
+ * @property-read PlaceHolders $placeholder
  */
 class Settings extends Singleton {
 
@@ -22,6 +24,15 @@ class Settings extends Singleton {
 	protected $slug = 'ga-communicator';
 
 	protected $service_account_option = 'ga-service-key';
+
+	protected $options = [
+		'service-key',
+		'account',
+		'property',
+		'profile',
+		'tag',
+		'extra',
+	];
 
 	/**
 	 * Constructor
@@ -115,8 +126,7 @@ class Settings extends Singleton {
 	 */
 	public function register_setting() {
 		// Register credential section.
-		register_setting( $this->slug, 'ga-service-key' );
-		foreach ( [ 'account', 'property', 'profile' ] as $key ) {
+		foreach ( $this->options as $key ) {
 			register_setting( $this->slug, 'ga-' . $key );
 		}
 	}
@@ -126,7 +136,7 @@ class Settings extends Singleton {
 	 */
 	public function network_update() {
 		check_admin_referer( $this->slug . '-options' );
-		foreach ( [ 'service-key', 'account', 'property', 'profile' ] as $key ) {
+		foreach ( $this->options as $key ) {
 			$name = 'ga-' . $key;
 			update_site_option( $name, (string) filter_input( INPUT_POST, $name ) );
 		}
@@ -187,6 +197,75 @@ class Settings extends Singleton {
 				'description' => $setting['description'],
 			] );
 		}
+
+		// Render analytics tag.
+		$tag_section = $this->slug . 'tags';
+		add_settings_section( $tag_section, __( 'Analytics Tag', 'ga-communicator' ), function() {
+			printf( '<p class="description">%s</p>', esc_html__( 'Select analytics tag to render. If you user other plugins like Yoast, leave empty.', 'ga-communicator' ) );
+		}, $this->slug );
+		$choices = [
+			''          => __( 'No input', 'ga-communicator' ),
+			'gtag'      => 'gtag.js',
+			'universal' => 'Universal Analytics(ga.js)',
+			'manual'    => __( 'Manual Code', 'ga-communicator' ),
+		];
+		add_settings_field( 'ga-tag', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
+			$predefined = $this->get_predefined_option( 'tag' );
+			$cur_value  = $this->get_option( 'tag', true );
+			?>
+			<select name="ga-tag" id="ga-tag">
+				<?php foreach ( $choices as $value => $label ) : ?>
+					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ) ?>><?php echo esc_html( $label ) ?></option>
+				<?php endforeach; ?>
+			</select>
+			<h4><?php esc_html_e( 'Output Example', 'ga-communicator' ); ?></h4>
+			<p class="description"><?php esc_html_e( 'Property should be properly set. It\'ll be inserted as measurement ID.', 'ga-communicator' ) ?></p>
+			<?php foreach ( $choices as $key => $label ) : ?>
+				<pre class="ga-setting-example" data-sample="<?php echo esc_attr( $key ); ?>"><?php
+					if ( $key ) {
+						echo esc_html( $this->placeholder->tag( $key, 'UA-00000-1', __( '[Additional Scripts Here]', 'ga-communicator' ) ) );
+					} else {
+						esc_html_e( '[No Output]', 'ga-communicator' );
+					}
+				?></pre>
+			<?php endforeach; ?>
+			<?php if ( $predefined ) : ?>
+				<p class="description">
+					<?php esc_html_e( 'Tag type is defined programmatically.', 'ga-communicator' ) ?>
+					<code><?php esc_html( $choices[ $predefined ] ); ?></code>
+				</p>
+			<?php endif;
+		}, $this->slug, $tag_section );
+		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function() use ( $choices ) {
+			$predefined = $this->get_predefined_option( 'extra' );
+			$value      = $this->get_option( 'extra', true );
+			if ( $predefined ) : ?>
+				<input type="hidden" name="ga-extra" value="<?php echo esc_attr( $value ) ?>" />
+				<textarea readonly class="widefat"><?php echo esc_textarea( $predefined ) ?></textarea>
+				<p class="description"><?php esc_html_e( 'Extra scripts are defined programmatically.', 'ga-communicator' ) ?></p>
+			<?php else : ?>
+				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat"><?php
+					echo esc_textarea( $value );
+				?></textarea>
+			<?php endif; ?>
+			<table class="ga-setting-table">
+				<thead>
+				<tr>
+					<th><?php esc_html_e( 'Placeholder', 'ga-communicator' ) ?></th>
+					<th><?php esc_html_e( 'Replaced With', 'ga-communicator' ) ?></th>
+				</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $this->placeholder->get() as $placeholder ) : ?>
+					<tr>
+						<th>%<?php echo esc_html( $placeholder['name'] ) ?>%</th>
+						<td><?php echo esc_html( $placeholder['description'] ) ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+			<?php
+		}, $this->slug, $tag_section );
 	}
 
 	/**
@@ -365,7 +444,7 @@ class Settings extends Singleton {
 	/**
 	 * Get saved values.
 	 *
-	 * @param string $key account, profile, property
+	 * @param string $key account, profile, property, tag
 	 * @param bool   $raw If set to true, always grab data.
 	 * @return string
 	 */
@@ -405,6 +484,8 @@ class Settings extends Singleton {
 			case 'property':
 			case 'profile':
 				return $this->get_option( $name );
+			case 'placeholder':
+				return PlaceHolders::get_instance();
 			default:
 				return null;
 		}

@@ -1,12 +1,12 @@
-module.exports = {
-	extends: [
-		'stylelint-config-wordpress/scss',
+{
+	"extends": [
+		"stylelint-config-wordpress/scss"
 	],
-	rules: {
-		'font-weight-notation': 'named-where-possible',
-		'color-named': null,
-		'font-family-no-missing-generic-family-keyword': null,
-		'string-quotes': null,
-		'no-descending-specificity': null,
-	},
-};
+	"rules": {
+		"font-weight-notation": "named-where-possible",
+		"color-named": null,
+		"font-family-no-missing-generic-family-keyword": null,
+		"string-quotes": null,
+		"no-descending-specificity": null
+	}
+}

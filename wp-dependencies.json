@@ -3,7 +3,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/css/ga-communicator-setting.css",
 		"ext": "css",
-		"hash": "4ee69c7f4d25c2310b272bc107f45875",
+		"hash": "18031194ebdbd90d930cf0e675dcfe94",
 		"version": "0.0.0",
 		"deps": [
 			"dashicons"
@@ -15,7 +15,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/js/ga-communicator-setting.js",
 		"ext": "js",
-		"hash": "5eb76402875f37b09b778a1c6c8224ff",
+		"hash": "1beb1f08da5d217c87344ae4cc7f0a2b",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",
