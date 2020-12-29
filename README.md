@@ -31,6 +31,19 @@ Calling bootstrap function, all hooks will be registered.
 
 Now your code is ready to run. 
 
+### Network Installation
+
+If your site is under network, define constant `GA_COMMUNICATOR_NETWORK_ACTIVE ` to `true`.
+
+```php
+define( 'GA_COMMUNICATOR_NETWORK_ACTIVE', true );
+```
+
+This will affect:
+
+- Setting screen will move to Network Admin > Setting.
+- All settings will be common for all sites under network.
+
 ### Register Service Account
 
 To communicate Google Analytics, you need permission to do so.

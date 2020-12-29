@@ -205,7 +205,7 @@ class Settings extends Singleton {
 			printf( '<p class="description">%s</p>', esc_html__( 'Select analytics tag to render. If you user other plugins like Yoast, leave empty.', 'ga-communicator' ) );
 		}, $this->slug );
 		$choices = [
-			''          => __( 'No input', 'ga-communicator' ),
+			''          => __( 'No Output', 'ga-communicator' ),
 			'gtag'      => 'gtag.js',
 			'universal' => 'Universal Analytics(ga.js)',
 			'manual'    => __( 'Manual Code', 'ga-communicator' ),

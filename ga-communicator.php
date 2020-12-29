@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 require __DIR__ . '/vendor/autoload.php';
 
-
 if ( is_multisite() && in_array( __FILE__, wp_get_active_network_plugins(), true ) ) {
 	define( 'GA_COMMUNICATOR_NETWORK_ACTIVE', true );
 }
