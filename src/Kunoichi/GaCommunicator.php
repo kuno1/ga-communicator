@@ -10,6 +10,7 @@ use GuzzleHttp\HandlerStack;
 use Hametuha\SingletonPattern\Singleton;
 use Hametuha\SingletonPattern\BulkRegister;
 use Kunoichi\GaCommunicator\Screen\Settings;
+use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
 
 /**
  * Google Analytics Communicator
@@ -33,6 +34,8 @@ class GaCommunicator extends Singleton {
 		$this->locale();
 		// Load Setting Screen
 		Settings::get_instance();
+		// Script Renderer.
+		ScriptRenderer::get_instance();
 		// Register scripts.
 		add_action( 'init', [ $this, 'register_assets' ] );
 	}

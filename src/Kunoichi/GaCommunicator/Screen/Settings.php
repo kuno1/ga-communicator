@@ -32,6 +32,7 @@ class Settings extends Singleton {
 		'profile',
 		'tag',
 		'extra',
+		'place',
 	];
 
 	/**
@@ -236,6 +237,7 @@ class Settings extends Singleton {
 				</p>
 			<?php endif;
 		}, $this->slug, $tag_section );
+		// Additional scrips.
 		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'extra' );
 			$value      = $this->get_option( 'extra', true );
@@ -265,6 +267,29 @@ class Settings extends Singleton {
 				</tbody>
 			</table>
 			<?php
+		}, $this->slug, $tag_section );
+		// Tag to be output.
+		add_settings_field( 'ga-place', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
+			$predefined = $this->get_predefined_option( 'place' );
+			$cur_value = $this->get_option( 'place', true );
+			$choices = [
+				'' => __( 'Only Public Pages', 'ga-communicator' ),
+				'admin' => __( 'Public Pages and Admin Screen', 'ga-communicator' ),
+				'login' => __( 'Public Pages and Login Screen', 'ga-communicator' ),
+				'admin,login' => __( 'Public, Admin, and Login.', 'ga-communicator' ),
+			];
+			?>
+			<select name="ga-place" id="ga-place">
+				<?php foreach ( $choices as $value => $label ) : ?>
+					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ) ?>><?php echo esc_html( $label ) ?></option>
+				<?php endforeach; ?>
+			</select>
+			<?php if ( $predefined ) : ?>
+				<p class="description">
+					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ) ?>
+					<code><?php esc_html( $choices[ $predefined ] ); ?></code>
+				</p>
+			<?php endif;
 		}, $this->slug, $tag_section );
 	}
 
@@ -449,12 +474,12 @@ class Settings extends Singleton {
 	 * @return string
 	 */
 	public function get_option( $key, $raw = false ) {
-		$key = 'ga-' . $key;
+		$key_name = 'ga-' . $key;
 		if ( $raw ) {
 			if ( $this->should_network_activate() ) {
-				return get_site_option( $key, '' );
+				return get_site_option( $key_name, '' );
 			} else {
-				return get_option( $key, '' );
+				return get_option( $key_name, '' );
 			}
 		} else {
 			$predefined = $this->get_predefined_option( $key );

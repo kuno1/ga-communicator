@@ -53,7 +53,13 @@ class PlaceHolders extends Singleton {
 			],
 		] );
 		$this->place_holders = array_filter( $placeholders, function ( $placeholder ) {
-			return ! empty( $placeholder );
+			if ( empty( $placeholder['name'] ) || empty( $placeholder['description'] ) ) {
+				return false;
+			}
+			if ( ! isset( $placeholder['callback'] ) || ! is_callable( $placeholder['callback'] ) ) {
+				return false;
+			}
+			return true;
 		} );
 	}
 
@@ -74,7 +80,10 @@ class PlaceHolders extends Singleton {
 	 * @return string
 	 */
 	public function replace( $tag ) {
-
+		foreach ( $this->place_holders as $place_holder ) {
+			$tag = str_replace( "%{$place_holder['name']}%", $place_holder['callback'](), $tag );
+		}
+		return $tag;
 	}
 
 	/**
