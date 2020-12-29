@@ -10,19 +10,21 @@ use GuzzleHttp\HandlerStack;
 use Hametuha\SingletonPattern\Singleton;
 use Hametuha\SingletonPattern\BulkRegister;
 use Kunoichi\GaCommunicator\Screen\Settings;
+use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
 
 /**
  * Google Analytics Communicator
  *
- * @property-read Client $client
+ * @property-read Client   $client
+ * @property-read Settings $setting
  * @package ga-communicator
  */
 class GaCommunicator extends Singleton {
 
 	private $_client = null;
-	
+
 	private $client_initialized = false;
-	
+
 	protected function init() {
 		// Register command for CLI.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -32,8 +34,12 @@ class GaCommunicator extends Singleton {
 		$this->locale();
 		// Load Setting Screen
 		Settings::get_instance();
+		// Script Renderer.
+		ScriptRenderer::get_instance();
+		// Register scripts.
+		add_action( 'init', [ $this, 'register_assets' ] );
 	}
-	
+
 	public function locale() {
 		$locale = get_locale();
 		$mo = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
@@ -41,7 +47,7 @@ class GaCommunicator extends Singleton {
 			load_textdomain( 'ga-communicator', $mo );
 		}
 	}
-	
+
 	/**
 	 * Make request.
 	 *
@@ -58,7 +64,7 @@ class GaCommunicator extends Singleton {
 		}
 		return $json;
 	}
-	
+
 	/**
 	 * Get analytics report
 	 *
@@ -119,7 +125,7 @@ class GaCommunicator extends Singleton {
 			] );
 		}
 	}
-	
+
 	/**
 	 * Get permalink  structure REGEXP
 	 *
@@ -148,7 +154,7 @@ class GaCommunicator extends Singleton {
 		}
 		return apply_filters( 'ga_communicator_permalink_regexp', $permalink_structure, $original_structure );
 	}
-	
+
 	/**
 	 * Get popular posts in condition.
 	 *
@@ -237,7 +243,7 @@ class GaCommunicator extends Singleton {
 		}
 		return $wp_query;
 	}
-	
+
 	/**
 	 * Parser report result.
 	 *
@@ -247,7 +253,7 @@ class GaCommunicator extends Singleton {
 	public function parse_report_result( $row ) {
 		return [ $row['dimensions'][0], $row['dimensions'][1], $row['metrics'][0]['values'][0] ];
 	}
-	
+
 	/**
 	 * Get account information.
 	 *
@@ -263,7 +269,7 @@ class GaCommunicator extends Singleton {
 			] );
 		}
 	}
-	
+
 	/**
 	 * Get web properties.
 	 *
@@ -281,7 +287,7 @@ class GaCommunicator extends Singleton {
 			] );
 		}
 	}
-	
+
 	/**
 	 * Get profiles
 	 *
@@ -300,7 +306,7 @@ class GaCommunicator extends Singleton {
 			] );
 		}
 	}
-	
+
 	/**
 	 * Convert path to post id.
 	 *
@@ -311,7 +317,46 @@ class GaCommunicator extends Singleton {
 		list( $protocol, $domain ) = array_values( array_filter( explode( '/', home_url( '/' ) ) ) );
 		return sprintf( '%s//%s/%s', $protocol, $domain, ltrim( $path, '/' ) );
 	}
-	
+
+	/**
+	 * Register all assets.
+	 */
+	public function register_assets() {
+		$base_dir = dirname( dirname( __DIR__ ) );
+		$config   = $base_dir . '/wp-dependencies.json';
+		if ( ! file_exists( $config ) ) {
+			return;
+		}
+		$json     = (array) json_decode( file_get_contents( $config ), true );
+		$theme_root   = get_theme_root();
+		if ( false !== strpos( $base_dir, $theme_root ) ) {
+			// This is inside theme.
+			$base_url = str_replace( $theme_root, get_theme_root_uri(), $base_dir );
+		} elseif ( false !== strpos( $base_dir, WP_CONTENT_DIR ) ) {
+			// This is inside plugins.
+			$base_url = str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $base_dir );
+		} else {
+			// Replace ABS Path.
+			$base_url = str_replace( ABSPATH, home_url( '/' ), $base_dir );
+		}
+		$base_url = apply_filters( 'ga_communicator_assets_base_dir_url', $base_url, $base_dir );
+		$base_url = untrailingslashit( $base_url );
+		foreach ( $json as $setting ) {
+			$handle  = $setting['handle'];
+			$url     = $base_url . '/' . $setting['path'];
+			$version = $setting['hash'];
+			$deps    = $setting['deps'];
+			switch ( $setting['ext'] ) {
+				case 'css':
+					wp_register_style( $handle, $url, $deps, $version, $setting['media'] );
+					break;
+				case 'js':
+					wp_register_script( $handle, $url, $deps, $version, $setting['footer'] );
+					break;
+			}
+		}
+	}
+
 	/**
 	 * Getter
 	 *
@@ -325,7 +370,7 @@ class GaCommunicator extends Singleton {
 			case 'client':
 				if ( ! $this->client_initialized ) {
 					$scopes = apply_filters( 'ga_communicator_api_scopes', [ 'https://www.googleapis.com/auth/analytics.readonly' ] );
-					$key    = get_option( 'ga-service-key' );
+					$key    = $this->setting->service_key();
 					if ( ! $key || ! ( $json = json_decode( $key, true ) ) ) {
 						throw new \Exception( __( 'Invalid API service key.', 'ga-communicator' ), 500 );
 					}
@@ -341,6 +386,8 @@ class GaCommunicator extends Singleton {
 				}
 				return $this->_client;
 				break;
+			case 'setting':
+				return Settings::get_instance();
 			default:
 				return null;
 		}

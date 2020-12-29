@@ -1,0 +1,5 @@
+/*!
+ * Package screen helper.
+ *
+ * @deps wp-api-fetch, jquery, wp-i18n
+ */

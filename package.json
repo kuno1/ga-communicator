@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "wp-env start",
+    "debug": "wp-env start --xdebug",
+    "update": "wp-env start --update",
     "test": "echo \"Error: no test specified\" && exit 1",
     "env": "wp-env",
-    "cli": "wp-env run cli wp"
+    "cli": "wp-env run cli wp",
+    "gulp": "gulp",
+    "gulp:task": "gulp --task"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,8 @@
   },
   "homepage": "https://github.com/kuno1/ga-communicator#readme",
   "devDependencies": {
-    "@wordpress/env": "^1.4.0"
+    "@kunoichi/gulp-assets-task-set": "^1.0.2",
+    "@wordpress/env": "^1.4.0",
+    "gulp": "^4.0.2"
   }
 }
