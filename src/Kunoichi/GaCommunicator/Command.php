@@ -4,6 +4,7 @@ namespace Kunoichi\GaCommunicator;
 
 
 use cli\Table;
+use Kunoichi\GaCommunicator\Screen\Settings;
 use Kunoichi\GaCommunicator\Utility\GaClientHolder;
 
 /**
@@ -12,9 +13,9 @@ use Kunoichi\GaCommunicator\Utility\GaClientHolder;
  * @package ga-communicator
  */
 class Command extends \WP_CLI_Command {
-	
+
 	use GaClientHolder;
-	
+
 	/**
 	 * Get account information.
 	 */
@@ -33,7 +34,7 @@ class Command extends \WP_CLI_Command {
 		}, $accounts ) );
 		$table->display();
 	}
-	
+
 	/**
 	 * Get web properties.
 	 *
@@ -57,7 +58,7 @@ class Command extends \WP_CLI_Command {
 		}, $properties ) );
 		$table->display();
 	}
-	
+
 	/**
 	 * Get profiles.
 	 *
@@ -80,7 +81,7 @@ class Command extends \WP_CLI_Command {
 		}, $profiles ) );
 		$table->display();
 	}
-	
+
 	/**
 	 * Get report and display it in table.
 	 *
@@ -89,7 +90,7 @@ class Command extends \WP_CLI_Command {
 	 * @param array $assoc
 	 */
 	public function report( $args, $assoc ) {
-		$view_id = get_option( 'ga-profile' );
+		$view_id = Settings::get_instance()->get_option( 'profile' );
 		if ( ! $view_id ) {
 			\WP_CLI::error( __( 'Profile is not set.', 'ga-communicator' ) );
 		}
@@ -133,7 +134,7 @@ class Command extends \WP_CLI_Command {
 		}
 		$table->display();
 	}
-	
+
 	/**
 	 * Retrieve popular posts list.
 	 *

@@ -75,7 +75,7 @@ class GaCommunicator extends Singleton {
 	public function get_report( $request = [], $callback = null ) {
 		try {
 			$json = array_replace_recursive( [
-				'viewId' => get_option( 'ga-profile' ),
+				'viewId' => $this->setting->get_option( 'profile' ),
 				'dimensions' => [
 					[
 						'name' => 'ga:pagePath',
