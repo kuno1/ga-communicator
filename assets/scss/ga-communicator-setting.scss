@@ -1,7 +1,7 @@
 /*!
  * Setting screen UI for ga-communicator.
  *
- * @deps dashicons
+ * @deps dashicons, wp-codemirror, wp-components
  */
 
 .ga-heading span {
@@ -69,5 +69,32 @@
 		&.toggle {
 			display: block;
 		}
+	}
+}
+
+.CodeMirror-line {
+	padding-left: 25px;
+}
+
+.ga-sandbox-result {
+	padding: 1em;
+	border: 3px solid #000;
+	background-color: #444 !important;
+	color: #fff;
+	font-family: monospace;
+	box-sizing: border-box;
+	width: 100%;
+	height: 400px;
+
+	&::placeholder {
+		color: #fff;
+	}
+
+	&.success {
+		color: #2fb62f;
+	}
+
+	&.error {
+		color: #ee4c4c;
 	}
 }

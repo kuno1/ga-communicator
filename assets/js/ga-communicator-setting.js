@@ -3,7 +3,7 @@
 /*!
  * Package screen helper.
  *
- * @deps wp-api-fetch, jquery, wp-i18n
+ * @deps wp-api-fetch, jquery, wp-i18n, ga-custom-dimensions, ga-sandbox
  */
 
 const $ = jQuery;
@@ -123,6 +123,11 @@ const toggleExample = ( key ) => {
 			$( pre ).removeClass( 'toggle' );
 		}
 	} );
+	let placeholder = '';
+	if ( key.length ) {
+		placeholder = $( `pre[data-example="${key}"]` ).text();
+	}
+	$( '#ga-extra' ).attr( 'placeholder', "e.g.\n" + placeholder );
 };
 
 $( () => {
@@ -140,4 +145,12 @@ $( () => {
 			toggleExample( $( this ).val() );
 		} );
 	}
+
+	$( '.ga-nav-tab' ).click( function( e ) {
+		e.preventDefault();
+		$( '.ga-nav-tab-content' ).css( 'display', 'none' );
+		$( '.ga-nav-tab' ).removeClass( 'nav-tab-active' );
+		$( $( this ).attr( 'href' ) ).css( 'display', 'block' );
+		$( this ).addClass( 'nav-tab-active' );
+	} );
 } );

@@ -3,7 +3,7 @@
 namespace Kunoichi\GaCommunicator\Utility;
 
 
-use Hametuha\SingletonPattern\Singleton;
+use Kunoichi\GaCommunicator\Pattern\Singleton;
 use Kunoichi\GaCommunicator\Screen\Settings;
 
 /**
@@ -32,10 +32,10 @@ class ScriptRenderer extends Singleton {
 			// No output.
 			return;
 		}
-		$id  = $this->setting->get_option( 'property' );
+		$id         = $this->setting->get_option( 'property' );
 		$additional = $this->setting->get_option( 'extra' );
-		$tag = $this->setting->placeholder->tag( $type, $id, $additional );
-		$replaced = $this->setting->placeholder->replace( $tag );
+		$tag        = $this->setting->placeholder->tag( $type, $id, $additional );
+		$replaced   = $this->setting->placeholder->replace( $tag );
 		echo $replaced;
 	}
 

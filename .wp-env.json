@@ -1,19 +1,25 @@
 {
-  "core": null,
-  "plugins": [ "." ],
-  "themes": [
-    "https://downloads.wordpress.org/theme/twentytwenty.latest-stable.zip"
-  ],
-  "port": 80,
-  "config": {
-    "WP_DEBUG": true,
-    "SCRIPT_DEBUG": true,
-    "WP_DEBUG_LOG": true,
-    "WP_ALLOW_MULTISITE":  true,
-    "MULTISITE": false,
-    "DOMAIN_CURRENT_SITE": "localhost",
-    "PATH_CURRENT_SITE": "/",
-    "SITE_ID_CURRENT_SITE": 1,
-    "BLOG_ID_CURRENT_SITE": 1
-  }
+	"plugins": [
+		"."
+	],
+	"themes": [
+		"https://downloads.wordpress.org/theme/twentytwenty.latest-stable.zip"
+	],
+	"port": 80,
+	"config": {
+		"WP_DEBUG": true,
+		"SCRIPT_DEBUG": true,
+		"WP_DEBUG_LOG": true,
+		"WP_ALLOW_MULTISITE": true,
+		"MULTISITE": false,
+		"DOMAIN_CURRENT_SITE": "localhost",
+		"PATH_CURRENT_SITE": "/",
+		"SITE_ID_CURRENT_SITE": 1,
+		"BLOG_ID_CURRENT_SITE": 1
+	},
+	"env": {
+		"tests": {
+			"port": 8889
+		}
+	}
 }

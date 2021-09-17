@@ -3,7 +3,8 @@
 namespace Kunoichi\GaCommunicator\Utility;
 
 
-use Hametuha\SingletonPattern\Singleton;
+use Kunoichi\GaCommunicator;
+use Kunoichi\GaCommunicator\Pattern\Singleton;
 
 /**
  * Class PlaceHolders
@@ -21,13 +22,23 @@ class PlaceHolders extends Singleton {
 		$placeholders        = apply_filters( 'ga_communicator_placeholders', [
 			[
 				'name'        => 'post_id',
+				'type'        => 'int',
 				'description' => __( 'Single post ID. If page is not singular, always 0.', 'ga-communicator' ),
 				'callback'    => function () {
 					return is_singular() ? get_queried_object_id() : 0;
 				},
 			],
 			[
+				'name'        => 'post_type',
+				'type'        => 'string',
+				'description' => __( 'Post type in singular page.', 'ga-communicator' ),
+				'callback'    => function () {
+					return is_singular() ? get_queried_object()->post_type : 0;
+				},
+			],
+			[
 				'name'        => 'blog_id',
+				'type'        => 'int',
 				'description' => __( 'Blog ID.', 'ga-communicator' ),
 				'callback'    => function () {
 					return get_current_blog_id();
@@ -35,19 +46,55 @@ class PlaceHolders extends Singleton {
 			],
 			[
 				'name'        => 'author_id',
+				'type'        => 'int',
 				'description' => __( 'If current page is a singular post, return author ID. Else, always 0.', 'ga-communicator' ),
 				'callback'    => function () {
-					return is_singular() ? get_queried_object()->post_author : 0;
+					return is_singular() ? (int) get_queried_object()->post_author : 0;
+				},
+			],
+			[
+				'name'        => 'post_terms',
+				'type'        => 'string',
+				'description' => __( 'On single page, returns CSV value for all assigned terms in any taxonomy like <code>_11_,20_,_30_</code>. Else, always empty string.', 'ga-communicator' ),
+				'callback'    => function () {
+					if ( is_singular() ) {
+						$taxonomies = get_post_taxonomies( get_queried_object() );
+						$term_ids = [];
+						foreach ( $taxonomies as $taxonomy ) {
+							$terms = get_the_terms( get_queried_object(), $taxonomy );
+							if ( $terms && ! is_wp_error( $terms ) ) {
+								foreach ( $terms as $term ) {
+									$term_ids[] = sprintf( '_%d_', $term->term_id );
+								}
+							}
+						}
+						return implode( ',', $term_ids);
+					} else {
+						return '';
+					}
 				},
 			],
 			[
 				'name'        => 'term_id',
+				'type'        => 'int',
 				'description' => __( 'On taxonomy archive page, returns term ID. Else, always 0', 'ga-communicator' ),
 				'callback'    => function () {
 					if ( is_category() || is_tag() || is_tax() ) {
 						return get_queried_object_id();
 					} else {
 						return 0;
+					}
+				},
+			],
+			[
+				'name'        => 'taxonomy',
+				'type'        => 'string',
+				'description' => __( 'On taxonomy archive page, returns taxonomy name. Else, always empty.', 'ga-communicator' ),
+				'callback'    => function () {
+					if ( is_category() || is_tag() || is_tax() ) {
+						return get_queried_object()->taxonomy;
+					} else {
+						return '';
 					}
 				},
 			],
@@ -87,6 +134,13 @@ class PlaceHolders extends Singleton {
 	}
 
 	/**
+	 * Sandbox content.
+	 */
+	public function sandbox() {
+		return json_encode( GaCommunicator::get_instance()->default_json(), JSON_PRETTY_PRINT );
+	}
+
+	/**
 	 * Get script tag to render.
 	 *
 	 * @param string $key        Tag type. gtag, universal,
@@ -105,10 +159,10 @@ class PlaceHolders extends Singleton {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
+  var gtagConfig = {};
   %2$s
 
-  gtag( 'config', '%1$s' );
+  gtag( 'config', '%1$s', gtagConfig );
 </script>
 HTML;
 				return sprintf( $tag, $id, $additional );

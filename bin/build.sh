@@ -2,16 +2,19 @@
 
 set -e
 
-rm -rf ./.git
-rm -rf ./.github
-rm -rf ./bin
-rm -rf ./tests
-rm -rf ./vendor
-rm -rf ./wp
-rm -rf ./.gitattributes
-rm -rf ./.gitignore
-rm -rf ./.wp-env.json
-rm -rf ./composer.lock
-rm -rf ./package-lock.json
-rm -rf ./phpunit.xml.dit
-rm -rf ./doc
+# Set variables.
+PREFIX="refs/tags/"
+VERSION=${1#"$PREFIX"}
+
+echo "Building GA Communicator v${VERSION}..."
+
+# Install composer.
+composer install --no-dev --prefer-dist
+
+# Create README.txt
+curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.php | php
+
+# Change version string.
+sed -i.bak "s/^Version: .*/Version: ${VERSION}/g" ./ga-communicator.php
+sed -i.bak "s/^Stable Tag: .*/Stable Tag: ${VERSION}/g" ./readme.txt
+
