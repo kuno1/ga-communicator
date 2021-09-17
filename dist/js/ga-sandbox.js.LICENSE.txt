@@ -1,0 +1,7 @@
+/*!
+ * Sandbox
+ *
+ * @package ga-communicator
+ * @handle ga-sandbox
+ * @deps wp-codemirror, wp-api-fetch
+ */

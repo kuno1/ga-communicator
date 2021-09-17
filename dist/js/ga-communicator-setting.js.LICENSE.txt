@@ -1,5 +1,5 @@
 /*!
  * Package screen helper.
  *
- * @deps wp-api-fetch, jquery, wp-i18n
+ * @deps wp-api-fetch, jquery, wp-i18n, ga-custom-dimensions, ga-sandbox
  */

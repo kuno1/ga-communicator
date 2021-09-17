@@ -2,7 +2,7 @@
 
 namespace Kunoichi\GaCommunicator\Screen;
 
-use \Hametuha\SingletonPattern\Singleton;
+use Kunoichi\GaCommunicator\Pattern\Singleton;
 use Kunoichi\GaCommunicator\Utility\GaClientHolder;
 use Kunoichi\GaCommunicator\Utility\PlaceHolders;
 
@@ -39,7 +39,6 @@ class Settings extends Singleton {
 	 * Constructor
 	 */
 	protected function init() {
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'admin_init', [ $this, 'register_setting_fields' ] );
 		if ( $this->should_network_activate() ) {
 			add_action( 'network_admin_menu', [ $this, 'network_admin_menu' ] );
@@ -47,9 +46,6 @@ class Settings extends Singleton {
 		} else {
 			add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 			add_action( 'admin_init', [ $this, 'register_setting' ], 11 );
-		}
-		if ( ! $this->should_network_activate() || is_main_site() ) {
-			add_action( 'rest_api_init', [ $this, 'register_rest' ] );
 		}
 	}
 
@@ -80,16 +76,10 @@ class Settings extends Singleton {
 	}
 
 	/**
-	 * Admin header.
-	 */
-	public function enqueue_scripts() {
-		wp_enqueue_style( 'ga-communicator-setting' );
-	}
-
-	/**
 	 * Render admin body.
 	 */
 	public function admin_screen() {
+		wp_enqueue_style( 'ga-communicator-setting' );
 		wp_enqueue_script( 'ga-communicator-setting' );
 		if ( is_multisite() ) {
 			$action = add_query_arg( [
@@ -103,13 +93,33 @@ class Settings extends Singleton {
 			<h1 class="wp-heading ga-heading">
 				<span class="dashicons dashicons-chart-line"></span> <?php echo esc_html( $this->title ) ?>
 			</h1>
-			<form method="post" action="<?php echo esc_url( $action ); ?>">
-				<?php
-				settings_fields( $this->slug );
-				do_settings_sections( $this->slug );
-				submit_button();
-				?>
-			</form>
+			<nav class="nav-tab-wrapper">
+				<a href="#ga-setting-form" class="ga-nav-tab nav-tab nav-tab-active"><?php esc_html_e( 'Setting', 'ga-communicator' ); ?></a>
+				<a href="#ga-sandbox" class="ga-nav-tab nav-tab"><?php esc_html_e( 'Sandbox', 'ga-communicator' ); ?></a>
+			</nav>
+			<div id="ga-setting-form" class="ga-nav-tab-content">
+				<form method="post" action="<?php echo esc_url( $action ); ?>">
+					<?php
+					settings_fields( $this->slug );
+					do_settings_sections( $this->slug );
+					submit_button();
+					?>
+				</form>
+			</div>
+			<div id="ga-sandbox" style="display: none;" class="ga-nav-tab-content ga-sandbox-wrap">
+				<p class="description"><?php echo wp_kses_post( __( 'Try to interact GA data. Check <a href="%s" target="_blank" rel="noopener noreferrer">the documentation</a> and confirm what you get with your JSON. WP-CLI is also helpful.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet' ); ?></p>
+				<h2><?php esc_html_e( 'JSON to API', 'ga-communicator' ); ?></h2>
+				<textarea class="ga-sandbox-inner" id="ga-sandbox-inner"><?php
+					echo esc_textarea( $this->placeholder->sandbox() );
+					?></textarea>
+				<p>
+					<button class="components-button is-secondary" id="ga-sandbox-exec">
+						<?php esc_html_e( 'Execute', 'ga-communicator' ); ?>
+					</button>
+				</p>
+				<h2><?php esc_html_e( 'API Result', 'ga-communicator' ); ?></h2>
+				<textarea class="ga-sandbox-result" id="ga-sandbox-result" readonly placeholder="<?php esc_attr_e( 'Here comes the result.', 'ga-communicator' ); ?>"></textarea>
+			</div>
 		</div>
 		<?php
 	}
@@ -208,7 +218,7 @@ class Settings extends Singleton {
 			''          => __( 'No Output', 'ga-communicator' ),
 			'gtag'      => 'gtag.js',
 			'universal' => 'Universal Analytics(ga.js)',
-			'manual'    => __( 'Manual Code', 'ga-communicator' ),
+			'manual'    => __( 'Manual Code(for GTM)', 'ga-communicator' ),
 		];
 		add_settings_field( 'ga-tag', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'tag' );
@@ -243,13 +253,19 @@ class Settings extends Singleton {
 			$value      = $this->get_option( 'extra', true );
 			if ( $predefined ) : ?>
 				<input type="hidden" name="ga-extra" value="<?php echo esc_attr( $value ) ?>" />
-				<textarea readonly class="widefat"><?php echo esc_textarea( $predefined ) ?></textarea>
+				<textarea id="ga-extra" readonly class="widefat"><?php echo esc_textarea( $predefined ) ?></textarea>
 				<p class="description"><?php esc_html_e( 'Extra scripts are defined programmatically.', 'ga-communicator' ) ?></p>
 			<?php else : ?>
 				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat"><?php
 					echo esc_textarea( $value );
 				?></textarea>
 			<?php endif; ?>
+			<?php
+			printf(
+				'<p class="description">%s</p>',
+				esc_html__( 'You can define an additional script. Works fine with custom dimension.', 'ga-communicator' )
+			);
+			?>
 			<table class="ga-setting-table">
 				<thead>
 				<tr>
@@ -261,15 +277,25 @@ class Settings extends Singleton {
 					<?php foreach ( $this->placeholder->get() as $placeholder ) : ?>
 					<tr>
 						<th>%<?php echo esc_html( $placeholder['name'] ) ?>%</th>
-						<td><?php echo esc_html( $placeholder['description'] ) ?></td>
+						<td><?php echo wp_kses_post( $placeholder['description'] ) ?></td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<div id="ga-dimensions">
+
+			</div>
 			<?php
+			foreach ( [
+				'gtag'      => "gtagConfig = { custom_map: { dimension1: 'post_id' }, post_id: %post_id% };",
+				'universal' => "ga( 'set', 'dimension1', %post_id% );",
+				'manual'    => 'window.GaValues = { post: %post_id%, author: %author_id% };',
+			] as $key => $example ) {
+				printf( '<pre style="display: none;" data-example="%s">%s</pre>', esc_attr( $key ), esc_html( $example ) );
+			};
 		}, $this->slug, $tag_section );
 		// Tag to be output.
-		add_settings_field( 'ga-place', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-place', __( 'Tag Appears In', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'place' );
 			$cur_value = $this->get_option( 'place', true );
 			$choices = [
@@ -321,116 +347,6 @@ class Settings extends Singleton {
 				<code class="predefined" data-predefined="<?php echo esc_attr( $key ) ?>"><?php echo esc_html( $predefined ) ?></code>
 			</p>
 		<?php endif;
-	}
-
-	/**
-	 * Register REST API
-	 */
-	public function register_rest() {
-		register_rest_route( 'ga/v1', 'accounts', [
-			[
-				'methods' => 'GET',
-				'args' => [],
-				'callback' => function( \WP_REST_Request $request ) {
-					$response = $this->ga()->accounts();
-					if ( is_wp_error( $response ) ) {
-						return $response;
-					} elseif ( ! $response ) {
-						return new \WP_Error( 'ga_communicator_error', __( 'No account found. Please check your service account is registered as Google Analytics user.', 'ga-communicator' ) );
-					} else {
-						$choices = [];
-						foreach ( $response as $account ) {
-							$choices[] = [
-								'id'   => $account['id'],
-								'name' => $account['name'],
-							];
-						}
-						return new \WP_REST_Response( $choices );
-					}
-				},
-				'permission_callback' => [ $this, 'permission_callback' ],
-			],
-		] );
-		$property_args = [
-			'account' => [
-				'required' => true,
-				'type'     => 'string',
-				'description' => 'Account ID.',
-				'validate_callback' => function( $var ) {
-					return ! empty( $var );
-				},
-			],
-		];
-		register_rest_route( 'ga/v1', 'properties/(?P<account>[^/]+)', [
-			[
-				'methods' => 'GET',
-				'args' => $property_args,
-				'callback' => function( \WP_REST_Request $request ) {
-					$account = $request->get_param( 'account' );
-					$response = $this->ga()->properties( $account );
-					if ( is_wp_error( $response ) ) {
-						return $response;
-					} elseif ( ! $response ) {
-						return new \WP_Error( 'ga_communicator_error', __( 'Failed to get properties. Please check permission.', 'ga-communicator' ) );
-					} else {
-						$choices = [];
-						foreach ( $response as $property ) {
-							$choices[] = [
-								'id'   => $property['id'],
-								'name' => $property['name'],
-							];
-						}
-						return new \WP_REST_Response( $choices );
-					}
-				},
-				'permission_callback' => [ $this, 'permission_callback' ],
-			],
-		] );
-		register_rest_route( 'ga/v1', 'profiles/(?P<account>[^/]+)/(?P<property>[^/]+)', [
-			[
-				'methods' => 'GET',
-				'args' => array_merge( $property_args, [
-					'property' => [
-						'required' => true,
-						'type'     => 'string',
-						'description' => 'Web property ID',
-						'validate_callback' => function( $var ) {
-							return ! empty( $var );
-						},
-					],
-				] ),
-				'callback' => function( \WP_REST_Request $request ) {
-					$account  = $request->get_param( 'account' );
-					$property = $request->get_param( 'property' );
-					$response = $this->ga()->profiles( $account, $property );
-					if ( is_wp_error( $response ) ) {
-						return $response;
-					} elseif ( ! $response ) {
-						return new \WP_Error( 'ga_communicator_error', __( 'Failed to get profiles. Please check permission.', 'ga-communicator' ) );
-					} else {
-						$choices = [];
-						foreach ( $response as $profile ) {
-							$choices[] = [
-								'id'   => $profile['id'],
-								'name' => $profile['name'],
-							];
-						}
-						return new \WP_REST_Response( $choices );
-					}
-				},
-				'permission_callback' => [ $this, 'permission_callback' ],
-			],
-		] );
-	}
-
-	/**
-	 * Get permission.
-	 *
-	 * @param \WP_REST_Request $request
-	 * @return bool
-	 */
-	public function permission_callback( $request ) {
-		return current_user_can( $this->capability );
 	}
 
 	/**

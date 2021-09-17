@@ -3,10 +3,12 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/css/ga-communicator-setting.css",
 		"ext": "css",
-		"hash": "18031194ebdbd90d930cf0e675dcfe94",
+		"hash": "0ba4d0708f1ea54dd94ce9468c9175ca",
 		"version": "0.0.0",
 		"deps": [
-			"dashicons"
+			"dashicons",
+			"wp-codemirror",
+			"wp-components"
 		],
 		"footer": true,
 		"media": "all"
@@ -15,12 +17,42 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/js/ga-communicator-setting.js",
 		"ext": "js",
-		"hash": "1beb1f08da5d217c87344ae4cc7f0a2b",
+		"hash": "5cebc21990cf45166605737e44fded89",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",
 			"jquery",
+			"wp-i18n",
+			"ga-custom-dimensions",
+			"ga-sandbox"
+		],
+		"footer": true,
+		"media": "all"
+	},
+	{
+		"handle": "ga-custom-dimensions",
+		"path": "dist/js/ga-custom-dimensions.js",
+		"ext": "js",
+		"hash": "7d58867d644f8668a36422c084ad4604",
+		"version": "0.0.0",
+		"deps": [
+			"wp-api-fetch",
+			"wp-element",
+			"wp-components",
 			"wp-i18n"
+		],
+		"footer": true,
+		"media": "all"
+	},
+	{
+		"handle": "ga-sandbox",
+		"path": "dist/js/ga-sandbox.js",
+		"ext": "js",
+		"hash": "60d8f012022707a596e2ce06ac8a4959",
+		"version": "0.0.0",
+		"deps": [
+			"wp-codemirror",
+			"wp-api-fetch"
 		],
 		"footer": true,
 		"media": "all"

@@ -7,8 +7,12 @@ use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\Middleware\AuthTokenMiddleware;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use Hametuha\SingletonPattern\Singleton;
-use Hametuha\SingletonPattern\BulkRegister;
+use Kunoichi\GaCommunicator\Api\Accounts;
+use Kunoichi\GaCommunicator\Api\BatchGet;
+use Kunoichi\GaCommunicator\Api\Dimensions;
+use Kunoichi\GaCommunicator\Api\Profiles;
+use Kunoichi\GaCommunicator\Api\Properties;
+use Kunoichi\GaCommunicator\Pattern\Singleton;
 use Kunoichi\GaCommunicator\Screen\Settings;
 use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
 
@@ -38,9 +42,23 @@ class GaCommunicator extends Singleton {
 		ScriptRenderer::get_instance();
 		// Register scripts.
 		add_action( 'init', [ $this, 'register_assets' ] );
+		// API.
+		Accounts::get_instance();
+		Properties::get_instance();
+		Profiles::get_instance();
+		Dimensions::get_instance();
+		BatchGet::get_instance();
 	}
 
+	/**
+	 * Load locales.
+	 */
 	public function locale() {
+		// Under plugin execution, return.
+		if ( defined( 'GA_COMMUNICATOR_AS_PLUGIN' ) && GA_COMMUNICATOR_AS_PLUGIN ) {
+			return;
+		}
+		// Load locales.
 		$locale = get_locale();
 		$mo = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
 		if ( file_exists( $mo ) ) {
@@ -60,7 +78,7 @@ class GaCommunicator extends Singleton {
 		$body = (string) $response->getBody();
 		$json = json_decode( $body, true );
 		if ( ! $json ) {
-			throw new \Exception( __( 'Failed to API response. Please try again later.', 'ga-communicator' ), 500 );
+			throw new \Exception( __( 'Failed to get API response. Please try again later.', 'ga-communicator' ), 500 );
 		}
 		return $json;
 	}
@@ -74,37 +92,9 @@ class GaCommunicator extends Singleton {
 	 */
 	public function get_report( $request = [], $callback = null ) {
 		try {
-			$json = array_replace_recursive( [
+			$json = array_replace_recursive( array_merge( [
 				'viewId' => $this->setting->get_option( 'profile' ),
-				'dimensions' => [
-					[
-						'name' => 'ga:pagePath',
-					],
-					[
-						'name' => 'ga:pageTitle',
-					],
-				],
-				'metrics' => [
-					[
-						'expression' => 'ga:pageviews',
-						'formattingType' => 'INTEGER',
-					],
-				],
-				'orderBys' => [
-					[
-						'fieldName' => 'ga:pageviews',
-						'orderType' => 'VALUE',
-						'sortOrder' => 'DESCENDING',
-					]
-				],
-				'pageSize' => 10,
-				'dateRanges' => [
-					[
-						'startDate' => date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * 30 ),
-						'endDate' =>  date_i18n( 'Y-m-d' ),
-					],
-				],
-			], $request );
+			], $this->default_json() ), $request );
 			$response = $this->client->post( 'https://analyticsreporting.googleapis.com/v4/reports:batchGet', [
 				'json' => [
 					'reportRequests' => $json,
@@ -124,6 +114,44 @@ class GaCommunicator extends Singleton {
 				'response' => $e->getCode(),
 			] );
 		}
+	}
+
+	/**
+	 * Default JSON.
+	 *
+	 * @return array
+	 */
+	public function default_json() {
+		return [
+			'dimensions' => [
+				[
+					'name' => 'ga:pagePath',
+				],
+				[
+					'name' => 'ga:pageTitle',
+				],
+			],
+			'metrics'    => [
+				[
+					'expression'     => 'ga:pageviews',
+					'formattingType' => 'INTEGER',
+				],
+			],
+			'orderBys'   => [
+				[
+					'fieldName' => 'ga:pageviews',
+					'orderType' => 'VALUE',
+					'sortOrder' => 'DESCENDING',
+				]
+			],
+			'pageSize'   => 10,
+			'dateRanges' => [
+				[
+					'startDate' => date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * 30 ),
+					'endDate'   => date_i18n( 'Y-m-d' ),
+				],
+			],
+		];
 	}
 
 	/**
@@ -308,6 +336,22 @@ class GaCommunicator extends Singleton {
 	}
 
 	/**
+	 * Get dimensions.
+	 *
+	 * @retur array
+	 */
+	public function dimensions( $account, $property ) {
+		try {
+			$result = $this->request( sprintf( 'https://www.googleapis.com/analytics/v3/management/accounts/%s/webproperties/%s/customDimensions', $account, $property ) );
+			return isset( $result['items'] ) ? $result['items'] : [];
+		} catch ( \Exception $e ) {
+			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
+				'code' => $e->getCode(),
+			] );
+		}
+	}
+
+	/**
 	 * Convert path to post id.
 	 *
 	 * @param string $path
@@ -332,16 +376,22 @@ class GaCommunicator extends Singleton {
 		if ( false !== strpos( $base_dir, $theme_root ) ) {
 			// This is inside theme.
 			$base_url = str_replace( $theme_root, get_theme_root_uri(), $base_dir );
-		} elseif ( false !== strpos( $base_dir, WP_CONTENT_DIR ) ) {
+		} elseif ( false !== strpos( $base_dir, WP_PLUGIN_DIR ) ) {
 			// This is inside plugins.
-			$base_url = str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $base_dir );
+			$base_url = str_replace( WP_PLUGIN_DIR, WP_PLUGIN_URL, $base_dir );
+		} elseif ( false !== strpos( $base_dir, WPMU_PLUGIN_DIR ) ) {
+			// This is inside mu-plugins
+			$base_url = str_replace( WPMU_PLUGIN_DIR, WPMU_PLUGIN_URL, $base_dir );
 		} else {
-			// Replace ABS Path.
+			// Other, replace ABS Path.
 			$base_url = str_replace( ABSPATH, home_url( '/' ), $base_dir );
 		}
 		$base_url = apply_filters( 'ga_communicator_assets_base_dir_url', $base_url, $base_dir );
 		$base_url = untrailingslashit( $base_url );
 		foreach ( $json as $setting ) {
+			if ( ! $setting ) {
+				continue;
+			}
 			$handle  = $setting['handle'];
 			$url     = $base_url . '/' . $setting['path'];
 			$version = $setting['hash'];
@@ -360,7 +410,7 @@ class GaCommunicator extends Singleton {
 	/**
 	 * Getter
 	 *
-	 * @param string $name
+	 * @param string $name Property name.
 	 *
 	 * @return mixed
 	 * @throws \Exception

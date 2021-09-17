@@ -83,6 +83,30 @@ class Command extends \WP_CLI_Command {
 	}
 
 	/**
+	 * Get custom dimensions.
+	 *
+	 * @synopsis <account> <profile>
+	 * @param array $args
+	 */
+	public function dimensions( $args ) {
+		list( $account, $profile ) = $args;
+		$dimensions = $this->ga()->dimensions( $account, $profile );
+		if ( is_wp_error( $dimensions ) ) {
+			\WP_CLI::error( $dimensions->get_error_message() );
+		}
+		if ( empty( $dimensions ) ) {
+			\WP_CLI::warning( __( 'No custom dimensions set.', 'ga-communicator' ) );
+			exit;
+		}
+		$table = new Table();
+		$table->setHeaders( [ 'ID', 'Label', 'Index', 'Scope', 'Created' ] );
+		foreach ( $dimensions as $dimension ) {
+			$table->addRow( [ $dimension['id'], $dimension['name'], $dimension['index'], $dimension['scope'], $dimension['created'] ] );
+		}
+		$table->display();
+	}
+
+	/**
 	 * Get report and display it in table.
 	 *
 	 * @synopsis [--start=<start>] [--end=<end>] [--filter=<filter>]
