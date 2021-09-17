@@ -17,7 +17,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/js/ga-communicator-setting.js",
 		"ext": "js",
-		"hash": "5cebc21990cf45166605737e44fded89",
+		"hash": "d630421e1cf003e556a63d5c9baf51c7",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",

@@ -29,7 +29,7 @@ const update = ( div ) => {
 	} ).then( ( res ) => {
 		const $select = $( div ).find( '.ga-setting-choices' );
 		const curValue = $( div ).find( 'input[type="hidden"]' ).val();
-		res.map( ( option ) => {
+		res.forEach( ( option ) => {
 			const $option = $( sprintf( '<option value="%s">%s(%s)</option>', option.id, option.name, option.id ) );
 			if ( option.id === curValue ) {
 				$option.attr( 'selected', true );
@@ -82,8 +82,6 @@ const getPath = ( key ) => {
 			path += sprintf( '/properties/%s', getValue( 'ga-account' ) || ' ' );
 			break;
 		case 'ga-profile':
-			const account = getValue( 'ga-account' );
-			const property = getValue( 'ga-property' );
 			path += sprintf( '/profiles/%s/%s', getValue( 'ga-account' ) || ' ', getValue( 'ga-property' ) || ' ' );
 			break;
 	}
@@ -98,11 +96,7 @@ const getPath = ( key ) => {
  */
 const getPredefined = ( key ) => {
 	const $predefined = $( `code[data-predefined="${ key }"]` );
-	if ( $predefined.length ) {
-		return $predefined.text();
-	} else {
-		return '';
-	}
+	return $predefined.length ? $predefined.text() : '';
 }
 
 /**

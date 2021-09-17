@@ -53,9 +53,26 @@ jobs:
       - name: Check Lint
         run: composer lint
 
+  assets:
+    name: Check Assets
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install NPM Packages
+        run: npm install
+
+      - name: Check JS & CSS syntax
+        run: npm run lint
+
   release:
     name: Release Build for Composer
-    needs: test
+    needs: [ test, assets ]
     if: contains(github.ref, 'tags/')
     runs-on: ubuntu-18.04
     steps:
