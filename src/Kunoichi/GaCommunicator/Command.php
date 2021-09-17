@@ -43,7 +43,11 @@ class Command extends \WP_CLI_Command {
 	 */
 	public function properties( $args ) {
 		list( $id ) = $args;
-		\WP_CLI::line( sprintf( __( 'Getting web properties of %s...', 'ga-communicator' ), $id ) );
+		\WP_CLI::line( sprintf(
+			// translators: %s is property id.
+			__( 'Getting web properties of %s...', 'ga-communicator' ),
+			$id
+		) );
 		$properties = $this->ga()->properties( $id );
 		if ( is_wp_error( $properties ) ) {
 			\WP_CLI::error( $properties->get_error_message() );
@@ -67,7 +71,7 @@ class Command extends \WP_CLI_Command {
 	 */
 	public function profiles( $args ) {
 		list( $account, $profile ) = $args;
-		$profiles = $this->ga()->profiles( $account, $profile );
+		$profiles                  = $this->ga()->profiles( $account, $profile );
 		if ( is_wp_error( $profiles ) ) {
 			\WP_CLI::error( $profiles->get_error_message() );
 		}
@@ -90,7 +94,7 @@ class Command extends \WP_CLI_Command {
 	 */
 	public function dimensions( $args ) {
 		list( $account, $profile ) = $args;
-		$dimensions = $this->ga()->dimensions( $account, $profile );
+		$dimensions                = $this->ga()->dimensions( $account, $profile );
 		if ( is_wp_error( $dimensions ) ) {
 			\WP_CLI::error( $dimensions->get_error_message() );
 		}
@@ -133,14 +137,14 @@ class Command extends \WP_CLI_Command {
 		// Set filter
 		if ( ! empty( $assoc['filter'] ) ) {
 			list( $dimension, $operator, $expressions ) = explode( ';', $assoc['filter'] );
-			$replace['dimensionFilterClauses'] = [
+			$replace['dimensionFilterClauses']          = [
 				[
 					'operator' => 'AND',
-					'filters' => [
+					'filters'  => [
 						[
 							'dimensionName' => $dimension,
-  							'operator' => $operator,
-  							'expressions' => explode( ',', $expressions ),
+							'operator'      => $operator,
+							'expressions'   => explode( ',', $expressions ),
 						],
 					],
 				],
@@ -186,8 +190,8 @@ class Command extends \WP_CLI_Command {
 	 */
 	public function popular_posts( $args, $assoc ) {
 		$request = [];
-		if ( ! empty( $args[ 0 ] ) ) {
-			$request[ 'path_regexp' ] = $args[ 0 ];
+		if ( ! empty( $args[0] ) ) {
+			$request['path_regexp'] = $args[0];
 		}
 		foreach ( [ 'start', 'end', 'days_before', 'offset_days' ] as $key ) {
 			if ( ! empty( $assoc[ $key ] ) ) {

@@ -60,7 +60,7 @@ class GaCommunicator extends Singleton {
 		}
 		// Load locales.
 		$locale = get_locale();
-		$mo = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
+		$mo     = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
 		if ( file_exists( $mo ) ) {
 			load_textdomain( 'ga-communicator', $mo );
 		}
@@ -75,8 +75,8 @@ class GaCommunicator extends Singleton {
 	 */
 	protected function request( $url ) {
 		$response = $this->client->get( $url );
-		$body = (string) $response->getBody();
-		$json = json_decode( $body, true );
+		$body     = (string) $response->getBody();
+		$json     = json_decode( $body, true );
 		if ( ! $json ) {
 			throw new \Exception( __( 'Failed to get API response. Please try again later.', 'ga-communicator' ), 500 );
 		}
@@ -92,7 +92,7 @@ class GaCommunicator extends Singleton {
 	 */
 	public function get_report( $request = [], $callback = null ) {
 		try {
-			$json = array_replace_recursive( array_merge( [
+			$json     = array_replace_recursive( array_merge( [
 				'viewId' => $this->setting->get_option( 'profile' ),
 			], $this->default_json() ), $request );
 			$response = $this->client->post( 'https://analyticsreporting.googleapis.com/v4/reports:batchGet', [
@@ -100,7 +100,7 @@ class GaCommunicator extends Singleton {
 					'reportRequests' => $json,
 				],
 			] );
-			$result = json_decode( (string) $response->getBody(), true );
+			$result   = json_decode( (string) $response->getBody(), true );
 			if ( ! $result ) {
 				return [];
 			}
@@ -142,11 +142,12 @@ class GaCommunicator extends Singleton {
 					'fieldName' => 'ga:pageviews',
 					'orderType' => 'VALUE',
 					'sortOrder' => 'DESCENDING',
-				]
+				],
 			],
 			'pageSize'   => 10,
 			'dateRanges' => [
 				[
+					// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
 					'startDate' => date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * 30 ),
 					'endDate'   => date_i18n( 'Y-m-d' ),
 				],
@@ -167,16 +168,16 @@ class GaCommunicator extends Singleton {
 		}
 		$original_structure = $permalink_structure;
 		foreach ( [
-			'year' => '\d{4}',
+			'year'     => '\d{4}',
 			'monthnum' => '\d{2}',
-			'day' => '\d{2}',
-			'hour' => '\d{2}',
-			'minute' => '\d{2}',
-			'second' => '\d{2}',
-			'post_id' => '\d+',
+			'day'      => '\d{2}',
+			'hour'     => '\d{2}',
+			'minute'   => '\d{2}',
+			'second'   => '\d{2}',
+			'post_id'  => '\d+',
 			'postname' => '[A-Za-z0-9\-%]+',
 			'category' => '[A-Za-z0-9\-%/]+',
-			'author' => '[A-Za-z0-9\-%]+',
+			'author'   => '[A-Za-z0-9\-%]+',
 		] as $epmask => $regexp ) {
 			$permalink_structure = str_replace( "%{$epmask}%", $regexp, $permalink_structure );
 		}
@@ -201,8 +202,9 @@ class GaCommunicator extends Singleton {
 			'end'         => '',
 		] );
 		// Calculate range, number.
-		$end   = current_time( 'timestamp' ) - 60 * 60 * 24 * $conditions['offset_days'];
-		$start = $end - 60 * 60 * 24 * $conditions['days_before'];
+		// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+		$end         = current_time( 'timestamp' ) - 60 * 60 * 24 * $conditions['offset_days'];
+		$start       = $end - 60 * 60 * 24 * $conditions['days_before'];
 		$date_ranges = [];
 		foreach ( [
 			[ 'startDate', $start, $conditions['start'] ],
@@ -211,34 +213,34 @@ class GaCommunicator extends Singleton {
 			$date_ranges[ $range_key ] = preg_match( '/^\d{4}-\d{2}-\d{2}$/u', $specified_date ) ? $specified_date : date_i18n( 'Y-m-d', $timestamp );
 		}
 		$request = [
-			'pageSize' => (int) $conditions['number'],
+			'pageSize'   => (int) $conditions['number'],
 			'dateRanges' => [ $date_ranges ],
 		];
 		// Create filter.
 		$request['dimensionFilterClauses'] = [
 			[
 				'operator' => 'AND',
-				'filters' => [
+				'filters'  => [
 					[
 						'dimensionName' => 'ga:pagePath',
-						'operator' => 'REGEXP',
-						'expressions' => [
-							$conditions['path_regexp']
+						'operator'      => 'REGEXP',
+						'expressions'   => [
+							$conditions['path_regexp'],
 						],
 					],
 				],
 			],
 		];
-		$response = $this->get_report( $request );
+		$response                          = $this->get_report( $request );
 		if ( ! $response || is_wp_error( $response ) ) {
 			return $response ? null : $response;
 		}
 		// Build results array.
 		$post_ids = [];
-		foreach( $response as list( $path, $title, $pv ) ) {
-			$id = url_to_postid( $this->path_to_url( $path ) );
-			$value = [
-				'pv' => $pv,
+		foreach ( $response as list( $path, $title, $pv ) ) {
+			$id              = url_to_postid( $this->path_to_url( $path ) );
+			$value           = [
+				'pv'   => $pv,
 				'rank' => 0,
 			];
 			$post_ids[ $id ] = $value;
@@ -252,14 +254,14 @@ class GaCommunicator extends Singleton {
 			}
 			$post['rank'] = $more + 1;
 		}
-		$query = wp_parse_args( $query, [
-			'post_type' => 'post',
-			'post_status' => 'publish',
+		$query    = wp_parse_args( $query, [
+			'post_type'           => 'post',
+			'post_status'         => 'publish',
 			'ignore_sticky_posts' => true,
 		] );
-		$query = array_merge( $query, [
+		$query    = array_merge( $query, [
 			'post__in' => array_keys( $post_ids ),
-			'orderby' => 'post__in',
+			'orderby'  => 'post__in',
 		] );
 		$wp_query = new \WP_Query( $query );
 		if ( ! $wp_query->have_posts() ) {
@@ -371,8 +373,8 @@ class GaCommunicator extends Singleton {
 		if ( ! file_exists( $config ) ) {
 			return;
 		}
-		$json     = (array) json_decode( file_get_contents( $config ), true );
-		$theme_root   = get_theme_root();
+		$json       = (array) json_decode( file_get_contents( $config ), true );
+		$theme_root = get_theme_root();
 		if ( false !== strpos( $base_dir, $theme_root ) ) {
 			// This is inside theme.
 			$base_url = str_replace( $theme_root, get_theme_root_uri(), $base_dir );
@@ -421,17 +423,21 @@ class GaCommunicator extends Singleton {
 				if ( ! $this->client_initialized ) {
 					$scopes = apply_filters( 'ga_communicator_api_scopes', [ 'https://www.googleapis.com/auth/analytics.readonly' ] );
 					$key    = $this->setting->service_key();
-					if ( ! $key || ! ( $json = json_decode( $key, true ) ) ) {
+					if ( ! $key ) {
+						throw new \Exception( __( 'Service key is not set.', 'ga-communicator' ), 500 );
+					}
+					$json = json_decode( $key, true );
+					if ( ! $json ) {
 						throw new \Exception( __( 'Invalid API service key.', 'ga-communicator' ), 500 );
 					}
-					$sa = new ServiceAccountCredentials( $scopes, $json );
+					$sa         = new ServiceAccountCredentials( $scopes, $json );
 					$middleware = new AuthTokenMiddleware( $sa );
-					$stack = HandlerStack::create();
+					$stack      = HandlerStack::create();
 					$stack->push( $middleware );
 					$this->_client = new Client( [
-						'handler' => $stack,
+						'handler'  => $stack,
 						'base_uri' => 'https://www.googleapis.com',
-						'auth' => 'google_auth',
+						'auth'     => 'google_auth',
 					]);
 				}
 				return $this->_client;

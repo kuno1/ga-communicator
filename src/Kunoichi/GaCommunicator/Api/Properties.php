@@ -36,7 +36,7 @@ class Properties extends Accounts {
 	 * @inheritDoc
 	 */
 	public function callback( $request ) {
-		$account = $request->get_param( 'account' );
+		$account  = $request->get_param( 'account' );
 		$response = $this->settings->ga()->properties( $account );
 		if ( is_wp_error( $response ) ) {
 			return $response;

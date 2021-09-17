@@ -12,17 +12,17 @@ use Kunoichi\GaCommunicator\Utility\GaClientHolder;
  * @package ga-communicator
  */
 class PopularPosts extends Widget {
-	
+
 	use GaClientHolder;
-	
+
 	protected function get_id() {
 		return 'ga-popular-posts';
 	}
-	
+
 	protected function get_name() {
 		return __( 'Google Analytics Popular Posts', 'ga-communicator' );
 	}
-	
+
 	public function form( $instance ) {
 		parent::form( $instance );
 		$instance = wp_parse_args( $instance, [
@@ -37,64 +37,71 @@ class PopularPosts extends Widget {
 		// Range, advanced option(regexp), post type, permalink, days,
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number' ) ?>"><?php esc_html_e( 'Number of Posts', 'ga-communicator' ) ?></label>
+			<label
+				for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_html_e( 'Number of Posts', 'ga-communicator' ); ?></label>
 			<input type="number" class="widefat"
-				   name="<?php echo $this->get_field_name( 'number' ) ?>" id="<?php echo $this->get_field_id( 'number' ) ?>"
-				   value="<?php echo esc_attr( $instance['number'] ) ?>" placeholder="10"
+				name="<?php echo $this->get_field_name( 'number' ); ?>"
+				id="<?php echo $this->get_field_id( 'number' ); ?>"
+				value="<?php echo esc_attr( $instance['number'] ); ?>" placeholder="10"
 			/>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'days' ) ?>"><?php esc_html_e( 'Target Period', 'ga-communicator' ) ?></label><br />
-			<?php echo esc_html_x( 'Recent', 'recent-days', 'ga-communicator' ) ?>
+			<label
+				for="<?php echo $this->get_field_id( 'days' ); ?>"><?php esc_html_e( 'Target Period', 'ga-communicator' ); ?></label><br />
+			<?php echo esc_html_x( 'Recent', 'recent-days', 'ga-communicator' ); ?>
 			<input type="number" style="width: 4.5em; box-sizing: border-box; text-align: right;" min="0"
-				   name="<?php echo $this->get_field_name( 'days' ) ?>" id="<?php echo $this->get_field_id( 'days' ) ?>"
-				   value="<?php echo esc_attr( $instance['days'] ) ?>" placeholder="30"
+				name="<?php echo $this->get_field_name( 'days' ); ?>" id="<?php echo $this->get_field_id( 'days' ); ?>"
+				value="<?php echo esc_attr( $instance['days'] ); ?>" placeholder="30"
 			/>
-			<?php echo esc_html_x( 'Days', 'recent-days', 'ga-communicator' ) ?>
+			<?php echo esc_html_x( 'Days', 'recent-days', 'ga-communicator' ); ?>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'layout' ) ?>">
-				<?php esc_html_e( 'Layout', 'ga-communicator' ) ?>
+			<label for="<?php echo $this->get_field_id( 'layout' ); ?>">
+				<?php esc_html_e( 'Layout', 'ga-communicator' ); ?>
 			</label>
 			<select class="widefat"
-					name="<?php echo $this->get_field_name( 'layout' ) ?>"
-					id="<?php echo $this->get_field_id( 'layout' ) ?>">
-				<?php foreach ( $this->get_styles() as $value => $label ) {
+				name="<?php echo $this->get_field_name( 'layout' ); ?>"
+				id="<?php echo $this->get_field_id( 'layout' ); ?>">
+				<?php
+				foreach ( $this->get_styles() as $value => $label ) {
 					printf(
 						'<option value="%s" %s>%s</option>',
 						esc_attr( $value ),
 						selected( $instance['layout'], $value, false ),
 						esc_html( $label )
 					);
-				} ?>
+				}
+				?>
 			</select>
 		</p>
 		<p style="text-align: right;">
 			<button class="button button-ga-communicator-widget-toggle">
-				<i class="dashicons dashicons-admin-generic"></i> <?php esc_html_e( 'Advanced Setting', 'ga-communicator' ) ?>
+				<i class="dashicons dashicons-admin-generic"></i> <?php esc_html_e( 'Advanced Setting', 'ga-communicator' ); ?>
 			</button>
 		</p>
 		<div class="advanced-setting" style="display: none;">
 			<hr />
 			<p>
-				<label for="<?php echo $this->get_field_id( 'filter' ) ?>"><?php esc_html_e( 'Filter Expression', 'ga-communicator' ) ?></label>
+				<label
+					for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php esc_html_e( 'Filter Expression', 'ga-communicator' ); ?></label>
 				<input type="text" class="widefat"
-					   name="<?php echo $this->get_field_name( 'filter' ) ?>"
-					   id="<?php echo $this->get_field_id( 'filter' ) ?>"
-					   value="<?php echo esc_attr( $instance[ 'filter' ] ) ?>" placeholder="e.g. article/([^/]+/\d+)"/>
+					name="<?php echo $this->get_field_name( 'filter' ); ?>"
+					id="<?php echo $this->get_field_id( 'filter' ); ?>"
+					value="<?php echo esc_attr( $instance['filter'] ); ?>" placeholder="e.g. article/([^/]+/\d+)" />
 				<span class="description">
-				<?php esc_html_e( 'Default: ', 'ga-communicator' ); ?><code><?php echo esc_html( $this->ga()->get_permalink_filter() ) ?></code><br/>
-				<?php esc_html_e( 'Filtering Regular Expression for URL. If you are not familiar with RegExp, stay empty. It will filter alongside the permalink structure.', 'ga-communicator' ) ?>
+				<?php esc_html_e( 'Default: ', 'ga-communicator' ); ?><code><?php echo esc_html( $this->ga()->get_permalink_filter() ); ?></code><br />
+				<?php esc_html_e( 'Filtering Regular Expression for URL. If you are not familiar with RegExp, stay empty. It will filter alongside the permalink structure.', 'ga-communicator' ); ?>
 			</span>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'post_type' ) ?>">
-					<?php esc_html_e( 'Post Type', 'ga-communicator' ) ?>
+				<label for="<?php echo $this->get_field_id( 'post_type' ); ?>">
+					<?php esc_html_e( 'Post Type', 'ga-communicator' ); ?>
 				</label>
 				<select class="widefat"
-					   name="<?php echo $this->get_field_name( 'post_type' ) ?>"
-						id="<?php echo $this->get_field_id( 'post_type' ) ?>">
-					<?php foreach ( get_post_types( [ 'public' => true ], OBJECT ) as $post_type ) {
+					name="<?php echo $this->get_field_name( 'post_type' ); ?>"
+					id="<?php echo $this->get_field_id( 'post_type' ); ?>">
+					<?php
+					foreach ( get_post_types( [ 'public' => true ], OBJECT ) as $post_type ) {
 						$post_type_value = 'post' === $post_type->name ? '' : $post_type->name;
 						printf(
 							'<option value="%s" %s>%s</option>',
@@ -102,33 +109,42 @@ class PopularPosts extends Widget {
 							selected( $instance['post_type'], $post_type_value, false ),
 							esc_html( $post_type->label )
 						);
-					} ?>
+					}
+					?>
 				</select>
 				<span class="description">
-					<?php esc_html_e( 'If you change post type to one except post, you also have to change filter expression.', 'ga-communicator' ) ?>
+					<?php esc_html_e( 'If you change post type to one except post, you also have to change filter expression.', 'ga-communicator' ); ?>
 				</span>
 			</p>
-			<?php foreach ( [
-				'start' => __( 'Start Date', 'ga-communicator' ),
-				'end'   => __( 'End Date', 'ga-communicator' ),
-			] as $key => $label ) : ?>
+			<?php
+			foreach (
+				[
+					'start' => __( 'Start Date', 'ga-communicator' ),
+					'end'   => __( 'End Date', 'ga-communicator' ),
+				] as $key => $label
+			) :
+				?>
 				<p>
-					<label for="<?php echo $this->get_field_id( $key ) ?>"><?php echo esc_html( $label ) ?></label>
+					<label for="<?php echo $this->get_field_id( $key ); ?>"><?php echo esc_html( $label ); ?></label>
 					<input type="date" class="widefat"
-						   name="<?php echo $this->get_field_name( $key ) ?>"
-						   id="<?php echo $this->get_field_id( $key ) ?>"
-						   value="<?php echo esc_attr( $instance[ $key ] ) ?>"
-						   placeholder="e.g. <?php date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * ( 'start' === $key ? 0 : 7) ) ?>"/>
+						name="<?php echo $this->get_field_name( $key ); ?>"
+						id="<?php echo $this->get_field_id( $key ); ?>"
+						value="<?php echo esc_attr( $instance[ $key ] ); ?>"
+						placeholder="e.g. <?php // phpcs:ignore
+							// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+							date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * ( 'start' === $key ? 0 : 7 ) );
+							/// phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentAfterEnd
+						?>" />
 					<span class="description">
-						<?php esc_html_e( 'This will override relative days setting above.', 'ga-communicator' ) ?>
+						<?php esc_html_e( 'This will override relative days setting above.', 'ga-communicator' ); ?>
 					</span>
 				</p>
-			
+
 			<?php endforeach; ?>
 		</div>
 		<?php
 	}
-	
+
 	/**
 	 * Get styles.
 	 *
@@ -139,7 +155,7 @@ class PopularPosts extends Widget {
 			'' => __( 'Default', 'ga-communicator' ),
 		] );
 	}
-	
+
 	protected function widget_content( $args, $instance ) {
 		$instance = wp_parse_args( $instance, [
 			'filter'    => '',
@@ -150,21 +166,21 @@ class PopularPosts extends Widget {
 			'start'     => '',
 			'end'       => '',
 		] );
-		$request = [
+		$request  = [
 			'path_regexp' => $instance['filter'] ?: $this->ga()->get_permalink_filter(),
 			'number'      => $instance['number'] ?: 10,
 			'days_before' => $instance['days'] ?: 30,
-			'start' => $instance['start'],
-			'end' => $instance['end'],
+			'start'       => $instance['start'],
+			'end'         => $instance['end'],
 		];
-		$query = $this->ga()->popular_posts( [
+		$query    = $this->ga()->popular_posts( [
 			'post_type' => $instance['post_type'] ?: 'post',
 		], $request );
 		if ( ! $query || ! $query->have_posts() ) {
 			return '';
 		}
 		ob_start();
-		while( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
 			$query->the_post();
 			$path = apply_filters( 'ga_communicator_loop_template', 'template-parts/loop-ga', $instance['layout'] );
 			get_template_part( $path, $instance['layout'] );
@@ -172,9 +188,10 @@ class PopularPosts extends Widget {
 		wp_reset_postdata();
 		$widget = ob_get_contents();
 		ob_end_clean();
+
 		return $widget;
 	}
-	
+
 	/**
 	 * Render scripts.
 	 */

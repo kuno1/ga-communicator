@@ -91,7 +91,7 @@ class Settings extends Singleton {
 		?>
 		<div class="wrap">
 			<h1 class="wp-heading ga-heading">
-				<span class="dashicons dashicons-chart-line"></span> <?php echo esc_html( $this->title ) ?>
+				<span class="dashicons dashicons-chart-line"></span> <?php echo esc_html( $this->title ); ?>
 			</h1>
 			<nav class="nav-tab-wrapper">
 				<a href="#ga-setting-form" class="ga-nav-tab nav-tab nav-tab-active"><?php esc_html_e( 'Setting', 'ga-communicator' ); ?></a>
@@ -107,11 +107,18 @@ class Settings extends Singleton {
 				</form>
 			</div>
 			<div id="ga-sandbox" style="display: none;" class="ga-nav-tab-content ga-sandbox-wrap">
-				<p class="description"><?php echo wp_kses_post( __( 'Try to interact GA data. Check <a href="%s" target="_blank" rel="noopener noreferrer">the documentation</a> and confirm what you get with your JSON. WP-CLI is also helpful.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet' ); ?></p>
+				<p class="description">
+					<?php
+						// translators: %s is document url.
+						echo wp_kses_post( __( 'Try to interact GA data. Check <a href="%s" target="_blank" rel="noopener noreferrer">the documentation</a> and confirm what you get with your JSON. WP-CLI is also helpful.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet' );
+					?>
+				</p>
 				<h2><?php esc_html_e( 'JSON to API', 'ga-communicator' ); ?></h2>
-				<textarea class="ga-sandbox-inner" id="ga-sandbox-inner"><?php
+				<textarea class="ga-sandbox-inner" id="ga-sandbox-inner">
+				<?php
 					echo esc_textarea( $this->placeholder->sandbox() );
-					?></textarea>
+				?>
+					</textarea>
 				<p>
 					<button class="components-button is-secondary" id="ga-sandbox-exec">
 						<?php esc_html_e( 'Execute', 'ga-communicator' ); ?>
@@ -170,18 +177,23 @@ class Settings extends Singleton {
 		}, $this->slug );
 		add_settings_field( 'ga-service-key', __( 'Service Account Key', 'ga-communicator' ), function() {
 			$predefined = $this->predefined_key();
-			if ( $predefined ) : ?>
-				<input type="hidden" name="ga-service-key" value="<?php echo esc_attr( $this->service_key( true ) ) ?>" />
-				<textarea readonly class="widefat"><?php echo esc_textarea( $predefined ) ?></textarea>
-				<p class="description"><?php esc_html_e( 'Service account is defined programmatically.', 'ga-communicator' ) ?></p>
+			if ( $predefined ) :
+				?>
+				<input type="hidden" name="ga-service-key" value="<?php echo esc_attr( $this->service_key( true ) ); ?>" />
+				<textarea readonly class="widefat"><?php echo esc_textarea( $predefined ); ?></textarea>
+				<p class="description"><?php esc_html_e( 'Service account is defined programmatically.', 'ga-communicator' ); ?></p>
 			<?php else : ?>
 				<textarea id="ga-service-key" name="ga-service-key" rows="5" class="widefat"
-					placeholder="<?php echo esc_attr( 'e.g. {"type": "service_account", "project_id": "example.com:api-project-000000","private_key_id": "bf8ea16a0978be19b5ce9780c3482202c145e9eb892c"......' ) ?>"
-				><?php echo esc_textarea( $this->service_key( true ) ) ?></textarea>
+					placeholder="<?php echo esc_attr( 'e.g. {"type": "service_account", "project_id": "example.com:api-project-000000","private_key_id": "bf8ea16a0978be19b5ce9780c3482202c145e9eb892c"......' ); ?>"
+				><?php echo esc_textarea( $this->service_key( true ) ); ?></textarea>
 				<p class="description">
-					<?php echo wp_kses_post( sprintf( __( 'You can get a service account key in JSON format from Google API Library. For more detail, please check the <a href="%s" target="_blank" rel="noopener,noreferrer">document</a>.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/authorization' ) ); ?>
+					<?php
+						// translators: %s is URL.
+						echo wp_kses_post( sprintf( __( 'You can get a service account key in JSON format from Google API Library. For more detail, please check the <a href="%s" target="_blank" rel="noopener,noreferrer">document</a>.', 'ga-communicator' ), 'https://developers.google.com/analytics/devguides/reporting/core/v4/authorization' ) );
+					?>
 				</p>
-			<?php endif;
+				<?php
+			endif;
 		}, $this->slug, $cred_section );
 
 		// Register profiles,
@@ -190,16 +202,16 @@ class Settings extends Singleton {
 			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
 		}, $this->slug );
 		foreach ( [
-			'ga-account' => [
+			'ga-account'  => [
 				'label'       => __( 'Account', 'ga-communicator' ),
 				'description' => __( 'Google Analytics account.', 'ga-communicator' ),
 			],
 			'ga-property' => [
-				'label' =>  __( 'Property', 'ga-communicator' ),
+				'label'       => __( 'Property', 'ga-communicator' ),
 				'description' => __( 'Google Analytics property like <code>UA-0000000-11</code>.', 'ga-communicator' ),
 			],
-			'ga-profile' => [
-				'label' => __( 'Profile', 'ga-communicator' ),
+			'ga-profile'  => [
+				'label'       => __( 'Profile', 'ga-communicator' ),
 				'description' => __( 'Profile formerly known as "View". e.g. All website data.', 'ga-communicator' ),
 			],
 		] as $key => $setting ) {
@@ -226,39 +238,45 @@ class Settings extends Singleton {
 			?>
 			<select name="ga-tag" id="ga-tag">
 				<?php foreach ( $choices as $value => $label ) : ?>
-					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ) ?>><?php echo esc_html( $label ) ?></option>
+					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
 			</select>
 			<h4><?php esc_html_e( 'Output Example', 'ga-communicator' ); ?></h4>
-			<p class="description"><?php esc_html_e( 'Property should be properly set. It\'ll be inserted as measurement ID.', 'ga-communicator' ) ?></p>
+			<p class="description"><?php esc_html_e( 'Property should be properly set. It\'ll be inserted as measurement ID.', 'ga-communicator' ); ?></p>
 			<?php foreach ( $choices as $key => $label ) : ?>
-				<pre class="ga-setting-example" data-sample="<?php echo esc_attr( $key ); ?>"><?php
-					if ( $key ) {
-						echo esc_html( $this->placeholder->tag( $key, 'UA-00000-1', __( '[Additional Scripts Here]', 'ga-communicator' ) ) );
-					} else {
-						esc_html_e( '[No Output]', 'ga-communicator' );
-					}
-				?></pre>
+				<pre class="ga-setting-example" data-sample="<?php echo esc_attr( $key ); ?>">
+																		<?php
+																		if ( $key ) {
+																			echo esc_html( $this->placeholder->tag( $key, 'UA-00000-1', __( '[Additional Scripts Here]', 'ga-communicator' ) ) );
+																		} else {
+																			esc_html_e( '[No Output]', 'ga-communicator' );
+																		}
+																		?>
+				</pre>
 			<?php endforeach; ?>
 			<?php if ( $predefined ) : ?>
 				<p class="description">
-					<?php esc_html_e( 'Tag type is defined programmatically.', 'ga-communicator' ) ?>
+					<?php esc_html_e( 'Tag type is defined programmatically.', 'ga-communicator' ); ?>
 					<code><?php esc_html( $choices[ $predefined ] ); ?></code>
 				</p>
-			<?php endif;
+				<?php
+			endif;
 		}, $this->slug, $tag_section );
 		// Additional scrips.
 		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'extra' );
 			$value      = $this->get_option( 'extra', true );
-			if ( $predefined ) : ?>
-				<input type="hidden" name="ga-extra" value="<?php echo esc_attr( $value ) ?>" />
-				<textarea id="ga-extra" readonly class="widefat"><?php echo esc_textarea( $predefined ) ?></textarea>
-				<p class="description"><?php esc_html_e( 'Extra scripts are defined programmatically.', 'ga-communicator' ) ?></p>
+			if ( $predefined ) :
+				?>
+				<input type="hidden" name="ga-extra" value="<?php echo esc_attr( $value ); ?>" />
+				<textarea id="ga-extra" readonly class="widefat"><?php echo esc_textarea( $predefined ); ?></textarea>
+				<p class="description"><?php esc_html_e( 'Extra scripts are defined programmatically.', 'ga-communicator' ); ?></p>
 			<?php else : ?>
-				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat"><?php
+				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat">
+				<?php
 					echo esc_textarea( $value );
-				?></textarea>
+				?>
+				</textarea>
 			<?php endif; ?>
 			<?php
 			printf(
@@ -269,15 +287,15 @@ class Settings extends Singleton {
 			<table class="ga-setting-table">
 				<thead>
 				<tr>
-					<th><?php esc_html_e( 'Placeholder', 'ga-communicator' ) ?></th>
-					<th><?php esc_html_e( 'Replaced With', 'ga-communicator' ) ?></th>
+					<th><?php esc_html_e( 'Placeholder', 'ga-communicator' ); ?></th>
+					<th><?php esc_html_e( 'Replaced With', 'ga-communicator' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
 					<?php foreach ( $this->placeholder->get() as $placeholder ) : ?>
 					<tr>
-						<th>%<?php echo esc_html( $placeholder['name'] ) ?>%</th>
-						<td><?php echo wp_kses_post( $placeholder['description'] ) ?></td>
+						<th>%<?php echo esc_html( $placeholder['name'] ); ?>%</th>
+						<td><?php echo wp_kses_post( $placeholder['description'] ); ?></td>
 					</tr>
 					<?php endforeach; ?>
 				</tbody>
@@ -297,25 +315,26 @@ class Settings extends Singleton {
 		// Tag to be output.
 		add_settings_field( 'ga-place', __( 'Tag Appears In', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'place' );
-			$cur_value = $this->get_option( 'place', true );
-			$choices = [
-				'' => __( 'Only Public Pages', 'ga-communicator' ),
-				'admin' => __( 'Public Pages and Admin Screen', 'ga-communicator' ),
-				'login' => __( 'Public Pages and Login Screen', 'ga-communicator' ),
+			$cur_value  = $this->get_option( 'place', true );
+			$choices    = [
+				''            => __( 'Only Public Pages', 'ga-communicator' ),
+				'admin'       => __( 'Public Pages and Admin Screen', 'ga-communicator' ),
+				'login'       => __( 'Public Pages and Login Screen', 'ga-communicator' ),
 				'admin,login' => __( 'Public, Admin, and Login.', 'ga-communicator' ),
 			];
 			?>
 			<select name="ga-place" id="ga-place">
 				<?php foreach ( $choices as $value => $label ) : ?>
-					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ) ?>><?php echo esc_html( $label ) ?></option>
+					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $cur_value, $value ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
 			</select>
 			<?php if ( $predefined ) : ?>
 				<p class="description">
-					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ) ?>
+					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ); ?>
 					<code><?php esc_html( $choices[ $predefined ] ); ?></code>
 				</p>
-			<?php endif;
+				<?php
+			endif;
 		}, $this->slug, $tag_section );
 	}
 
@@ -330,10 +349,10 @@ class Settings extends Singleton {
 		$value      = $this->get_option( $no_prefix, true );
 		$predefined = $this->get_predefined_option( $no_prefix );
 		?>
-		<div class="ga-setting-row" data-key="<?php echo esc_attr( $key ) ?>">
-			<input type="hidden" name="<?php echo esc_attr( $key ) ?>" value="<?php echo esc_attr( $value ) ?>" />
+		<div class="ga-setting-row" data-key="<?php echo esc_attr( $key ); ?>">
+			<input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>" />
 			<select class="ga-setting-choices">
-				<option class="ga-setting-choices-default" value="" <?php selected( $value, '' ) ?>><?php esc_html_e( 'Please select', 'ga-communicator' ) ?></option>
+				<option class="ga-setting-choices-default" value="" <?php selected( $value, '' ); ?>><?php esc_html_e( 'Please select', 'ga-communicator' ); ?></option>
 			</select>
 			<span class="dashicons dashicons-update"></span>
 		</div>
@@ -341,12 +360,14 @@ class Settings extends Singleton {
 		if ( ! empty( $args['description'] ) ) {
 			printf( '<p class="description">%s</p>', wp_kses_post( $args['description'] ) );
 		}
-		if ( $predefined ) : ?>
+		if ( $predefined ) :
+			?>
 			<p class="ga-setting-predefined description">
-				<?php esc_html_e( 'This option is predefined programmatically', 'tokai-univ' ) ?>:
-				<code class="predefined" data-predefined="<?php echo esc_attr( $key ) ?>"><?php echo esc_html( $predefined ) ?></code>
+				<?php esc_html_e( 'This option is predefined programmatically', 'tokai-univ' ); ?>:
+				<code class="predefined" data-predefined="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $predefined ); ?></code>
 			</p>
-		<?php endif;
+			<?php
+		endif;
 	}
 
 	/**

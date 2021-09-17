@@ -59,7 +59,7 @@ class PlaceHolders extends Singleton {
 				'callback'    => function () {
 					if ( is_singular() ) {
 						$taxonomies = get_post_taxonomies( get_queried_object() );
-						$term_ids = [];
+						$term_ids   = [];
 						foreach ( $taxonomies as $taxonomy ) {
 							$terms = get_the_terms( get_queried_object(), $taxonomy );
 							if ( $terms && ! is_wp_error( $terms ) ) {
@@ -68,7 +68,7 @@ class PlaceHolders extends Singleton {
 								}
 							}
 						}
-						return implode( ',', $term_ids);
+						return implode( ',', $term_ids );
 					} else {
 						return '';
 					}

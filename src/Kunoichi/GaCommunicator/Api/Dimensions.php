@@ -24,7 +24,7 @@ class Dimensions extends RestApiOptions {
 	 */
 	protected function get_args( $method ) {
 		return [
-			'account' => [
+			'account'  => [
 				'type'    => 'string',
 				'default' => '',
 			],
@@ -42,9 +42,18 @@ class Dimensions extends RestApiOptions {
 		$account  = $request->get_param( 'account' ) ?: $this->settings->get_option( 'account' );
 		$property = $request->get_param( 'property' ) ?: $this->settings->get_option( 'property' );
 		if ( ! $account || ! $property ) {
-			return new \WP_Error( 'rest_api_error', sprintf( __( 'Account and Property is required. (%s/%s)', 'ga-communicator' ), $account, $property ), [
-				'status' => 400,
-			] );
+			return new \WP_Error(
+				'rest_api_error',
+				sprintf(
+					// translators: %1$s is account, %2$s property.
+					__( 'Account and Property is required. (%1$s/%2$s)', 'ga-communicator' ),
+					$account,
+					$property
+				),
+				[
+					'status' => 400,
+				]
+			);
 		}
 		$dimensions = $this->settings->ga()->dimensions( $account, $property );
 		if ( is_wp_error( $dimensions ) ) {
