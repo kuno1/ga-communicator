@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Google Analytics Communicator\n"
-"POT-Creation-Date: 2020-12-29 16:09+0900\n"
+"POT-Creation-Date: 2021-09-17 16:45+0900\n"
 "PO-Revision-Date: 2020-06-12 13:57+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: ga-communicator.php\n"
@@ -25,30 +25,61 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: wp\n"
 "X-Poedit-SearchPathExcluded-4: tests\n"
 
-#: src/Kunoichi/GaCommunicator.php:63
-msgid "Failed to API response. Please try again later."
+#: ga-communicator.php:36
+msgid "Composer file is missing. Please run composer install."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator.php:375
+#: src/Kunoichi/GaCommunicator.php:81
+msgid "Failed to get API response. Please try again later."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator.php:425
 msgid "Invalid API service key."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Command.php:27
-#: src/Kunoichi/GaCommunicator/Command.php:51
-#: src/Kunoichi/GaCommunicator/Command.php:74
+#: src/Kunoichi/GaCommunicator/Api/Accounts.php:37
+msgid ""
+"No account found. Please check your service account is registered as Google "
+"Analytics user."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Api/BatchGet.php:45
+msgid "data attributes must be valid JSON format."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Api/Dimensions.php:45
+#, php-format
+msgid "Account and Property is required. (%s/%s)"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Api/Profiles.php:46
+msgid "Failed to get profiles. Please check permission."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Api/Properties.php:44
+msgid "Failed to get properties. Please check permission."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:28
+#: src/Kunoichi/GaCommunicator/Command.php:52
+#: src/Kunoichi/GaCommunicator/Command.php:75
 msgid "No results found."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Command.php:45
+#: src/Kunoichi/GaCommunicator/Command.php:46
 #, php-format
 msgid "Getting web properties of %s..."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Command.php:94
+#: src/Kunoichi/GaCommunicator/Command.php:98
+msgid "No custom dimensions set."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Command.php:119
 msgid "Profile is not set."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Command.php:174
+#: src/Kunoichi/GaCommunicator/Command.php:199
 msgid "No post found."
 msgstr ""
 
@@ -56,23 +87,55 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:158
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:97
+msgid "Setting"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:98
+msgid "Sandbox"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:110
+#, php-format
+msgid ""
+"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener noreferrer\">the documentation</a> and confirm what you get with "
+"your JSON. WP-CLI is also helpful."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:111
+msgid "JSON to API"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:117
+msgid "Execute"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:120
+msgid "API Result"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:121
+msgid "Here comes the result."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:168
 msgid "Credentials"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:159
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:169
 msgid "Please enter Google Analytics Credentials."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:161
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:171
 msgid "Service Account Key"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:166
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:176
 msgid "Service account is defined programmatically."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:172
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:182
 #, php-format
 msgid ""
 "You can get a service account key in JSON format from Google API Library. "
@@ -80,159 +143,166 @@ msgid ""
 "\"noopener,noreferrer\">document</a>."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:179
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:189
 msgid "Account Setting"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:180
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:190
 msgid ""
 "If you set credentials, please choose Google Analytics account of your "
 "site. Account, property, and profile are required."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:184
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:194
 msgid "Account"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:185
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:195
 msgid "Google Analytics account."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:188
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:198
 msgid "Property"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:189
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:199
 msgid "Google Analytics property like <code>UA-0000000-11</code>."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:192
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:202
 msgid "Profile"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:193
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:203
 msgid "Profile formerly known as \"View\". e.g. All website data."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:204
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:214
 msgid "Analytics Tag"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:205
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:215
 msgid ""
 "Select analytics tag to render. If you user other plugins like Yoast, leave "
 "empty."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:208
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:218
 msgid "No Output"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:211
-msgid "Manual Code"
-msgstr ""
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:213
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:272
-msgid "Tag Type"
-msgstr ""
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:222
-msgid "Output Example"
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:221
+msgid "Manual Code(for GTM)"
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:223
+msgid "Tag Type"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:232
+msgid "Output Example"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:233
 msgid "Property should be properly set. It'll be inserted as measurement ID."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:227
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:237
 msgid "[Additional Scripts Here]"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:229
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:239
 msgid "[No Output]"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:235
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:245
 msgid "Tag type is defined programmatically."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:241
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:251
 msgid "Additional Scripts"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:247
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:257
 msgid "Extra scripts are defined programmatically."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:256
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:266
+msgid "You can define an additional script. Works fine with custom dimension."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:272
 msgid "Placeholder"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:257
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:273
 msgid "Replaced With"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:276
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:298
+msgid "Tag Appears In"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:302
 msgid "Only Public Pages"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:277
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:303
 msgid "Public Pages and Admin Screen"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:278
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:304
 msgid "Public Pages and Login Screen"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:279
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:305
 msgid "Public, Admin, and Login."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:289
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:315
 msgid "Tag place to be output is defined programmatically."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:310
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:336
 msgid "Please select"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:320
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:346
 msgid "This option is predefined programmatically"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:339
-msgid ""
-"No account found. Please check your service account is registered as Google "
-"Analytics user."
-msgstr ""
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:374
-msgid "Failed to get properties. Please check permission."
-msgstr ""
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:409
-msgid "Failed to get profiles. Please check permission."
-msgstr ""
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:507
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:423
 msgid "Google Analytics Setting"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:24
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:26
 msgid "Single post ID. If page is not singular, always 0."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:31
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:34
+msgid "Post type in singular page."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:42
 msgid "Blog ID."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:38
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:50
 msgid "If current page is a singular post, return author ID. Else, always 0."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:45
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:58
+msgid ""
+"On single page, returns CSV value for all assigned terms in any taxonomy "
+"like <code>_11_,20_,_30_</code>. Else, always empty string."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:80
 msgid "On taxonomy archive page, returns term ID. Else, always 0"
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:92
+msgid "On taxonomy archive page, returns taxonomy name. Else, always empty."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:23
@@ -303,6 +373,14 @@ msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:139
 msgid "Default"
+msgstr ""
+
+#: assets/js/ga-custom-dimensions.js:51
+msgid "Registered Dimension"
+msgstr ""
+
+#: assets/js/ga-custom-dimensions.js:61
+msgid "Scope"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
