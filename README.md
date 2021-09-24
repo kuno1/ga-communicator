@@ -1,52 +1,30 @@
-# ga-communicator
+# Google Analytics Communicator
+
+Tags: gutenberg, block editor, iframe  
+Contributors: tarosky, Takahashi_Fumiki  
+Tested up to: 5.8  
+Requires at least: 5.4  
+Requires PHP: 5.6  
+Stable Tag: nightly  
+License: GPLv3 or later  
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 Let your WordPress communicate with Google Analytics API.
 
-## Getting Start
+## Description
 
-Install via [composer](https://getcomposer.org/).
+This plugin has custom function to 
 
-### Install
+### Default Feature
 
-```
-composer require kunoichi/ga-communicator
-```
+- Setting screen. You can check the connetction and set up GA tags.
+- Popular posts widget.
 
-### Include
+### Register Service Account and Setup
 
-From your theme or plugin, include autoloader.
+To communicate Google Analytics, WordPress needs permission to do so.
 
-```php
-// This path will be changed depending on your use case.
-require __DIR__ . '/vendor/autload.php';
-```
-
-### Run Boostrap
-
-Calling bootstrap function, all hooks will be registered.
-
-```php
-\Kunoichi\GaCommunicator::get_instance();
-```
-
-Now your code is ready to run. 
-
-### Network Installation
-
-If your site is under network, define constant `GA_COMMUNICATOR_NETWORK_ACTIVE ` to `true`.
-
-```php
-define( 'GA_COMMUNICATOR_NETWORK_ACTIVE', true );
-```
-
-This will affect:
-
-- Setting screen will move to Network Admin > Setting.
-- All settings will be common for all sites under network.
-
-### Register Service Account
-
-To communicate Google Analytics, you need permission to do so.
+Service Account is the permission.
 
 Get service account key at Google API Console([document](https://developers.google.com/analytics/devguides/reporting/core/v4/quickstart/service-php?hl=ja)).
 
@@ -55,97 +33,45 @@ A service account is something like a bot which has email and perform like a vir
 1. Create service account. You may be requested to create a new project, or else you can also use an exsting project. The bot belongs to the project.
 2. Get **private key** in JSON format for the serivce account.
 3. Enable **Analytics Reporting API** and **Google Analytics API** for the project.
-4. Copy the email address of the service account and add it to a member of your Google Analytics account(properties, views and so on).
+4. Copy the email address of the service account and add it to a member of your Google Analytics' account, properties, or profiles. It depends on your Google Analytics permission policy.
 5. Go to your WordPress admin **Setting > Google Analytics Setting** and save the private key which you get at step 2.  
+
 **NOTICE:** Save whole credentials including empty line with <kbd>⌘</kbd>+<kbd>A</kbd> and <kbd>⌘</kbd>+<kbd>C</kbd>. Otherwise, your key will be considered as invalid by Google's API.
 
-## Examples
+If the service account is valid, you can see your Google Analytics Properties in your WordPress Admin screen.
 
-Here's example for this API.
+### Custom Use
 
-### Get popular posts
+If setup is ready, you can communicate with Google Analytics through the function `ga_communicator_get_report( $config )`. It's an utility function to access [batchGet API](https://developers.google.com/analytics/devguides/reporting/core/v4/rest/v4/reports/batchGet).
 
-`GaComunicator->popular_posts()` method will:
+Please visit our [Wiki](https://github.com/kuno1/ga-communicator/wiki) to find many code examples.
 
-1. Request page views and path information from Analytics Reporting API.
-2. Convert path information to post ID.
-3. Query posts with IDs and returns `WP_Query` object.
+## Installation
 
-With this method, you can get popular posts in WordPress way.
+### From Plugin Repository
 
-#### Arguments
+Click install and activate it.
 
-`$query`
+### Via Composer
 
-An array merged into `new WP_Query( $query )`. If you need just post type `faq`, `$query` is like below:
+You can install this plugin as a composer library. See our [Wiki](https://github.com/kuno1/ga-communicator/wiki/Install-via-Composer).
 
-```
-$query = [
-	'post_type' => 'faq',
-];
-```
+## FAQ
 
-`$conditions`
+### Where can I get supported?
 
-An array of conditions to filter results. Default is defined inside [code](https://github.com/kuno1/ga-communicator/blob/master/src/Kunoichi/GaCommunicator.php#L150-L237) like below:
+Please create new ticket on support forum.
 
-```php
-$conditions = [
-	'path_regexp' => $this->get_permalink_filter(), // Default is permalink structure.
-	'number'      => 10, // Post count.
-	'days_before' => 30,
-	'offset_days' => 0,
-	'start'       => '',
-	'end'         => '',
-];
-```
+### How can I contribute?
 
-To get posts well visited in recent 7 days(e.g. weekly ranking), specify `days_before`. `offset_days` works as an adjustment.
+Create a new [issue](https://github.com/kuno1/ga-communicator/issues) or send [pull requests](https://github.com/kuno1/ga-communicator/pulls).
 
-```php
-// Get Sun-Mon last week ranking.
-$contiond = [
-	'days_before' => 7,
-	'offset_days' => date_i18n( 'w' ), // Set origin to Sunday.
-];
-```
+## Changelog
 
-If you need a list of popular posts in specific range(e.g. Olympic year), specify `start` and `end` in YYYY-mm-dd.
+### 2.0.0
 
-```php
-$conditions = [
-	'start' => '2020-06-01', // As you know, this hasn't actually happen.
-	'end'   => '2020-08-31',
-];
-```
+* Works as a single WordPress plugin.
 
-#### Usage
+### 1.0.0
 
-Let's get popular posts `post_type=faq` in recent 7 days.
-
-```php
-$query = \Kunoichi\GaCommunicator::get_instance()->popular_posts( [
-	'post_type' => 'faq',
-], [
-	'path_regexp' => '^/faq/[0-9]+/$', // Regular expression to filter path.
-	'number'      => 10, // Number of posts.
-	'days_before' => 7, // Recent 7 days.
-] );
-if ( $query ) {
-	while ( $query->have_posts() ) {
-		$query->the_post();
-		// You can do things in WordPress way.
-		get_template_part( 'template-parts/loop', get_post_type() );
-	}
-}
-```
-
-Cache result makes your site's performance nicer.
-
-### Free Request
-
-You can get any information in your Google Analytics account with this library.
-
-You need understanding about Mertic and Dimensions.
-
-`GaCommunicator->get_report` will provide 
+* First release as composer library.

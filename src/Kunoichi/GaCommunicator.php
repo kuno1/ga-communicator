@@ -231,9 +231,13 @@ class GaCommunicator extends Singleton {
 				],
 			],
 		];
-		$response                          = $this->get_report( $request );
-		if ( ! $response || is_wp_error( $response ) ) {
-			return $response ? null : $response;
+		// Check response.
+		$response = $this->get_report( $request );
+		if ( ! $response ) {
+			return null;
+		}
+		if ( is_wp_error( $response ) ) {
+			return $response;
 		}
 		// Build results array.
 		$post_ids = [];
