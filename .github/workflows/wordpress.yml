@@ -86,6 +86,9 @@ jobs:
       - name: Clean Package.
         run: bash bin/build.sh
 
+      - name: Clean Unwanted files
+        run: bash bin/clean.sh
+
       - name: Clean Vendor if exists.
         run: rm -rf vendor
 
