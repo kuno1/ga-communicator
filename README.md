@@ -68,6 +68,8 @@ Create a new [issue](https://github.com/kuno1/ga-communicator/issues) or send [p
 
 ## Changelog
 
+
+
 ### 2.0.0
 
 * Works as a single WordPress plugin.
