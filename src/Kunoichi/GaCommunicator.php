@@ -92,25 +92,47 @@ class GaCommunicator extends Singleton {
 	 */
 	public function get_report( $request = [], $callback = null ) {
 		try {
-			$json     = array_replace_recursive( array_merge( [
-				'viewId' => $this->setting->get_option( 'profile' ),
-			], $this->default_json() ), $request );
-			$response = $this->client->post( 'https://analyticsreporting.googleapis.com/v4/reports:batchGet', [
-				'json' => [
-					'reportRequests' => $json,
-				],
-			] );
-			$result   = json_decode( (string) $response->getBody(), true );
+			$ga4_property = $this->setting->get_option( 'ga4-property' );
+			$json         = array_replace_recursive( $this->default_json( ! ! $ga4_property ), $request );
+			$headers      = [
+				'Content-Type' => 'application/json',
+			];
+			if ( $ga4_property ) {
+				// GA4 is active.
+				$endpoint = sprintf( 'https://analyticsdata.googleapis.com/v1beta/properties/%s:runReport', $ga4_property );
+				$response = $this->client->post( $endpoint, [
+					'headers' => $headers,
+					'json'    => $json,
+				] );
+			} else {
+				// Old API.
+				$endpoint       = 'https://analyticsreporting.googleapis.com/v4/reports:batchGet';
+				$json['viewId'] = $this->setting->get_option( 'profile' );
+				$response       = $this->client->post( $endpoint, [
+					'headers' => $headers,
+					'json'    => [
+						'reportRequests' => $json,
+					],
+				] );
+			}
+			$result = json_decode( (string) $response->getBody(), true );
 			if ( ! $result ) {
 				return [];
 			}
 			if ( is_null( $callback ) ) {
 				$callback = [ $this, 'parse_report_result' ];
 			}
-			$results = empty( $result['reports'][0]['data']['rows'] ) ? [] : $result['reports'][0]['data']['rows'];
-			return array_map( $callback, $results );
+			if ( $ga4_property ) {
+				$results = empty( $result['rows'] ) ? [] : $result['rows'];
+			} else {
+				$results = empty( $result['reports'][0]['data']['rows'] ) ? [] : $result['reports'][0]['data']['rows'];
+			}
+			return array_map( function( $row ) use ( $callback, $ga4_property ) {
+				var_dump( $row );
+				return call_user_func_array( $callback, [ $row, ! ! $ga4_property ] );
+			}, $results );
 		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
+			return new \WP_Error( 'ga_communicator_api_error', $e->getResponse()->getBody()->getContents(), [
 				'response' => $e->getCode(),
 			] );
 		}
@@ -119,32 +141,11 @@ class GaCommunicator extends Singleton {
 	/**
 	 * Default JSON.
 	 *
+	 * @param bool $is_ga4 Default false.
 	 * @return array
 	 */
-	public function default_json() {
-		return [
-			'dimensions' => [
-				[
-					'name' => 'ga:pagePath',
-				],
-				[
-					'name' => 'ga:pageTitle',
-				],
-			],
-			'metrics'    => [
-				[
-					'expression'     => 'ga:pageviews',
-					'formattingType' => 'INTEGER',
-				],
-			],
-			'orderBys'   => [
-				[
-					'fieldName' => 'ga:pageviews',
-					'orderType' => 'VALUE',
-					'sortOrder' => 'DESCENDING',
-				],
-			],
-			'pageSize'   => 10,
+	public function default_json( $is_ga4 = false ) {
+		$json = [
 			'dateRanges' => [
 				[
 					// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
@@ -153,6 +154,56 @@ class GaCommunicator extends Singleton {
 				],
 			],
 		];
+		if ( $is_ga4 ) {
+			$json = array_merge( $json, [
+				'dimensions' => [
+					[
+						'name' => 'pagePath',
+					],
+					[
+						'name' => 'pageTitle',
+					],
+				],
+				'metrics'    => [
+					[
+						'name' => 'screenPageViews',
+					],
+				],
+				'orderBys'   => [
+					[
+						'metric' => [
+							'metricName' => 'screenPageViews',
+						],
+						'desc'   => true,
+					],
+				],
+				'limit'      => 10,
+			] );
+		} else {
+			$json[ 'dimensions'] = [
+				[
+					'name' => 'ga:pagePath',
+				],
+				[
+					'name' => 'ga:pageTitle',
+				],
+			];
+			$json['metrics']  = [
+				[
+					'expression'     => 'ga:pageviews',
+					'formattingType' => 'INTEGER',
+				],
+			];
+			$json['orderBys'] = [
+				[
+					'fieldName' => 'ga:pageviews',
+					'orderType' => 'VALUE',
+					'sortOrder' => 'DESCENDING',
+				],
+			];
+			$json['pageSize'] = 10;
+		}
+		return $json;
 	}
 
 	/**
@@ -281,11 +332,16 @@ class GaCommunicator extends Singleton {
 	/**
 	 * Parser report result.
 	 *
-	 * @param array $row
+	 * @param array $row    Row.
+	 * @param bool  $is_ga4 This is GA4 response.
 	 * @return array
 	 */
-	public function parse_report_result( $row ) {
-		return [ $row['dimensions'][0], $row['dimensions'][1], $row['metrics'][0]['values'][0] ];
+	public function parse_report_result( $row, $is_ga4 = false ) {
+		if ( $is_ga4 ) {
+			return [ $row['dimensionValues'][0]['value'], $row['dimensionValues'][1]['value'], $row['metricValues'][0]['value'] ];
+		} else {
+			return [ $row['dimensions'][0], $row['dimensions'][1], $row['metrics'][0]['values'][0] ];
+		}
 	}
 
 	/**

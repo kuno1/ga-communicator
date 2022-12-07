@@ -30,6 +30,8 @@ class Settings extends Singleton {
 		'account',
 		'property',
 		'profile',
+		'ga4-property',
+		'ga4-tracking-id',
 		'tag',
 		'extra',
 		'place',
@@ -198,8 +200,13 @@ class Settings extends Singleton {
 
 		// Register profiles,
 		$account_section = $this->slug . '-accounts';
-		add_settings_section( $account_section, __( 'Account Setting', 'ga-communicator' ), function() {
+		add_settings_section( $account_section, __( 'Account Setting)', 'ga-communicator' ), function() {
 			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
+			printf(
+				'<p><strong>%s</strong> %s</p>',
+				esc_html__( 'Notice: ', 'ga-communicator' ),
+				esc_html__( 'This API will be deprecated on June 2023. Please create new account ', 'ga-communicator' )
+			);
 		}, $this->slug );
 		foreach ( [
 			'ga-account'  => [
@@ -219,6 +226,40 @@ class Settings extends Singleton {
 				'key'         => $key,
 				'description' => $setting['description'],
 			] );
+		}
+
+		// Register GA4 property,
+		$ga4_account_section = $this->slug . '-ga4-accounts';
+		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function() {
+			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
+		}, $this->slug );
+		foreach ( [
+			'ga-ga4-property'    => [
+				'label'       => __( 'Property ID', 'ga-communicator' ),
+				'description' => __( 'A numeric ID of GA4 property like <code>12345678</code>.', 'ga-communicator' ),
+			],
+			'ga-ga4-tracking-id' => [
+				'label'       => __( 'Tracking ID', 'ga-communicator' ),
+				'description' => __( 'GA4 tracking ID like <code>G-ABCDEFGH100</code>.', 'ga-communicator' ),
+			],
+		] as $key => $setting ) {
+			add_settings_field(
+				$key,
+				$setting['label'],
+				function( $args ) {
+					printf(
+						'<input name="%s" type="text" value="%s" class="regular-text"/>',
+						esc_attr( $args['key'] ),
+						esc_attr( $this->get_option( str_replace( 'ga-', '', $args['key'] ), true ) )
+					);
+				},
+				$this->slug,
+				$ga4_account_section,
+				[
+					'key'         => $key,
+					'description' => $setting['description'],
+				]
+			);
 		}
 
 		// Render analytics tag.
