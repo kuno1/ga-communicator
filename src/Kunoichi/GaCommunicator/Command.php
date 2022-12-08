@@ -18,6 +18,8 @@ class Command extends \WP_CLI_Command {
 
 	/**
 	 * Get account information.
+	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 */
 	public function accounts() {
 		$accounts = $this->ga()->accounts();
@@ -38,6 +40,7 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get web properties.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <id>
 	 * @param array $args
 	 */
@@ -66,6 +69,7 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get profiles.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <account> <profile>
 	 * @param array $args
 	 */
@@ -89,6 +93,7 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get custom dimensions.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <account> <profile>
 	 * @param array $args
 	 */
@@ -113,6 +118,7 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get report and display it in table.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis [--start=<start>] [--end=<end>] [--filter=<filter>]
 	 * @param array $args
 	 * @param array $assoc
@@ -184,6 +190,7 @@ class Command extends \WP_CLI_Command {
 	 * : [--offset_days=<offset_days>]
 	 * Offset days. Default 0.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @param array $args
 	 * @param array $assoc
 	 * @synopsis [<regexp>] [--start=<start>] [--end=<end>] [--days_before=<days_before>]  [--offset_days=<offset_days>]

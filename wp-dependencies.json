@@ -3,7 +3,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/css/ga-communicator-setting.css",
 		"ext": "css",
-		"hash": "0ba4d0708f1ea54dd94ce9468c9175ca",
+		"hash": "5a6f349028079393a2f0bcf3ed51e552",
 		"version": "0.0.0",
 		"deps": [
 			"dashicons",

@@ -32,6 +32,7 @@ class Settings extends Singleton {
 		'profile',
 		'ga4-property',
 		'ga4-tracking-id',
+		'ga4-both-tracking',
 		'tag',
 		'extra',
 		'place',
@@ -198,14 +199,68 @@ class Settings extends Singleton {
 			endif;
 		}, $this->slug, $cred_section );
 
+		// Register GA4 property,
+		$ga4_account_section = $this->slug . '-ga4-accounts';
+		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function() {
+		}, $this->slug );
+		foreach ( [
+			'ga-ga4-property'    => [
+				'label'       => __( 'Property ID', 'ga-communicator' ),
+				'description' => __( 'A numeric ID of GA4 property like <code>12345678</code>.', 'ga-communicator' ),
+			],
+			'ga-ga4-tracking-id' => [
+				'label'       => __( 'Tracking ID', 'ga-communicator' ),
+				'description' => __( 'GA4 tracking ID like <code>G-ABCDEFGH100</code>.', 'ga-communicator' ),
+			],
+			'ga-ga4-both-tracking' => [
+				'label'       => __( 'Double Tracking', 'ga-communicator' ),
+				'description' => __( 'To keep universal analytics tracking until the API deprecation, enable double tracking. The tag type should be gtag.js.', 'ga-communicator' ),
+			],
+		] as $key => $setting ) {
+			add_settings_field(
+				$key,
+				$setting['label'],
+				function( $args ) {
+					$option_key = str_replace( 'ga-', '', $args['key'] );
+					$value      = $this->get_option( $option_key, true );
+					if ( 'ga-ga4-both-tracking' === $args['key'] ) {
+						?>
+						<select name="<?php echo esc_attr( $args['key'] ); ?>">
+							<option value="" <?php checked( $value, '' ); ?>>
+								<?php esc_html_e( 'Only track GA4', 'ga-communicator' ); ?>
+							</option>
+							<option value="1" <?php checked( $value, '1' ); ?>>
+								<?php esc_html_e( 'Enable Double Tracking', 'ga-communicator' ); ?>
+							</option>
+						</select>
+						<?php
+					} else {
+						printf(
+							'<input name="%s" type="text" value="%s" class="regular-text" />',
+							esc_attr( $args['key'] ),
+							esc_attr( $value ),
+						);
+					}
+					if ( $args['description'] ) {
+						printf( '<p class="description">%s</p>', wp_kses_post( $args['description'] ) );
+					}
+				},
+				$this->slug,
+				$ga4_account_section,
+				[
+					'key'         => $key,
+					'description' => $setting['description'],
+				]
+			);
+		}
+
 		// Register profiles,
 		$account_section = $this->slug . '-accounts';
-		add_settings_section( $account_section, __( 'Account Setting)', 'ga-communicator' ), function() {
+		add_settings_section( $account_section, __( 'Universal Analytics Account Setting', 'ga-communicator' ), function() {
 			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
 			printf(
-				'<p><strong>%s</strong> %s</p>',
-				esc_html__( 'Notice: ', 'ga-communicator' ),
-				esc_html__( 'This API will be deprecated on June 2023. Please create new account ', 'ga-communicator' )
+				'<p class="ga-error">%s</p>',
+				esc_html__( 'Notice: This API will be deprecated on June 2023. Please create new account ', 'ga-communicator' )
 			);
 		}, $this->slug );
 		foreach ( [
@@ -226,40 +281,6 @@ class Settings extends Singleton {
 				'key'         => $key,
 				'description' => $setting['description'],
 			] );
-		}
-
-		// Register GA4 property,
-		$ga4_account_section = $this->slug . '-ga4-accounts';
-		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function() {
-			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
-		}, $this->slug );
-		foreach ( [
-			'ga-ga4-property'    => [
-				'label'       => __( 'Property ID', 'ga-communicator' ),
-				'description' => __( 'A numeric ID of GA4 property like <code>12345678</code>.', 'ga-communicator' ),
-			],
-			'ga-ga4-tracking-id' => [
-				'label'       => __( 'Tracking ID', 'ga-communicator' ),
-				'description' => __( 'GA4 tracking ID like <code>G-ABCDEFGH100</code>.', 'ga-communicator' ),
-			],
-		] as $key => $setting ) {
-			add_settings_field(
-				$key,
-				$setting['label'],
-				function( $args ) {
-					printf(
-						'<input name="%s" type="text" value="%s" class="regular-text"/>',
-						esc_attr( $args['key'] ),
-						esc_attr( $this->get_option( str_replace( 'ga-', '', $args['key'] ), true ) )
-					);
-				},
-				$this->slug,
-				$ga4_account_section,
-				[
-					'key'         => $key,
-					'description' => $setting['description'],
-				]
-			);
 		}
 
 		// Render analytics tag.

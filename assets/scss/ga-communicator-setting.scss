@@ -77,6 +77,15 @@
 	}
 }
 
+#ga-setting-form .form-table {
+	margin-bottom: 40px;
+
+	& + h2 {
+		margin-top: 0;
+		padding-top: 40px;
+		border-top: 1px solid #c3c4c7;
+	}
+}
 
 // stylelint-disable-next-line selector-class-pattern
 .CodeMirror-line {
