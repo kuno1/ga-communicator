@@ -10,12 +10,13 @@ use Kunoichi\GaCommunicator\Utility\PlaceHolders;
  * Setting screen for Ga Communicator
  *
  * @package ga-communicator
- * @property-read string       $capability
- * @property-read string       $title
- * @property-read string       $account
- * @property-read string       $property
- * @property-read string       $profile
- * @property-read PlaceHolders $placeholder
+ * @property-read string       $capability  Capability to access.
+ * @property-read string       $title       Title.
+ * @property-read string       $account     Will be deprecated.
+ * @property-read string       $property    Will be deprecated.
+ * @property-read string       $profile     Will be deprecated.
+ * @property-read PlaceHolders $placeholder Placeholder controller.
+ * @property-read bool         $using_ga4   Using GA4 for API?
  */
 class Settings extends Singleton {
 
@@ -33,6 +34,7 @@ class Settings extends Singleton {
 		'ga4-property',
 		'ga4-tracking-id',
 		'ga4-both-tracking',
+		'ga4-api-use',
 		'tag',
 		'extra',
 		'place',
@@ -204,17 +206,31 @@ class Settings extends Singleton {
 		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function() {
 		}, $this->slug );
 		foreach ( [
-			'ga-ga4-property'    => [
+			'ga-ga4-property'      => [
 				'label'       => __( 'Property ID', 'ga-communicator' ),
 				'description' => __( 'A numeric ID of GA4 property like <code>12345678</code>.', 'ga-communicator' ),
+				'options'     => [],
 			],
-			'ga-ga4-tracking-id' => [
+			'ga-ga4-tracking-id'   => [
 				'label'       => __( 'Tracking ID', 'ga-communicator' ),
 				'description' => __( 'GA4 tracking ID like <code>G-ABCDEFGH100</code>.', 'ga-communicator' ),
+				'options'     => [],
 			],
 			'ga-ga4-both-tracking' => [
 				'label'       => __( 'Double Tracking', 'ga-communicator' ),
 				'description' => __( 'To keep universal analytics tracking until the API deprecation, enable double tracking. The tag type should be gtag.js.', 'ga-communicator' ),
+				'options'     => [
+					''  => __( 'Only track GA4', 'ga-communicator' ),
+					'1' => __( 'Enable Double Tracking', 'ga-communicator' ),
+				],
+			],
+			'ga-ga4-api-use'       => [
+				'label'       => __( 'API to Use', 'ga-communicator' ),
+				'description' => __( 'If you choose double tracking, specify which API to use.', 'ga-communicator' ),
+				'options'     => [
+					''   => __( 'Use Google Analytic 4', 'ga-communicator' ),
+					'ga' => __( 'Use Universal Analytics(will be deprecated)', 'ga-communicator' ),
+				],
 			],
 		] as $key => $setting ) {
 			add_settings_field(
@@ -223,22 +239,26 @@ class Settings extends Singleton {
 				function( $args ) {
 					$option_key = str_replace( 'ga-', '', $args['key'] );
 					$value      = $this->get_option( $option_key, true );
-					if ( 'ga-ga4-both-tracking' === $args['key'] ) {
+					if ( ! empty( $args['options'] ) ) {
 						?>
 						<select name="<?php echo esc_attr( $args['key'] ); ?>">
-							<option value="" <?php checked( $value, '' ); ?>>
-								<?php esc_html_e( 'Only track GA4', 'ga-communicator' ); ?>
-							</option>
-							<option value="1" <?php checked( $value, '1' ); ?>>
-								<?php esc_html_e( 'Enable Double Tracking', 'ga-communicator' ); ?>
-							</option>
+							<?php
+							foreach ( $args['options'] as $v => $label ) {
+								printf(
+									'<option value="%s" %s>%s</option>',
+									esc_attr( $v ),
+									selected( $v, $value, false ),
+									esc_html( $label )
+								);
+							}
+							?>
 						</select>
 						<?php
 					} else {
 						printf(
 							'<input name="%s" type="text" value="%s" class="regular-text" />',
 							esc_attr( $args['key'] ),
-							esc_attr( $value ),
+							esc_attr( $value )
 						);
 					}
 					if ( $args['description'] ) {
@@ -250,6 +270,7 @@ class Settings extends Singleton {
 				[
 					'key'         => $key,
 					'description' => $setting['description'],
+					'options'     => $setting['options'],
 				]
 			);
 		}
@@ -260,7 +281,7 @@ class Settings extends Singleton {
 			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
 			printf(
 				'<p class="ga-error">%s</p>',
-				esc_html__( 'Notice: This API will be deprecated on June 2023. Please create new account ', 'ga-communicator' )
+				esc_html__( 'Notice: This API will be deprecated on June 2023. Please create new GA4 property.', 'ga-communicator' )
 			);
 		}, $this->slug );
 		foreach ( [
@@ -510,6 +531,8 @@ class Settings extends Singleton {
 				return $this->get_option( $name );
 			case 'placeholder':
 				return PlaceHolders::get_instance();
+			case 'using_ga4':
+				return $this->get_option( 'ga4-property' ) && ! $this->get_option( 'ga4-api-use' );
 			default:
 				return null;
 		}

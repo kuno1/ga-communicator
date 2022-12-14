@@ -56,6 +56,36 @@ trait AbstractApiConnector {
 	}
 
 	/**
+	 * Get date range condition.
+	 *
+	 * @param array $condition Get date range conditon.
+	 *
+	 * @return mixed
+	 */
+	protected function get_date_range_condition( $condition ) {
+		$end = null;
+		foreach ( [ 'end', 'start' ] as $key ) {
+			if ( isset( $condition[ $key ] ) && preg_match( '/^\d{4}-\d{2}-\d{2}$/u', $condition[ $key ] ) ) {
+				// Valid date already set.
+				continue;
+			}
+			switch ( $key ) {
+				case 'end':
+					// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
+					$end              = current_time( 'timestamp' ) - 60 * 60 * 24 * $condition['offset_days'];
+					$condition['end'] = date_i18n( 'Y-m-d', $end );
+					break;
+				case 'start':
+					if ( $end ) {
+						$condition['start'] = date_i18n( 'Y-m-d', $end - 60 * 60 * 24 * $condition['days_before'] );
+					}
+					break;
+			}
+		}
+		return $condition;
+	}
+
+	/**
 	 * Getter
 	 *
 	 * @param string $name Property name.

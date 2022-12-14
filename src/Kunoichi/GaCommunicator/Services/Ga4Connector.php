@@ -87,4 +87,33 @@ trait Ga4Connector {
 		] );
 	}
 
+	/**
+	 * Get conditions.
+	 *
+	 * @see https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/FilterExpression
+	 * @param array $conditions
+	 * @return array
+	 */
+	public function ga4_popular_posts_args( array $conditions ) {
+		$conditions = $this->get_date_range_condition( $conditions );
+		$args       = [
+			'limit'           => (int) $conditions['number'],
+			'dateRanges'      => [
+				[
+					'startDate' => $conditions['start'],
+					'endDate'   => $conditions['end'],
+				],
+			],
+			'dimensionFilter' => [
+				'filter' => [
+					'fieldName'    => 'pagePath',
+					'stringFilter' => [
+						'matchType' => 'PARTIAL_REGEXP',
+						'value'     => $conditions['path_regexp'],
+					],
+				],
+			],
+		];
+		return $args;
+	}
 }

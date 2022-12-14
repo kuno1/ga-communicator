@@ -17,11 +17,21 @@ class Command extends \WP_CLI_Command {
 	use GaClientHolder;
 
 	/**
+	 * Raise error.
+	 *
+	 * @return void
+	 */
+	protected function do_it_wrong() {
+		\WP_CLI::warning( __( 'Universal Analytics stops on June 2023. Please consider changing ', 'ga-communicator' ) );
+	}
+
+	/**
 	 * Get account information.
 	 *
 	 * @deprecated Google stops universal analytics at June 2023.
 	 */
 	public function accounts() {
+		$this->do_it_wrong();
 		$accounts = $this->ga()->accounts();
 		if ( is_wp_error( $accounts ) ) {
 			\WP_CLI::error( $accounts->get_error_message() );
@@ -45,6 +55,7 @@ class Command extends \WP_CLI_Command {
 	 * @param array $args
 	 */
 	public function properties( $args ) {
+		$this->do_it_wrong();
 		list( $id ) = $args;
 		\WP_CLI::line( sprintf(
 			// translators: %s is property id.
@@ -74,6 +85,7 @@ class Command extends \WP_CLI_Command {
 	 * @param array $args
 	 */
 	public function profiles( $args ) {
+		$this->do_it_wrong();
 		list( $account, $profile ) = $args;
 		$profiles                  = $this->ga()->profiles( $account, $profile );
 		if ( is_wp_error( $profiles ) ) {
@@ -98,6 +110,7 @@ class Command extends \WP_CLI_Command {
 	 * @param array $args
 	 */
 	public function dimensions( $args ) {
+		$this->do_it_wrong();
 		list( $account, $profile ) = $args;
 		$dimensions                = $this->ga()->dimensions( $account, $profile );
 		if ( is_wp_error( $dimensions ) ) {
@@ -124,6 +137,7 @@ class Command extends \WP_CLI_Command {
 	 * @param array $assoc
 	 */
 	public function report( $args, $assoc ) {
+		$this->do_it_wrong();
 		$view_id = Settings::get_instance()->get_option( 'profile' );
 		if ( ! $view_id ) {
 			\WP_CLI::error( __( 'Profile is not set.', 'ga-communicator' ) );
@@ -206,6 +220,9 @@ class Command extends \WP_CLI_Command {
 			}
 		}
 		$query = $this->ga()->popular_posts( [], $request );
+		if ( is_wp_error( $query ) ) {
+			\WP_CLI::error( $query->get_error_message() );
+		}
 		if ( ! $query || ! $query->have_posts() ) {
 			\WP_CLI::error( __( 'No post found.', 'ga-communicator' ) );
 		}

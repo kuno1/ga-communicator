@@ -163,4 +163,38 @@ trait UniversalAnalyticsConnector {
 		] );
 		return $json;
 	}
+
+
+	/**
+	 * Get conditions.
+	 *
+	 * @param array $conditions
+	 * @return array
+	 */
+	public function popular_posts_args( array $conditions ) {
+		$conditions = $this->get_date_range_condition( $conditions );
+		return [
+			'pageSize'               => (int) $conditions['number'],
+			'dateRanges'             => [
+				[
+					'startDate' => $conditions['start'],
+					'endDate'   => $conditions['end'],
+				],
+			],
+			'dimensionFilterClauses' => [
+				[
+					'operator' => 'AND',
+					'filters'  => [
+						[
+							'dimensionName' => 'ga:pagePath',
+							'operator'      => 'REGEXP',
+							'expressions'   => [
+								$conditions['path_regexp'],
+							],
+						],
+					],
+				],
+			],
+		];
+	}
 }

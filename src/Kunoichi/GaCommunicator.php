@@ -64,7 +64,6 @@ class GaCommunicator extends Singleton {
 		}
 	}
 
-
 	/**
 	 * Get permalink  structure REGEXP
 	 *
@@ -112,37 +111,14 @@ class GaCommunicator extends Singleton {
 			'end'         => '',
 		] );
 		// Calculate range, number.
-		// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
-		$end         = current_time( 'timestamp' ) - 60 * 60 * 24 * $conditions['offset_days'];
-		$start       = $end - 60 * 60 * 24 * $conditions['days_before'];
-		$date_ranges = [];
-		foreach ( [
-			[ 'startDate', $start, $conditions['start'] ],
-			[ 'endDate', $end, $conditions['end'] ],
-		] as list( $range_key, $timestamp, $specified_date ) ) {
-			$date_ranges[ $range_key ] = preg_match( '/^\d{4}-\d{2}-\d{2}$/u', $specified_date ) ? $specified_date : date_i18n( 'Y-m-d', $timestamp );
+		if ( $this->setting->using_ga4 ) {
+			$response = $this->ga4_get_report( $this->ga4_popular_posts_args( $conditions ) );
+		} else {
+			// Raise warning.
+			trigger_error( __( 'Universal Analytics stops collecting data at June 2023. Please consider using Google Analytics V4.', 'ga-communicator' ), E_USER_DEPRECATED );
+			// Check response.
+			$response = $this->get_report( $this->popular_posts_args( $conditions ) );
 		}
-		$request = [
-			'pageSize'   => (int) $conditions['number'],
-			'dateRanges' => [ $date_ranges ],
-		];
-		// Create filter.
-		$request['dimensionFilterClauses'] = [
-			[
-				'operator' => 'AND',
-				'filters'  => [
-					[
-						'dimensionName' => 'ga:pagePath',
-						'operator'      => 'REGEXP',
-						'expressions'   => [
-							$conditions['path_regexp'],
-						],
-					],
-				],
-			],
-		];
-		// Check response.
-		$response = $this->get_report( $request );
 		if ( ! $response ) {
 			return null;
 		}
