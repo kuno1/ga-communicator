@@ -4,7 +4,7 @@ Tags: google-analytics, api
 Contributors: tarosky, Takahashi_Fumiki  
 Tested up to: 6.1  
 Requires at least: 5.9  
-Requires PHP: 5.6  
+Requires PHP: 7.0  
 Stable Tag: nightly  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -73,6 +73,7 @@ Create a new [issue](https://github.com/kuno1/ga-communicator/issues) or send [p
 ### 3.0.0
 
 * Add [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1) support. [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=ja) will be deprecated in 2023.
+* Drop support for PHP 5.6
 
 ### 2.0.0
 
