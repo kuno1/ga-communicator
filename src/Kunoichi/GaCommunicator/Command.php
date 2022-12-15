@@ -22,7 +22,7 @@ class Command extends \WP_CLI_Command {
 	 * @return void
 	 */
 	protected function do_it_wrong() {
-		\WP_CLI::warning( __( 'Universal Analytics stops on June 2023. Please consider changing ', 'ga-communicator' ) );
+		\WP_CLI::warning( __( 'Universal Analytics stops on June 2023. Please consider switching to GA4.', 'ga-communicator' ) );
 	}
 
 	/**
