@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
+        operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
         php: [ '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
         tools: [ composer ]
@@ -67,7 +67,7 @@ jobs:
 
   assets:
     name: Check Assets
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
@@ -101,9 +101,6 @@ jobs:
 
       - name: Clean Unwanted files
         run: bash bin/clean.sh
-
-      - name: Clean Vendor if exists.
-        run: rm -rf vendor
 
       - name: Create Zip
         run: zip -r ${{ github.event.repository.name }}.zip ./
