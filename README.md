@@ -15,7 +15,7 @@ Let your WordPress communicate with Google Analytics API.
 
 This plugin has custom functions to connect with Google Analytics.
 
-**NOTICE:** [Google will stop Universal Analytics(UA) at July 1st, 2023](https://support.google.com/analytics/answer/11583528). Since then, you will be able to create only Google Analytics 4(GA4) accounts. API for UA is [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=ja), and one for GA4 is [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1). This API change is a breaking change. Please see our document to check what you should do for the migration.
+**NOTICE:** [Google will stop Universal Analytics(UA) at July 1st, 2023](https://support.google.com/analytics/answer/11583528). Since then, you will be able to create only Google Analytics 4(GA4) accounts. API for UA is [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=ja), and one for GA4 is [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1). This API change is a breaking change. Please see [our wiki](https://github.com/kuno1/ga-communicator/wiki/MIgrate-to-Google-Analytics-Data-API-for-GA4) to check what you should do for the migration.
 
 ### Default Feature
 
