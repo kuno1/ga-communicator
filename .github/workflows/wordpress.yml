@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
-        php: [  '7.2', '7.3', '7.4', '8.0' ] # PHP versions to check.
+        php: [ '7.2', '7.3', '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest' ]      # WordPress version to check.
         tools: [ composer ]
         include:
@@ -31,8 +31,8 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
-        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
+        image: mysql:8.0
+        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10 --default-authentication-plugin=mysql_native_password
         ports:
           - 3306/tcp
         env:
@@ -74,7 +74,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: Install NPM Packages
         run: npm install
