@@ -16,8 +16,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
-        php: [ '7.4', '8.0' ] # PHP versions to check.
-        wp: [ 'latest', '5.9' ]      # WordPress version to check.
+        php: [  '7.2', '7.3', '7.4', '8.0' ] # PHP versions to check.
+        wp: [ 'latest' ]      # WordPress version to check.
         tools: [ composer ]
         include:
           - operating-system: ubuntu-18.04
@@ -25,9 +25,9 @@ jobs:
             tools: composer:v2.2
             wp: latest
           - operating-system: ubuntu-18.04
-            php: 7.0
+            php: 7.1
             tools: composer:v2.2
-            wp: 5.9
+            wp: latest
 
     services:
       mysql:
