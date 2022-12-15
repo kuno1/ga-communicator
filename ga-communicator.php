@@ -48,6 +48,7 @@ add_action( 'widgets_init', function() {
  * Get report from Google Analytics.
  *
  * @since 2.0.0
+ * @deprecated 3.0.0
  * @see \Kunoichi\GaCommunicator::get_report()
  * @param array         $request  Request array.
  * @param null|callable $callback Callback handler if set.
@@ -55,6 +56,19 @@ add_action( 'widgets_init', function() {
  */
 function ga_communicator_get_report( $request = [], $callback = null ) {
 	return \Kunoichi\GaCommunicator::get_instance()->get_report( $request, $callback );
+}
+
+/**
+ * Get report from Google Analytics.
+ *
+ * @since 3.0.0
+ * @see \Kunoichi\GaCommunicator::ga4_get_report()
+ * @param array         $request  Request array.
+ * @param null|callable $callback Callback handler if set.
+ * @return array|\WP_Error
+ */
+function ga_communicator_get_report_ga4( $request = [], $callback = null ) {
+	return \Kunoichi\GaCommunicator::get_instance()->ga4_get_report( $request, $callback );
 }
 
 /**
