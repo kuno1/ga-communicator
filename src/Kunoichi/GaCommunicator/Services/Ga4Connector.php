@@ -114,6 +114,6 @@ trait Ga4Connector {
 				],
 			],
 		];
-		return $args;
+		return apply_filters( 'ga_communicator_ga4_popular_posts_args', $args, $conditions );
 	}
 }

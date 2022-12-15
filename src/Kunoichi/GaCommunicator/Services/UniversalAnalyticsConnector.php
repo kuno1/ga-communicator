@@ -173,7 +173,7 @@ trait UniversalAnalyticsConnector {
 	 */
 	public function popular_posts_args( array $conditions ) {
 		$conditions = $this->get_date_range_condition( $conditions );
-		return [
+		$args       = [
 			'pageSize'               => (int) $conditions['number'],
 			'dateRanges'             => [
 				[
@@ -196,5 +196,6 @@ trait UniversalAnalyticsConnector {
 				],
 			],
 		];
+		return apply_filters( 'ga_communicator_popular_posts_args', $args, $conditions );
 	}
 }
