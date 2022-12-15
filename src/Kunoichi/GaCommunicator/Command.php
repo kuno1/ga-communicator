@@ -170,7 +170,41 @@ class Command extends \WP_CLI_Command {
 				],
 			];
 		}
-		$response = $this->ga()->get_report( $replace );
+		$this->response_to_table( $this->ga()->get_report( $replace ) );
+	}
+
+	/**
+	 * Get GA4 data for connection test.
+	 *
+	 * @synopsis [--start=<start>] [--end=<end>]
+	 * @param array $args
+	 * @param array $assoc
+	 */
+	public function ga4_report( $args, $assoc ) {
+		$replace = [];
+		// Set date ranges.
+		$date_ranges = [];
+		if ( ! empty( $assoc['start'] ) ) {
+			$date_ranges['startDate'] = $assoc['start'];
+		}
+		if ( ! empty( $assoc['end'] ) ) {
+			$date_ranges['endDate'] = $assoc['end'];
+		}
+		if ( ! empty( $date_ranges ) ) {
+			$replace['dateRanges'] = [ $date_ranges ];
+		}
+		$this->response_to_table( $this->ga()->ga4_get_report( $replace ) );
+	}
+
+	/**
+	 * Display response to table.
+	 *
+	 * @param array|\WP_Error $response Response object.
+	 *
+	 * @return void
+	 * @throws \WP_CLI\ExitException
+	 */
+	protected function response_to_table( $response ) {
 		if ( is_wp_error( $response ) ) {
 			\WP_CLI::error( $response->get_error_message() );
 		}
