@@ -3,7 +3,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/css/ga-communicator-setting.css",
 		"ext": "css",
-		"hash": "0ba4d0708f1ea54dd94ce9468c9175ca",
+		"hash": "5a6f349028079393a2f0bcf3ed51e552",
 		"version": "0.0.0",
 		"deps": [
 			"dashicons",
@@ -17,7 +17,7 @@
 		"handle": "ga-communicator-setting",
 		"path": "dist/js/ga-communicator-setting.js",
 		"ext": "js",
-		"hash": "d630421e1cf003e556a63d5c9baf51c7",
+		"hash": "908f2810ea0970da5a83ebf57646f969",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",
@@ -33,7 +33,7 @@
 		"handle": "ga-custom-dimensions",
 		"path": "dist/js/ga-custom-dimensions.js",
 		"ext": "js",
-		"hash": "7d58867d644f8668a36422c084ad4604",
+		"hash": "4d0d8e8657fdde8d35b029a78aff53fc",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",
@@ -48,7 +48,7 @@
 		"handle": "ga-sandbox",
 		"path": "dist/js/ga-sandbox.js",
 		"ext": "js",
-		"hash": "60d8f012022707a596e2ce06ac8a4959",
+		"hash": "181746772adde7362a7718f193f2a9c1",
 		"version": "0.0.0",
 		"deps": [
 			"wp-codemirror",

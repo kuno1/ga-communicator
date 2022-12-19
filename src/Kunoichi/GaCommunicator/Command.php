@@ -17,9 +17,21 @@ class Command extends \WP_CLI_Command {
 	use GaClientHolder;
 
 	/**
+	 * Raise error.
+	 *
+	 * @return void
+	 */
+	protected function do_it_wrong() {
+		\WP_CLI::warning( __( 'Universal Analytics stops on June 2023. Please consider switching to GA4.', 'ga-communicator' ) );
+	}
+
+	/**
 	 * Get account information.
+	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 */
 	public function accounts() {
+		$this->do_it_wrong();
 		$accounts = $this->ga()->accounts();
 		if ( is_wp_error( $accounts ) ) {
 			\WP_CLI::error( $accounts->get_error_message() );
@@ -38,10 +50,12 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get web properties.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <id>
 	 * @param array $args
 	 */
 	public function properties( $args ) {
+		$this->do_it_wrong();
 		list( $id ) = $args;
 		\WP_CLI::line( sprintf(
 			// translators: %s is property id.
@@ -66,10 +80,12 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get profiles.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <account> <profile>
 	 * @param array $args
 	 */
 	public function profiles( $args ) {
+		$this->do_it_wrong();
 		list( $account, $profile ) = $args;
 		$profiles                  = $this->ga()->profiles( $account, $profile );
 		if ( is_wp_error( $profiles ) ) {
@@ -89,10 +105,12 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get custom dimensions.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis <account> <profile>
 	 * @param array $args
 	 */
 	public function dimensions( $args ) {
+		$this->do_it_wrong();
 		list( $account, $profile ) = $args;
 		$dimensions                = $this->ga()->dimensions( $account, $profile );
 		if ( is_wp_error( $dimensions ) ) {
@@ -113,11 +131,13 @@ class Command extends \WP_CLI_Command {
 	/**
 	 * Get report and display it in table.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @synopsis [--start=<start>] [--end=<end>] [--filter=<filter>]
 	 * @param array $args
 	 * @param array $assoc
 	 */
 	public function report( $args, $assoc ) {
+		$this->do_it_wrong();
 		$view_id = Settings::get_instance()->get_option( 'profile' );
 		if ( ! $view_id ) {
 			\WP_CLI::error( __( 'Profile is not set.', 'ga-communicator' ) );
@@ -150,7 +170,41 @@ class Command extends \WP_CLI_Command {
 				],
 			];
 		}
-		$response = $this->ga()->get_report( $replace );
+		$this->response_to_table( $this->ga()->get_report( $replace ) );
+	}
+
+	/**
+	 * Get GA4 data for connection test.
+	 *
+	 * @synopsis [--start=<start>] [--end=<end>]
+	 * @param array $args
+	 * @param array $assoc
+	 */
+	public function ga4_report( $args, $assoc ) {
+		$replace = [];
+		// Set date ranges.
+		$date_ranges = [];
+		if ( ! empty( $assoc['start'] ) ) {
+			$date_ranges['startDate'] = $assoc['start'];
+		}
+		if ( ! empty( $assoc['end'] ) ) {
+			$date_ranges['endDate'] = $assoc['end'];
+		}
+		if ( ! empty( $date_ranges ) ) {
+			$replace['dateRanges'] = [ $date_ranges ];
+		}
+		$this->response_to_table( $this->ga()->ga4_get_report( $replace ) );
+	}
+
+	/**
+	 * Display response to table.
+	 *
+	 * @param array|\WP_Error $response Response object.
+	 *
+	 * @return void
+	 * @throws \WP_CLI\ExitException
+	 */
+	protected function response_to_table( $response ) {
 		if ( is_wp_error( $response ) ) {
 			\WP_CLI::error( $response->get_error_message() );
 		}
@@ -184,6 +238,7 @@ class Command extends \WP_CLI_Command {
 	 * : [--offset_days=<offset_days>]
 	 * Offset days. Default 0.
 	 *
+	 * @deprecated Google stops universal analytics at June 2023.
 	 * @param array $args
 	 * @param array $assoc
 	 * @synopsis [<regexp>] [--start=<start>] [--end=<end>] [--days_before=<days_before>]  [--offset_days=<offset_days>]
@@ -199,6 +254,9 @@ class Command extends \WP_CLI_Command {
 			}
 		}
 		$query = $this->ga()->popular_posts( [], $request );
+		if ( is_wp_error( $query ) ) {
+			\WP_CLI::error( $query->get_error_message() );
+		}
 		if ( ! $query || ! $query->have_posts() ) {
 			\WP_CLI::error( __( 'No post found.', 'ga-communicator' ) );
 		}

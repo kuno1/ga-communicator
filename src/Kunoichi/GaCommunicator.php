@@ -3,10 +3,6 @@
 namespace Kunoichi;
 
 
-use Google\Auth\Credentials\ServiceAccountCredentials;
-use Google\Auth\Middleware\AuthTokenMiddleware;
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
 use Kunoichi\GaCommunicator\Api\Accounts;
 use Kunoichi\GaCommunicator\Api\BatchGet;
 use Kunoichi\GaCommunicator\Api\Dimensions;
@@ -14,21 +10,21 @@ use Kunoichi\GaCommunicator\Api\Profiles;
 use Kunoichi\GaCommunicator\Api\Properties;
 use Kunoichi\GaCommunicator\Pattern\Singleton;
 use Kunoichi\GaCommunicator\Screen\Settings;
+use Kunoichi\GaCommunicator\Services\Ga4Connector;
 use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
 
 /**
  * Google Analytics Communicator
  *
- * @property-read Client   $client
- * @property-read Settings $setting
  * @package ga-communicator
  */
 class GaCommunicator extends Singleton {
 
-	private $_client = null;
+	use Ga4Connector;
 
-	private $client_initialized = false;
-
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function init() {
 		// Register command for CLI.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -64,95 +60,6 @@ class GaCommunicator extends Singleton {
 		if ( file_exists( $mo ) ) {
 			load_textdomain( 'ga-communicator', $mo );
 		}
-	}
-
-	/**
-	 * Make request.
-	 *
-	 * @param string $url
-	 *
-	 * @return array
-	 */
-	protected function request( $url ) {
-		$response = $this->client->get( $url );
-		$body     = (string) $response->getBody();
-		$json     = json_decode( $body, true );
-		if ( ! $json ) {
-			throw new \Exception( __( 'Failed to get API response. Please try again later.', 'ga-communicator' ), 500 );
-		}
-		return $json;
-	}
-
-	/**
-	 * Get analytics report
-	 *
-	 * @param array $request
-	 * @param callable $callback
-	 * @return array|\WP_Error
-	 */
-	public function get_report( $request = [], $callback = null ) {
-		try {
-			$json     = array_replace_recursive( array_merge( [
-				'viewId' => $this->setting->get_option( 'profile' ),
-			], $this->default_json() ), $request );
-			$response = $this->client->post( 'https://analyticsreporting.googleapis.com/v4/reports:batchGet', [
-				'json' => [
-					'reportRequests' => $json,
-				],
-			] );
-			$result   = json_decode( (string) $response->getBody(), true );
-			if ( ! $result ) {
-				return [];
-			}
-			if ( is_null( $callback ) ) {
-				$callback = [ $this, 'parse_report_result' ];
-			}
-			$results = empty( $result['reports'][0]['data']['rows'] ) ? [] : $result['reports'][0]['data']['rows'];
-			return array_map( $callback, $results );
-		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
-				'response' => $e->getCode(),
-			] );
-		}
-	}
-
-	/**
-	 * Default JSON.
-	 *
-	 * @return array
-	 */
-	public function default_json() {
-		return [
-			'dimensions' => [
-				[
-					'name' => 'ga:pagePath',
-				],
-				[
-					'name' => 'ga:pageTitle',
-				],
-			],
-			'metrics'    => [
-				[
-					'expression'     => 'ga:pageviews',
-					'formattingType' => 'INTEGER',
-				],
-			],
-			'orderBys'   => [
-				[
-					'fieldName' => 'ga:pageviews',
-					'orderType' => 'VALUE',
-					'sortOrder' => 'DESCENDING',
-				],
-			],
-			'pageSize'   => 10,
-			'dateRanges' => [
-				[
-					// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
-					'startDate' => date_i18n( 'Y-m-d', current_time( 'timestamp' ) - 60 * 60 * 24 * 30 ),
-					'endDate'   => date_i18n( 'Y-m-d' ),
-				],
-			],
-		];
 	}
 
 	/**
@@ -202,37 +109,14 @@ class GaCommunicator extends Singleton {
 			'end'         => '',
 		] );
 		// Calculate range, number.
-		// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
-		$end         = current_time( 'timestamp' ) - 60 * 60 * 24 * $conditions['offset_days'];
-		$start       = $end - 60 * 60 * 24 * $conditions['days_before'];
-		$date_ranges = [];
-		foreach ( [
-			[ 'startDate', $start, $conditions['start'] ],
-			[ 'endDate', $end, $conditions['end'] ],
-		] as list( $range_key, $timestamp, $specified_date ) ) {
-			$date_ranges[ $range_key ] = preg_match( '/^\d{4}-\d{2}-\d{2}$/u', $specified_date ) ? $specified_date : date_i18n( 'Y-m-d', $timestamp );
+		if ( $this->setting->using_ga4 ) {
+			$response = $this->ga4_get_report( $this->ga4_popular_posts_args( $conditions ) );
+		} else {
+			// Raise warning.
+			trigger_error( __( 'Universal Analytics stops collecting data at June 2023. Please consider using Google Analytics V4.', 'ga-communicator' ), E_USER_DEPRECATED );
+			// Check response.
+			$response = $this->get_report( $this->popular_posts_args( $conditions ) );
 		}
-		$request = [
-			'pageSize'   => (int) $conditions['number'],
-			'dateRanges' => [ $date_ranges ],
-		];
-		// Create filter.
-		$request['dimensionFilterClauses'] = [
-			[
-				'operator' => 'AND',
-				'filters'  => [
-					[
-						'dimensionName' => 'ga:pagePath',
-						'operator'      => 'REGEXP',
-						'expressions'   => [
-							$conditions['path_regexp'],
-						],
-					],
-				],
-			],
-		];
-		// Check response.
-		$response = $this->get_report( $request );
 		if ( ! $response ) {
 			return null;
 		}
@@ -276,85 +160,6 @@ class GaCommunicator extends Singleton {
 			$post->rank = $post_ids[ $post->ID ]['rank'];
 		}
 		return $wp_query;
-	}
-
-	/**
-	 * Parser report result.
-	 *
-	 * @param array $row
-	 * @return array
-	 */
-	public function parse_report_result( $row ) {
-		return [ $row['dimensions'][0], $row['dimensions'][1], $row['metrics'][0]['values'][0] ];
-	}
-
-	/**
-	 * Get account information.
-	 *
-	 * @return array[]|\WP_Error
-	 */
-	public function accounts() {
-		try {
-			$result = $this->request( 'https://www.googleapis.com/analytics/v3/management/accounts' );
-			return $result['items'];
-		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
-				'code' => $e->getCode(),
-			] );
-		}
-	}
-
-	/**
-	 * Get web properties.
-	 *
-	 * @param string $account
-	 *
-	 * @return array[]|\WP_Error
-	 */
-	public function properties( $account ) {
-		try {
-			$result = $this->request( sprintf( 'https://www.googleapis.com/analytics/v3/management/accounts/%s/webproperties', $account ) );
-			return $result['items'];
-		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
-				'code' => $e->getCode(),
-			] );
-		}
-	}
-
-	/**
-	 * Get profiles
-	 *
-	 * @param string $account
-	 * @param string $property
-	 *
-	 * @return array[]|\WP_Error
-	 */
-	public function profiles( $account, $property ) {
-		try {
-			$result = $this->request( sprintf( 'https://www.googleapis.com/analytics/v3/management/accounts/%s/webproperties/%s/profiles', $account, $property ) );
-			return $result['items'];
-		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
-				'code' => $e->getCode(),
-			] );
-		}
-	}
-
-	/**
-	 * Get dimensions.
-	 *
-	 * @retur array
-	 */
-	public function dimensions( $account, $property ) {
-		try {
-			$result = $this->request( sprintf( 'https://www.googleapis.com/analytics/v3/management/accounts/%s/webproperties/%s/customDimensions', $account, $property ) );
-			return isset( $result['items'] ) ? $result['items'] : [];
-		} catch ( \Exception $e ) {
-			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
-				'code' => $e->getCode(),
-			] );
-		}
 	}
 
 	/**
@@ -413,43 +218,4 @@ class GaCommunicator extends Singleton {
 		}
 	}
 
-	/**
-	 * Getter
-	 *
-	 * @param string $name Property name.
-	 *
-	 * @return mixed
-	 * @throws \Exception
-	 */
-	public function __get( $name ) {
-		switch ( $name ) {
-			case 'client':
-				if ( ! $this->client_initialized ) {
-					$scopes = apply_filters( 'ga_communicator_api_scopes', [ 'https://www.googleapis.com/auth/analytics.readonly' ] );
-					$key    = $this->setting->service_key();
-					if ( ! $key ) {
-						throw new \Exception( __( 'Service key is not set.', 'ga-communicator' ), 500 );
-					}
-					$json = json_decode( $key, true );
-					if ( ! $json ) {
-						throw new \Exception( __( 'Invalid API service key.', 'ga-communicator' ), 500 );
-					}
-					$sa         = new ServiceAccountCredentials( $scopes, $json );
-					$middleware = new AuthTokenMiddleware( $sa );
-					$stack      = HandlerStack::create();
-					$stack->push( $middleware );
-					$this->_client = new Client( [
-						'handler'  => $stack,
-						'base_uri' => 'https://www.googleapis.com',
-						'auth'     => 'google_auth',
-					]);
-				}
-				return $this->_client;
-				break;
-			case 'setting':
-				return Settings::get_instance();
-			default:
-				return null;
-		}
-	}
 }

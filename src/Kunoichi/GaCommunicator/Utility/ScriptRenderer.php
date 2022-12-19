@@ -32,10 +32,18 @@ class ScriptRenderer extends Singleton {
 			// No output.
 			return;
 		}
-		$id         = $this->setting->get_option( 'property' );
 		$additional = $this->setting->get_option( 'extra' );
-		$tag        = $this->setting->placeholder->tag( $type, $id, $additional );
-		$replaced   = $this->setting->placeholder->replace( $tag );
+		$id         = $this->setting->get_option( 'property' );
+		$ga4_id     = $this->setting->get_option( 'ga4-tracking-id' );
+		if ( $ga4_id ) {
+			if ( 'gtag' === $type && $this->setting->get_option( 'ga4-both-tracking' ) ) {
+				$additional .= sprintf( "\ngtag( 'config', '%s', gtagConfig )", $ga4_id );
+			} else {
+				$id = $ga4_id;
+			}
+		}
+		$tag      = $this->setting->placeholder->tag( $type, $id, $additional );
+		$replaced = $this->setting->placeholder->replace( $tag );
 		echo $replaced;
 	}
 
