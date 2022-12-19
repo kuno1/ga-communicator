@@ -15,6 +15,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get account information.
 	 *
+	 * @deprecated 3.0.0
 	 * @return array[]|\WP_Error
 	 */
 	public function accounts() {
@@ -31,6 +32,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get web properties.
 	 *
+	 * @deprecated 3.0.0
 	 * @param string $account
 	 *
 	 * @return array[]|\WP_Error
@@ -49,6 +51,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get profiles
 	 *
+	 * @deprecated 3.0.0
 	 * @param string $account
 	 * @param string $property
 	 *
@@ -68,6 +71,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get dimensions.
 	 *
+	 * @deprecated 3.0.0
 	 * @retur array
 	 */
 	public function dimensions( $account, $property ) {
@@ -85,6 +89,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get analytics report
 	 *
+	 * @deprecated 3.0.0
 	 * @param array $request
 	 * @param callable $callback
 	 * @return array|\WP_Error
@@ -124,6 +129,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Parser report result.
 	 *
+	 * @deprecated 3.0.0
 	 * @param array $row    Row.
 	 * @return array
 	 */
@@ -134,6 +140,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Default JSON.
 	 *
+	 * @deprecated 3.0.0
 	 * @return array
 	 */
 	public function default_json() {
@@ -168,6 +175,7 @@ trait UniversalAnalyticsConnector {
 	/**
 	 * Get conditions.
 	 *
+	 * @deprecated 3.0.0
 	 * @param array $conditions
 	 * @return array
 	 */

@@ -2,10 +2,12 @@
 
 namespace Kunoichi\GaCommunicator\Services;
 
-
+/**
+ * Abstract layer for GA4.
+ */
 trait Ga4Connector {
 
-	use AbstractApiConnector;
+	use UniversalAnalyticsConnector;
 
 	/**
 	 * Get report from Google Analytics.

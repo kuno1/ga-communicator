@@ -11,7 +11,6 @@ use Kunoichi\GaCommunicator\Api\Properties;
 use Kunoichi\GaCommunicator\Pattern\Singleton;
 use Kunoichi\GaCommunicator\Screen\Settings;
 use Kunoichi\GaCommunicator\Services\Ga4Connector;
-use Kunoichi\GaCommunicator\Services\UniversalAnalyticsConnector;
 use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
 
 /**
@@ -21,8 +20,7 @@ use Kunoichi\GaCommunicator\Utility\ScriptRenderer;
  */
 class GaCommunicator extends Singleton {
 
-	use Ga4Connector,
-		UniversalAnalyticsConnector;
+	use Ga4Connector;
 
 	/**
 	 * {@inheritdoc}
