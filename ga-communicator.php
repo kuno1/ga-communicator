@@ -59,7 +59,7 @@ function ga_communicator_get_report( $request = [], $callback = null ) {
 }
 
 /**
- * Get report from Google Analytics.
+ * Get report from Google Analytics 4.
  *
  * @since 3.0.0
  * @see \Kunoichi\GaCommunicator::ga4_get_report()
@@ -72,6 +72,8 @@ function ga_communicator_get_report_ga4( $request = [], $callback = null ) {
 }
 
 /**
+ * Get popular posts from Google Analytics
+ *
  * @param array $query      Posts query to override result.
  * @param array $conditions Condition to get "popular" post.
  *
@@ -79,4 +81,15 @@ function ga_communicator_get_report_ga4( $request = [], $callback = null ) {
  */
 function ga_communicator_popular_posts( $query = [], $conditions = [] ) {
 	return \Kunoichi\GaCommunicator::get_instance()->popular_posts( $query, $conditions );
+}
+
+/**
+ * Get realtime report from Google Analytics 4.
+ *
+ * @since 3.1.0
+ * @param array $request Request object.
+ * @return array[]|WP_Error
+ */
+function ga_communicator_realtime_report( $request = [] ) {
+	return \Kunoichi\GaCommunicator::get_instance()->ga4_realtime_report( $request );
 }

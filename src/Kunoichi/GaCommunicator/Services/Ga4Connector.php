@@ -10,6 +10,23 @@ trait Ga4Connector {
 	use UniversalAnalyticsConnector;
 
 	/**
+	 * Get ednpoint for GA4 API.
+	 *
+	 * @param string $method Method name.
+	 *
+	 * @return string|\WP_Error
+	 */
+	private function ga4_endpoint( $method ) {
+		$ga4_property = $this->setting->get_option( 'ga4-property' );
+		if ( ! $ga4_property ) {
+			return new \WP_Error( 'ga_communicator_api_error', __( 'GA4プロパティが適切に設定されていません。', 'ga-communicator' ), [
+				'response' => 400,
+			] );
+		}
+		return sprintf( 'https://analyticsdata.googleapis.com/v1beta/properties/%s:%s', $ga4_property, $method );
+	}
+
+	/**
 	 * Get report from Google Analytics.
 	 *
 	 * @param array    $request  Request JSON to override.
@@ -19,15 +36,16 @@ trait Ga4Connector {
 	 */
 	public function ga4_get_report( $request, $callback = null ) {
 		try {
-			$ga4_property = $this->setting->get_option( 'ga4-property' );
-			$json         = array_replace_recursive( $this->ga4_default_json(), $request );
-			$headers      = [
-				'Content-Type' => 'application/json',
-			];
+			$endpoint = $this->ga4_endpoint( 'runReport' );
+			if ( is_wp_error( $endpoint ) ) {
+				return $endpoint;
+			}
 			// GA4 is active.
-			$endpoint = sprintf( 'https://analyticsdata.googleapis.com/v1beta/properties/%s:runReport', $ga4_property );
+			$json     = array_replace_recursive( $this->ga4_default_json(), $request );
 			$response = $this->client->post( $endpoint, [
-				'headers' => $headers,
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
 				'json'    => $json,
 			] );
 			$result   = json_decode( (string) $response->getBody(), true );
@@ -39,6 +57,69 @@ trait Ga4Connector {
 			}
 			$results = empty( $result['rows'] ) ? [] : $result['rows'];
 			return array_map( $callback, $results );
+		} catch ( \Exception $e ) {
+			return new \WP_Error( 'ga_communicator_api_error', $e->getResponse()->getBody()->getContents(), [
+				'response' => $e->getCode(),
+			] );
+		}
+	}
+
+	/**
+	 * Get request object.
+	 *
+	 * @see https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema?hl=en
+	 *
+	 * @param array    $request  Request object. [ 'dimensions' => '', 'metrics' => '' ] Values should be array or csv value.
+	 *
+	 * @return array[]|\WP_Error
+	 */
+	public function ga4_realtime_report( $request = [] ) {
+		try {
+			$endpoint = $this->ga4_endpoint( 'runRealtimeReport' );
+			if ( is_wp_error( $endpoint ) ) {
+				return $endpoint;
+			}
+			$request = wp_parse_args( $request, [
+				'dimensions' => 'country',
+				'metrics'    => 'activeUsers,screenPageViews',
+			] );
+			foreach ( [ 'dimensions', 'metrics' ] as $key ) {
+				$values = $request[ $key ];
+				if ( ! is_array( $request[ $key ] ) ) {
+					$values = array_filter( array_map( 'trim', explode( ',', $values ) ) );
+				}
+				$request_value = [];
+				foreach ( $values as $v ) {
+					$request_value[] = [
+						'name' => $v,
+					];
+				}
+				$request[ $key ] = $request_value;
+			}
+			$response = $this->client->post( $endpoint, [
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'json'    => $request,
+			] );
+			$result   = json_decode( (string) $response->getBody(), true );
+			if ( ! $result['rows'] ) {
+				return [];
+			}
+			$response = [];
+			foreach ( $result['rows'] as $row ) {
+				$parsed = [];
+				foreach ( [
+					'dimensionValues' => 'dimensions',
+					'metricValues'    => 'metrics',
+				] as $key => $label ) {
+					$parsed[ $label ] = array_map( function( $v ) {
+						return $v['value'];
+					}, $row[ $key ] );
+				}
+				$response[] = $parsed;
+			}
+			return $response;
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'ga_communicator_api_error', $e->getResponse()->getBody()->getContents(), [
 				'response' => $e->getCode(),
