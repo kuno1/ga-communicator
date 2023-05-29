@@ -44,6 +44,10 @@ class Settings extends Singleton {
 	 * Constructor
 	 */
 	protected function init() {
+		if ( defined( 'GA_COMMUNICATOR_NO_UI' ) && GA_COMMUNICATOR_NO_UI ) {
+			// NO UI flag is on. Stop rendering admin screen.
+			return;
+		}
 		add_action( 'admin_init', [ $this, 'register_setting_fields' ] );
 		if ( $this->should_network_activate() ) {
 			add_action( 'network_admin_menu', [ $this, 'network_admin_menu' ] );
