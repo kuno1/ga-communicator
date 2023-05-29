@@ -32,10 +32,12 @@ class GaCommunicator extends Singleton {
 		}
 		// Load local.
 		$this->locale();
-		// Load Setting Screen
+		// Load Setting Screen by default.
 		Settings::get_instance();
-		// Script Renderer.
-		ScriptRenderer::get_instance();
+		// Script Renderer by default.
+		if ( ! defined( 'GA_COMMUNICATOR_NO_RENDERER' ) || ! GA_COMMUNICATOR_NO_RENDERER ) {
+			ScriptRenderer::get_instance();
+		}
 		// Register scripts.
 		add_action( 'init', [ $this, 'register_assets' ] );
 		// API.
