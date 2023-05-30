@@ -2,6 +2,8 @@
 
 namespace Kunoichi\GaCommunicator\Services;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * Abstract layer for GA4.
  */
@@ -57,8 +59,12 @@ trait Ga4Connector {
 			}
 			$results = empty( $result['rows'] ) ? [] : $result['rows'];
 			return array_map( $callback, $results );
-		} catch ( \Exception $e ) {
+		} catch ( GuzzleException $e ) {
 			return new \WP_Error( 'ga_communicator_api_error', $e->getResponse()->getBody()->getContents(), [
+				'response' => $e->getCode(),
+			] );
+		} catch ( \Exception $e ) {
+			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
 				'response' => $e->getCode(),
 			] );
 		}
@@ -120,8 +126,12 @@ trait Ga4Connector {
 				$response[] = $parsed;
 			}
 			return $response;
-		} catch ( \Exception $e ) {
+		} catch ( GuzzleException $e ) {
 			return new \WP_Error( 'ga_communicator_api_error', $e->getResponse()->getBody()->getContents(), [
+				'response' => $e->getCode(),
+			] );
+		} catch ( \Exception $e ) {
+			return new \WP_Error( 'ga_communicator_api_error', $e->getMessage(), [
 				'response' => $e->getCode(),
 			] );
 		}
