@@ -38,7 +38,7 @@ class Settings extends Singleton {
 		'tag',
 		'extra',
 		'place',
-		'body-open'
+		'body-open',
 	];
 
 	/**
@@ -401,13 +401,13 @@ class Settings extends Singleton {
 			$cur_value  = $this->get_option( 'body-open', true );
 			?>
 			<textarea name="ga-body-open" id="ga-body-open" class="widefat" rows="5"><?php echo esc_textarea( $cur_value ); ?></textarea>
-			<p class="description"><?php esc_html_e( 'This will be rendered just after <body> tag open. For Google Tag Manager.', 'ga-communicator' ) ?></p>
+			<p class="description"><?php esc_html_e( 'This will be rendered just after <body> tag open. For Google Tag Manager.', 'ga-communicator' ); ?></p>
 			<?php if ( $predefined ) : ?>
 				<p class="description">
 					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ); ?>
 				</p>
 				<pre><?php esc_html( $predefined ); ?></pre>
-			<?php
+				<?php
 			endif;
 		}, $this->slug, $tag_section );
 
