@@ -55,9 +55,15 @@ class BatchGet extends RestApiOptions {
 	 */
 	public function callback( $request ) {
 		$data   = json_decode( $request->get_param( 'data' ), true );
-		$report = $this->settings->ga()->get_report( $data, function( $row ) {
-			return $row;
-		} );
+		if ( $this->settings->using_ga4 ) {
+			$report = $this->settings->ga()->ga4_get_report( $data, function ( $row ) {
+				return $row;
+			} );
+		} else {
+			$report = $this->settings->ga()->get_report( $data, function ( $row ) {
+				return $row;
+			} );
+		}
 		return is_wp_error( $report ) ? $report : new \WP_REST_Response( $report );
 	}
 }
