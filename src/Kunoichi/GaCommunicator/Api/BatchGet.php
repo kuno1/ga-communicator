@@ -54,7 +54,7 @@ class BatchGet extends RestApiOptions {
 	 * @inheritDoc
 	 */
 	public function callback( $request ) {
-		$data   = json_decode( $request->get_param( 'data' ), true );
+		$data = json_decode( $request->get_param( 'data' ), true );
 		if ( $this->settings->using_ga4 ) {
 			$report = $this->settings->ga()->ga4_get_report( $data, function ( $row ) {
 				return $row;
