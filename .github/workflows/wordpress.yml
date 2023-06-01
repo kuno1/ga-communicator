@@ -9,6 +9,10 @@ on:
   pull_request:
     branches:
       - master
+  workflow_run:
+    workflows: [ "Add Tag" ]
+    types:
+      - completed
 
 jobs:
   test:
