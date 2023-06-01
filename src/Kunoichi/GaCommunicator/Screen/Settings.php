@@ -38,6 +38,7 @@ class Settings extends Singleton {
 		'tag',
 		'extra',
 		'place',
+		'body-open',
 	];
 
 	/**
@@ -123,11 +124,7 @@ class Settings extends Singleton {
 					?>
 				</p>
 				<h2><?php esc_html_e( 'JSON to API', 'ga-communicator' ); ?></h2>
-				<textarea class="ga-sandbox-inner" id="ga-sandbox-inner">
-				<?php
-					echo esc_textarea( $this->placeholder->sandbox() );
-				?>
-					</textarea>
+				<textarea class="ga-sandbox-inner" id="ga-sandbox-inner"><?php echo esc_textarea( $this->placeholder->sandbox() ); ?></textarea>
 				<p>
 					<button class="components-button is-secondary" id="ga-sandbox-exec">
 						<?php esc_html_e( 'Execute', 'ga-communicator' ); ?>
@@ -167,7 +164,7 @@ class Settings extends Singleton {
 			$name = 'ga-' . $key;
 			update_site_option( $name, (string) filter_input( INPUT_POST, $name ) );
 		}
-		// At last we redirect back to our options page.
+		// At least we redirect back to our options page.
 		wp_redirect( add_query_arg( [
 			'page'    => $this->slug,
 			'updated' => 'true',
@@ -330,17 +327,15 @@ class Settings extends Singleton {
 			</select>
 			<h4><?php esc_html_e( 'Output Example', 'ga-communicator' ); ?></h4>
 			<p class="description"><?php esc_html_e( 'Property should be properly set. It\'ll be inserted as measurement ID.', 'ga-communicator' ); ?></p>
-			<?php foreach ( $choices as $key => $label ) : ?>
-				<pre class="ga-setting-example" data-sample="<?php echo esc_attr( $key ); ?>">
-																		<?php
-																		if ( $key ) {
-																			echo esc_html( $this->placeholder->tag( $key, 'UA-00000-1', __( '[Additional Scripts Here]', 'ga-communicator' ) ) );
-																		} else {
-																			esc_html_e( '[No Output]', 'ga-communicator' );
-																		}
-																		?>
-				</pre>
-			<?php endforeach; ?>
+			<?php
+			foreach ( $choices as $key => $label ) {
+				printf(
+					'<pre class="ga-setting-example" data-sample="%s">%s</pre>',
+					esc_attr( $key ),
+					( $key ? esc_html( $this->placeholder->tag( $key, 'UA-00000-1', __( '[Additional Scripts Here]', 'ga-communicator' ) ) ) : esc_html__( '[No Output]', 'ga-communicator' ) )
+				);
+			}
+			?>
 			<?php if ( $predefined ) : ?>
 				<p class="description">
 					<?php esc_html_e( 'Tag type is defined programmatically.', 'ga-communicator' ); ?>
@@ -399,6 +394,23 @@ class Settings extends Singleton {
 				printf( '<pre style="display: none;" data-example="%s">%s</pre>', esc_attr( $key ), esc_html( $example ) );
 			};
 		}, $this->slug, $tag_section );
+
+		// Body open.
+		add_settings_field( 'ga-body-open', __( 'Tag after <body> open tag', 'ga-communicator' ), function() use ( $choices ) {
+			$predefined = $this->get_predefined_option( 'body-open' );
+			$cur_value  = $this->get_option( 'body-open', true );
+			?>
+			<textarea name="ga-body-open" id="ga-body-open" class="widefat" rows="5"><?php echo esc_textarea( $cur_value ); ?></textarea>
+			<p class="description"><?php esc_html_e( 'This will be rendered just after <body> tag open. For Google Tag Manager.', 'ga-communicator' ); ?></p>
+			<?php if ( $predefined ) : ?>
+				<p class="description">
+					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ); ?>
+				</p>
+				<pre><?php esc_html( $predefined ); ?></pre>
+				<?php
+			endif;
+		}, $this->slug, $tag_section );
+
 		// Tag to be output.
 		add_settings_field( 'ga-place', __( 'Tag Appears In', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'place' );
