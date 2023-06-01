@@ -18,9 +18,13 @@ class ScriptRenderer extends Singleton {
 	 * Constructor.
 	 */
 	protected function init() {
-		add_action( 'wp_head', [ $this, 'render' ], 9999 );
-		add_action( 'admin_head', [ $this, 'admin_render' ], 9999 );
-		add_action( 'login_head', [ $this, 'login_render' ], 9999 );
+		add_action( 'wp_head', [ $this, 'render' ], 1 );
+		add_action( 'admin_head', [ $this, 'admin_render' ], 1 );
+		add_action( 'login_head', [ $this, 'login_render' ], 1 );
+		// Body open.
+		add_action( 'wp_body_open', [ $this, 'body_open' ], 1 );
+		add_action( 'in_admin_header', [ $this, 'admin_body_open' ], 1 );
+		add_action( 'login_header', [ $this, 'login_body_open' ], 1 );
 	}
 
 	/**
@@ -75,6 +79,39 @@ class ScriptRenderer extends Singleton {
 	}
 
 	/**
+	 * Render after body open.
+	 *
+	 * @return void
+	 */
+	public function body_open() {
+		$open = $this->setting->get_option( 'body-open' );
+		if ( ! $open ) {
+			return;
+		}
+		echo $open;
+	}
+
+	/**
+	 * If script should be rendered in body open, render it.
+	 *
+	 * @return void
+	 */
+	public function admin_body_open() {
+		if ( in_array( 'admin', $this->get_places(), true ) ) {
+			$this->body_open();
+		}
+	}
+
+	/**
+	 * Render script in login screen.
+	 */
+	public function login_body_open() {
+		if ( in_array( 'login', $this->get_places(), true ) ) {
+			$this->body_open();
+		}
+	}
+
+	/**
 	 * Getter.
 	 *
 	 * @param string $name
@@ -88,6 +125,4 @@ class ScriptRenderer extends Singleton {
 				return null;
 		}
 	}
-
-
 }

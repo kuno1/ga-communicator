@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-12-15 15:19+0900\n"
-"PO-Revision-Date: 2022-12-16 01:31+0900\n"
+"POT-Creation-Date: 2023-06-01 15:54+0900\n"
+"PO-Revision-Date: 2023-06-01 15:55+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: .\n"
 
 #: ga-communicator.php:35
@@ -84,93 +84,93 @@ msgstr "投稿が見つかりませんでした。"
 msgid "Title"
 msgstr "タイトル"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:102
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:107
 msgid "Setting"
 msgstr "設定"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:103
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:108
 msgid "Sandbox"
 msgstr "﻿サンドボックス"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:118
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:123
 #, php-format
 msgid ""
-"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" rel="
-"\"noopener noreferrer\">the documentation</a> and confirm what you get with "
-"your JSON. WP-CLI is also helpful."
+"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">the documentation</a> and confirm what you get "
+"with your JSON. WP-CLI is also helpful."
 msgstr ""
-"GAとデータをやり取りしてみてください。<a href=\"%s\" target=\"_blank\" rel="
-"\"noopener noreferrer\">ドキュメント</a>を参照し、JSONで取得できるデータを確"
-"認しましょう。WP-CLIも利用できます。"
+"GAとデータをやり取りしてみてください。<a href=\"%s\" target=\"_blank\" "
+"rel=\"noopener noreferrer\">ドキュメント</a>を参照し、JSONで取得できるデータ"
+"を確認しましょう。WP-CLIも利用できます。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:121
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:126
 msgid "JSON to API"
 msgstr "APIに送るJSON"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:129
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:130
 msgid "Execute"
 msgstr "実行"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:132
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:133
 msgid "API Result"
 msgstr "APIの結果"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:133
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:134
 msgid "Here comes the result."
 msgstr "ここに結果が表示されます。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:180
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:181
 msgid "Credentials"
 msgstr "認証情報"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:181
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:182
 msgid "Please enter Google Analytics Credentials."
 msgstr "Google アナリティクスの認証情報を入力してください。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:183
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:184
 msgid "Service Account Key"
 msgstr "サービスアカウントキー"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:189
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:190
 msgid "Service account is defined programmatically."
 msgstr "サービスアカウントはプログラムで定義済みです。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:197
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:198
 #, php-format
 msgid ""
 "You can get a service account key in JSON format from Google API Library. "
-"For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
-"\"noopener,noreferrer\">document</a>."
+"For more detail, please check the <a href=\"%s\" target=\"_blank\" "
+"rel=\"noopener,noreferrer\">document</a>."
 msgstr ""
 "Google APIライブラリのJSON形式サービスアカウントキー。詳細は<a href=\"%s\" "
 "target=\"_blank\" rel=\"noopener,noreferrer\">ドキュメント</a>をチェックして"
 "ください。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:206
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:207
 msgid "GA4 Account Setting"
 msgstr "GA4アカウント設定"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:210
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:211
 msgid "Property ID"
 msgstr "プロパティID"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:211
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:212
 msgid "A numeric ID of GA4 property like <code>12345678</code>."
 msgstr "GA4 プロパティーのID（数字） <code>12345678</code>"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:215
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:216
 msgid "Tracking ID"
 msgstr "トラッキングID"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:216
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:217
 msgid "GA4 tracking ID like <code>G-ABCDEFGH100</code>."
 msgstr "GA4 のトラキング ID <code>G-ABCDEFGH100</code>."
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:220
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:221
 msgid "Double Tracking"
 msgstr "ダブルトラッキング"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:221
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:222
 msgid ""
 "To keep universal analytics tracking until the API deprecation, enable "
 "double tracking. The tag type should be gtag.js."
@@ -178,35 +178,35 @@ msgstr ""
 "API廃止までユニバーサル・アナリティクスの追跡を続けたい場合は、ダブルトラッキ"
 "ングを有効にしてください。タグタイプはgtag.jsでなければなりません。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:223
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:224
 msgid "Only track GA4"
 msgstr "GA4だけ追跡する"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:224
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:225
 msgid "Enable Double Tracking"
 msgstr "ダブルトラッキングを有効にする"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:228
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:229
 msgid "API to Use"
 msgstr "利用するAPI"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:229
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:230
 msgid "If you choose double tracking, specify which API to use."
 msgstr "ダブルトラッキングを選んだ場合は利用するAPIを選んでください。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:231
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:232
 msgid "Use Google Analytic 4"
 msgstr "Googleアナリティクス 4を使う"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:232
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:233
 msgid "Use Universal Analytics(will be deprecated)"
 msgstr "ユニバーサル・アナリティクス（廃止予定）を使う"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:280
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:281
 msgid "Universal Analytics Account Setting"
 msgstr "ユニバーサル・アナリティクス・アカウント設定"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:281
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:282
 msgid ""
 "If you set credentials, please choose Google Analytics account of your site. "
 "Account, property, and profile are required."
@@ -214,7 +214,7 @@ msgstr ""
 "認証情報を設定し、Googleアナリティクスのアカウントを選択してください。アカウ"
 "ント、プロパティ、プロファイルがすべて必要です。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:284
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:285
 msgid ""
 "Notice: This API will be deprecated on June 2023. Please create new GA4 "
 "property."
@@ -222,35 +222,35 @@ msgstr ""
 "注意：このAPIは2023年7月に廃止されます。新しいGA4プロパティーを作成してくださ"
 "い。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:289
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:290
 msgid "Account"
 msgstr "アカウント"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:290
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:291
 msgid "Google Analytics account."
 msgstr "Google アナリティクスアカウント。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:293
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:294
 msgid "Property"
 msgstr "プロパティ"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:294
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:295
 msgid "Google Analytics property like <code>UA-0000000-11</code>."
 msgstr "<code>UA-0000000-11</code>形式のGoogle Analyticsプロパティ。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:297
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:298
 msgid "Profile"
 msgstr "プロファイル"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:298
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:299
 msgid "Profile formerly known as \"View\". e.g. All website data."
 msgstr "プロファイル（以前はビュー）。例・すべてのウェブサイトのデータ"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:309
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:310
 msgid "Analytics Tag"
 msgstr "解析用タグ"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:310
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:311
 msgid ""
 "Select analytics tag to render. If you user other plugins like Yoast, leave "
 "empty."
@@ -258,27 +258,27 @@ msgstr ""
 "出力するアナリティクスタグを選んでください。Yoastなどの他のプラグインを利用し"
 "ている場合は空白にしてください。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:313
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:314
 msgid "No Output"
 msgstr "出力なし"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:316
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:317
 msgid "Manual Code(for GTM)"
 msgstr "マニュアルコード（GTM用）"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:318
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:319
 msgid "Tag Type"
 msgstr "タグの種類"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:327
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:328
 msgid "Output Example"
 msgstr "出力例"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:328
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:329
 msgid "Property should be properly set. It'll be inserted as measurement ID."
 msgstr "プロパティが適切に設定されている必要があります。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:333
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:335
 msgid "[Additional Scripts Here]"
 msgstr "［追加のスクリプトがここに来ます］"
 
@@ -286,63 +286,73 @@ msgstr "［追加のスクリプトがここに来ます］"
 msgid "[No Output]"
 msgstr "［出力なし］"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:342
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:341
 msgid "Tag type is defined programmatically."
 msgstr "タグの種類はプログラムで定義済みです。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:349
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:348
 msgid "Additional Scripts"
 msgstr "追加のスクリプト"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:356
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:355
 msgid "Extra scripts are defined programmatically."
 msgstr "追加のスクリプトはプログラムで定義されています。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:367
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:366
 msgid "You can define an additional script. Works fine with custom dimension."
 msgstr "追加のスクリプトを定義できます。カスタムディメンションに役立ちます。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:373
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:372
 msgid "Placeholder"
 msgstr "プレースホルダー"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:374
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:373
 msgid "Replaced With"
 msgstr "置換結果"
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:399
-msgid "Tag Appears In"
-msgstr "タグの表示場所"
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:403
-msgid "Only Public Pages"
-msgstr "公開ページのみ"
+msgid "Tag after <body> open tag"
+msgstr "開始<body>タグのあと"
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:404
-msgid "Public Pages and Admin Screen"
-msgstr "公開ページと管理画面"
+msgid ""
+"This will be rendered just after <body> tag open. For Google Tag Manager."
+msgstr "開始<body>タグの直後に表示されます。Google タグマネージャー用です。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:405
-msgid "Public Pages and Login Screen"
-msgstr "公開ページとログイン画面"
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:406
-msgid "Public, Admin, and Login."
-msgstr "公開ページ、管理画面、ログイン画面"
-
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:416
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:407
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:432
 msgid "Tag place to be output is defined programmatically."
 msgstr "タグの出力箇所はプログラムで定義されています。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:438
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:415
+msgid "Tag Appears In"
+msgstr "タグの表示場所"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:419
+msgid "Only Public Pages"
+msgstr "公開ページのみ"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:420
+msgid "Public Pages and Admin Screen"
+msgstr "公開ページと管理画面"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:421
+msgid "Public Pages and Login Screen"
+msgstr "公開ページとログイン画面"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:422
+msgid "Public, Admin, and Login."
+msgstr "公開ページ、管理画面、ログイン画面"
+
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:454
 msgid "Please select"
 msgstr "選択してください"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:449
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:465
 msgid "This option is predefined programmatically"
 msgstr "このオプションはプログラムで定義されています。"
 
-#: src/Kunoichi/GaCommunicator/Screen/Settings.php:527
+#: src/Kunoichi/GaCommunicator/Screen/Settings.php:543
 msgid "Google Analytics Setting"
 msgstr "Googleアナリティクス設定"
 
@@ -357,6 +367,10 @@ msgstr "サービスキーが設定されていません。"
 #: src/Kunoichi/GaCommunicator/Services/AbstractApiConnector.php:107
 msgid "Invalid API service key."
 msgstr "APIサービスキーが無効です。"
+
+#: src/Kunoichi/GaCommunicator/Services/Ga4Connector.php:24
+msgid "GA4 property is not set."
+msgstr "GA4プロパティが設定されていません。"
 
 #: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:26
 msgid "Single post ID. If page is not singular, always 0."
@@ -1451,8 +1465,8 @@ msgstr "https://kunoichiwp.com"
 #, fuzzy
 #~ msgid "rel:"
 #~ msgstr ""
-#~ "スレッドを開始するには、 <a class=\"alert-link\" rel=\"nofollow\" href="
-#~ "\"%s\">ログイン</a>してください。"
+#~ "スレッドを開始するには、 <a class=\"alert-link\" rel=\"nofollow\" "
+#~ "href=\"%s\">ログイン</a>してください。"
 
 #, fuzzy
 #~ msgid "identity"
@@ -1834,8 +1848,8 @@ msgstr "https://kunoichiwp.com"
 #, fuzzy
 #~ msgid "Blank"
 #~ msgstr ""
-#~ "お探しの条件に合うものはありませんでした。<br />条件を変更するか、<a href="
-#~ "\"%s\" target=\"_blank\">新規作成</a>してください。"
+#~ "お探しの条件に合うものはありませんでした。<br />条件を変更するか、<a "
+#~ "href=\"%s\" target=\"_blank\">新規作成</a>してください。"
 
 #, fuzzy
 #~ msgid "Membership"

@@ -21,7 +21,7 @@ trait Ga4Connector {
 	private function ga4_endpoint( $method ) {
 		$ga4_property = $this->setting->get_option( 'ga4-property' );
 		if ( ! $ga4_property ) {
-			return new \WP_Error( 'ga_communicator_api_error', __( 'GA4プロパティが適切に設定されていません。', 'ga-communicator' ), [
+			return new \WP_Error( 'ga_communicator_api_error', __( 'GA4 property is not set.', 'ga-communicator' ), [
 				'response' => 400,
 			] );
 		}
