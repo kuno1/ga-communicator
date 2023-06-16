@@ -35,7 +35,7 @@ add_action( 'plugin_loaded', function() {
 		// Needs original autoloader.
 		spl_autoload_register( function( $class_name ) {
 			$class_name = ltrim( $class_name, '\\' );
-			$prefix = 'Kunoichi\\GaCommunicator';
+			$prefix     = 'Kunoichi\\GaCommunicator';
 			if ( 0 !== strpos( $class_name, $prefix ) ) {
 				return;
 			}
