@@ -1,4 +1,5 @@
 /vendor/
+/vendor-prefixed/
 composer.lock
 /wp/
 package-lock.json
