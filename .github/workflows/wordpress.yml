@@ -88,7 +88,7 @@ jobs:
         run: echo "All Green!"
 
   release:
-    name: Release Build for Composer
+    name: Release Build as Plugin
     needs: [ status-check ]
     if: contains(github.ref, 'tags/')
     runs-on: ubuntu-latest
@@ -105,6 +105,12 @@ jobs:
 
       - name: Clean Package.
         run: bash bin/build.sh
+
+      - name: Do PHP scoper
+        run: |
+          composer global require humbug/php-scoper
+            ~/.composer/vendor/bin/php-scoper add-prefix --output-dir=vendor-prefixed --force
+          composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
 
       - name: Clean Unwanted files
         run: bash bin/clean.sh
