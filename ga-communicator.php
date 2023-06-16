@@ -1,15 +1,15 @@
 <?php
-/*
-  Plugin Name: Google Analytics Communicator
-  Plugin URI:  https://github.com/kuno1/ga-communicator
-  Description: Let your WordPress communicate with Google Analytics API.
-  Version:     nightly
-  Author:      Kunoichi INC.
-  Author URI:  https://kunoichiwp.com
-  License:     GPLv3 or later
-  License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
-  Text Domain: ga-communicator
-  Domain Path: /languages
+/**
+ * Plugin Name: Google Analytics Communicator
+ * Plugin URI:  https://github.com/kuno1/ga-communicator
+ * Description: Let your WordPress communicate with Google Analytics API.
+ * Version:     nightly
+ * Author:      Kunoichi INC.
+ * Author URI:  https://kunoichiwp.com
+ * License:     GPLv3 or later
+ * License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
+ * Text Domain: ga-communicator
+ * Domain Path: /languages
  */
 
 // This file actually do nothing.
