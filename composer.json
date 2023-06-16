@@ -12,17 +12,17 @@
 	"minimum-stability": "stable",
 	"scripts": {
 		"test": "phpunit",
-		"lint": [
-			"phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
-		],
-		"fix": [
-			"phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
+		"lint": "phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
+		"fix": "phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
+		"scoper": "php-scoper",
+		"prefix": [
+			"php-scoper add-prefix --output-dir=vendor-prefixed --force",
+			"composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative"
 		]
 	},
 	"require": {
 		"php": ">=7.2",
-		"google/auth": "^1.9",
-		"guzzlehttp/guzzle": "^6.5.0"
+		"google/auth": "^1.9"
 	},
 	"autoload": {
 		"psr-0": {
@@ -35,7 +35,8 @@
 		"wp-coding-standards/wpcs": "^2.0",
 		"yoast/phpunit-polyfills": "^1.0",
 		"phpcompatibility/php-compatibility": "^9.3",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"humbug/php-scoper": "^0.17.5"
 	},
 	"config": {
 		"allow-plugins": {

@@ -52,13 +52,19 @@ class GaCommunicator extends Singleton {
 	 * Load locales.
 	 */
 	public function locale() {
+		static $done = false;
 		// Under plugin execution, return.
 		if ( defined( 'GA_COMMUNICATOR_AS_PLUGIN' ) && GA_COMMUNICATOR_AS_PLUGIN ) {
 			return;
 		}
+		// Only once.
+		if ( $done ) {
+			return;
+		}
+		$done = true;
 		// Load locales.
 		$locale = get_locale();
-		$mo     = dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo';
+		$mo     = apply_filters( 'ga_communicator_locale', dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo', $locale );
 		if ( file_exists( $mo ) ) {
 			load_textdomain( 'ga-communicator', $mo );
 		}

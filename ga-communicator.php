@@ -30,11 +30,25 @@ add_action( 'plugin_loaded', function() {
 	// Add i18n
 	load_plugin_textdomain( 'ga-communicator', false, basename( __DIR__ ) . '/languages' );
 	// Load composer.
-	$composer = __DIR__ . '/vendor/autoload.php';
-	if ( ! file_exists( $composer ) ) {
+	if ( file_exists( __DIR__ . '/vendor-prefixed/vendor/scoper-autoload.php' ) ) {
+		require_once __DIR__ . '/vendor-prefixed/vendor/scoper-autoload.php';
+		// Needs original autoloader.
+		spl_autoload_register( function( $class_name ) {
+			$class_name = ltrim( $class_name, '\\' );
+			$prefix = 'Kunoichi\\GaCommunicator';
+			if ( 0 !== strpos( $class_name, $prefix ) ) {
+				return;
+			}
+			$file = __DIR__ . '/vendor-prefixed/src/' . str_replace( '\\', '/', $class_name ) . '.php';
+			if ( file_exists( $file ) ) {
+				require_once $file;
+			}
+		} );
+	} elseif ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+		require_once __DIR__ . '/vendor/autoload.php';
+	} else {
 		trigger_error( __( 'Composer file is missing. Please run composer install.', 'ga-communicator' ), E_USER_ERROR );
 	}
-	require_once  $composer;
 	// Load Bootstrap.
 	\Kunoichi\GaCommunicator::get_instance();
 } );
