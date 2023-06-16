@@ -98,12 +98,12 @@ jobs:
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 7.4
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Clean Package.
+      - name: Build Package.
         run: bash bin/build.sh
 
       - name: Do PHP scoper
