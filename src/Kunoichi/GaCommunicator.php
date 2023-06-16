@@ -23,6 +23,19 @@ class GaCommunicator extends Singleton {
 	use Ga4Connector;
 
 	/**
+	 * Get base directory.
+	 *
+	 * @return string
+	 */
+	public function base_dir() {
+		$base_dir = dirname( dirname( __DIR__ ) );
+		if ( 'vendor-prefixed' === basename( $base_dir ) ) {
+			$base_dir = dirname( $base_dir );
+		}
+		return $base_dir;
+	}
+
+	/**
 	 * {@inheritdoc}
 	 */
 	protected function init() {
@@ -64,7 +77,7 @@ class GaCommunicator extends Singleton {
 		$done = true;
 		// Load locales.
 		$locale = get_locale();
-		$mo     = apply_filters( 'ga_communicator_locale', dirname( dirname( __DIR__ ) ) . '/languages/ga-communicator-' . $locale . '.mo', $locale );
+		$mo     = apply_filters( 'ga_communicator_locale', $this->base_dir() . '/languages/ga-communicator-' . $locale . '.mo', $locale );
 		if ( file_exists( $mo ) ) {
 			load_textdomain( 'ga-communicator', $mo );
 		}
@@ -185,7 +198,7 @@ class GaCommunicator extends Singleton {
 	 * Register all assets.
 	 */
 	public function register_assets() {
-		$base_dir = dirname( dirname( __DIR__ ) );
+		$base_dir = $this->base_dir();
 		$config   = $base_dir . '/wp-dependencies.json';
 		if ( ! file_exists( $config ) ) {
 			return;
