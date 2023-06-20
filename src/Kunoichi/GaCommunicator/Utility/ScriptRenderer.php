@@ -18,9 +18,11 @@ class ScriptRenderer extends Singleton {
 	 * Constructor.
 	 */
 	protected function init() {
-		add_action( 'wp_head', [ $this, 'render' ], 1 );
-		add_action( 'admin_head', [ $this, 'admin_render' ], 1 );
-		add_action( 'login_head', [ $this, 'login_render' ], 1 );
+		// Priority
+		$priority = (int) apply_filters( 'ga_communicator_head_priority', 2 );
+		add_action( 'wp_head', [ $this, 'render' ], $priority );
+		add_action( 'admin_head', [ $this, 'admin_render' ], $priority );
+		add_action( 'login_head', [ $this, 'login_render' ], $priority );
 		// Body open.
 		add_action( 'wp_body_open', [ $this, 'body_open' ], 1 );
 		add_action( 'in_admin_header', [ $this, 'admin_body_open' ], 1 );
