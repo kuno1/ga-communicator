@@ -26,7 +26,7 @@ if ( is_multisite() && in_array( __FILE__, wp_get_active_network_plugins(), true
 }
 
 // Initialize plugin.
-add_action( 'plugin_loaded', function() {
+add_action( 'plugins_loaded', function() {
 	// Add i18n
 	load_plugin_textdomain( 'ga-communicator', false, basename( __DIR__ ) . '/languages' );
 	// Load composer.
