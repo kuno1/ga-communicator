@@ -30,14 +30,12 @@ class ScriptRenderer extends Singleton {
 	}
 
 	/**
-	 * Render analytics scripts.
+	 * Get tag to render.
+	 *
+	 * @param string $type Tag type. gtag, universal, manual, or ""(empty).
+	 * @return string
 	 */
-	public function render() {
-		$type = $this->setting->get_option( 'tag' );
-		if ( ! $type ) {
-			// No output.
-			return;
-		}
+	public function get_tag( $type = 'gtag' ) {
 		$additional = $this->setting->get_option( 'extra' );
 		$id         = $this->setting->get_option( 'property' );
 		$ga4_id     = $this->setting->get_option( 'ga4-tracking-id' );
@@ -50,7 +48,19 @@ class ScriptRenderer extends Singleton {
 		}
 		$tag      = $this->setting->placeholder->tag( $type, $id, $additional );
 		$replaced = $this->setting->placeholder->replace( $tag );
-		echo $replaced;
+		return apply_filters( 'ga_communicator_tag', $replaced, $type, $id );
+	}
+
+	/**
+	 * Render analytics scripts.
+	 */
+	public function render() {
+		$type = $this->setting->get_option( 'tag' );
+		if ( ! $type ) {
+			// No output.
+			return;
+		}
+		echo $this->get_tag( $type );
 	}
 
 	/**

@@ -107,3 +107,22 @@ function ga_communicator_popular_posts( $query = [], $conditions = [] ) {
 function ga_communicator_realtime_report( $request = [] ) {
 	return \Kunoichi\GaCommunicator::get_instance()->ga4_realtime_report( $request );
 }
+
+/**
+ * Render body open tag forcibly.
+ *
+ * @return void
+ */
+function ga_communicator_force_body_open() {
+	\Kunoichi\GaCommunicator\Utility\ScriptRenderer::get_instance()->body_open();
+}
+
+/**
+ * Render script tag forcibly.
+ *
+ * @param string $type Type of tag. Default is gtag. "universal" and "manual" is also available.
+ * @return void
+ */
+function ga_communicator_render( $type = 'gtag' ) {
+	echo \Kunoichi\GaCommunicator\Utility\ScriptRenderer::get_instance()->get_tag( $type );
+}
