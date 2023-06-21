@@ -67,18 +67,22 @@ trait AbstractApiConnector {
 		foreach ( [ 'end', 'start' ] as $key ) {
 			if ( isset( $condition[ $key ] ) && preg_match( '/^\d{4}-\d{2}-\d{2}$/u', $condition[ $key ] ) ) {
 				// Valid date already set.
+				if ( 'end' === $key ) {
+					$end = $condition[ $key ];
+				}
 				continue;
 			}
 			switch ( $key ) {
 				case 'end':
+					$offset_days = $condition['offset_days'] ?? 0;
 					// phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
-					$end              = current_time( 'timestamp' ) - 60 * 60 * 24 * $condition['offset_days'];
+					$end              = current_time( 'timestamp' ) - 60 * 60 * 24 * $offset_days;
 					$condition['end'] = date_i18n( 'Y-m-d', $end );
 					break;
 				case 'start':
-					if ( $end ) {
-						$condition['start'] = date_i18n( 'Y-m-d', $end - 60 * 60 * 24 * $condition['days_before'] );
-					}
+					$days_before        = $condition['days_before'] ?? 7;
+					$time               = $end ?: time();
+					$condition['start'] = date_i18n( 'Y-m-d', $time - 60 * 60 * 24 * $days_before );
 					break;
 			}
 		}
