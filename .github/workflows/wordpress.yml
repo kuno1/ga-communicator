@@ -111,6 +111,7 @@ jobs:
           composer global require humbug/php-scoper
             ~/.composer/vendor/bin/php-scoper add-prefix --output-dir=vendor-prefixed --force
           composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
+          composer help-scoper
 
       - name: Clean Unwanted files
         run: bash bin/clean.sh

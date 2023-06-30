@@ -16,9 +16,13 @@
 		"fix": "phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
 		"scoper": "php-scoper",
 		"prefix": [
+			"composer install --no-dev",
 			"php-scoper add-prefix --output-dir=vendor-prefixed --force",
-			"composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative"
-		]
+			"composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative",
+			"composer install",
+			"@help-scoper"
+		],
+		"help-scoper": "php bin/patcher.php"
 	},
 	"require": {
 		"php": ">=7.2",
