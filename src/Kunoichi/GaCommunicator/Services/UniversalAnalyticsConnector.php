@@ -96,7 +96,7 @@ trait UniversalAnalyticsConnector {
 	 */
 	public function get_report( $request = [], $callback = null ) {
 		try {
-			$json    = array_replace_recursive( $this->default_json(), $request );
+			$json    = array_merge( $this->default_json(), $request );
 			$headers = [
 				'Content-Type' => 'application/json',
 			];
