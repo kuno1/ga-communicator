@@ -43,7 +43,7 @@ trait Ga4Connector {
 				return $endpoint;
 			}
 			// GA4 is active.
-			$json     = array_replace_recursive( $this->ga4_default_json(), $request );
+			$json     = array_merge( $this->ga4_default_json(), $request );
 			$response = $this->client->post( $endpoint, [
 				'headers' => [
 					'Content-Type' => 'application/json',
