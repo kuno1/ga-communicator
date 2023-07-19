@@ -113,7 +113,8 @@ jobs:
       - name: Build Package
         run: bash bin/build.sh
 
-      - uses: ./.github/workflows/php-scoper.yml
+      - uses: kuno1/ga-communicator/.github/workflows/php-scoper.yml
+        name: Do PHP Scoper
         with:
           scoper: true
 

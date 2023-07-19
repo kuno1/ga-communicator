@@ -9,9 +9,12 @@ on:
 
 jobs:
   setup-php-scoper:
+    name: Do PHP Scoper
     runs-on: ubuntu-latest
     steps:
-      - name: Do PHP Scoper
+      - uses: actions/checkout@master
+        
+      - name: Add Prefix
         if: inputs.scoper
         run: |
           composer global require humbug/php-scoper
@@ -19,10 +22,10 @@ jobs:
           composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
           composer scoper-patch
 
-      - name: Cleanup PHP Scoper
+      - name: Cleanup Vendor
         if: inputs.scoper
         run: rm -rf vendor
 
-      - name: Skip Scoper
+      - name: Skip PHP Scoper
         if: ! inputs.scoper
         run: echo "Skipping Scoper"
