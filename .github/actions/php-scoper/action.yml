@@ -23,6 +23,6 @@ runs:
       shell: bash
 
     - name: Skip PHP Scoper
-      if: ! inputs.scoper
+      if: inputs.scoper != true
       run: echo "Skipping Scoper"
       shell: bash
