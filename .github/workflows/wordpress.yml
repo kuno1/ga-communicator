@@ -19,7 +19,7 @@ jobs:
         php: [ '7.2', '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
         tools: [ composer ]
-
+        scoper: [ true, false ]
     services:
       mysql:
         image: mysql:8.0
@@ -47,11 +47,18 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - uses: ./.github/workflows/php-scoper.yml
+        with:
+          scoper: ${{ matrix.scoper }}
+
+      - name: Make Binaries Executionable
+        if: matrix.scoper
+        run: chmod +x vendor-prefixed/vendor/bin/*
+
       - name: Start MySQL
         run: |
           sudo systemctl start mysql
           mysql -h 127.0.0.1 --port 3306 -u root --password=root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';"
-
 
       - name: Install WordPress
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
@@ -103,15 +110,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Package.
+      - name: Build Package
         run: bash bin/build.sh
 
-      - name: Do PHP scoper
-        run: |
-          composer global require humbug/php-scoper
-            ~/.composer/vendor/bin/php-scoper add-prefix --output-dir=vendor-prefixed --force
-          composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
-          composer help-scoper
+      - uses: ./.github/workflows/php-scoper.yml
+        with:
+          scoper: true
 
       - name: Clean Unwanted files
         run: bash bin/clean.sh

@@ -14,15 +14,20 @@
 		"test": "phpunit",
 		"lint": "phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
 		"fix": "phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
-		"scoper": "php-scoper",
-		"prefix": [
-			"composer install --no-dev",
+		"scoper": [
 			"php-scoper add-prefix --output-dir=vendor-prefixed --force",
 			"composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative",
-			"composer install",
-			"@help-scoper"
+			"@scoper-patch"
 		],
-		"help-scoper": "php bin/patcher.php"
+		"scoper-patch": [
+			"php bin/patcher.php",
+			"chmod +x vendor-prefixed/vendor/bin/*"
+		],
+		"prefix": [
+			"composer install --no-dev",
+			"@scoper",
+			"composer install"
+		]
 	},
 	"require": {
 		"php": ">=7.2",

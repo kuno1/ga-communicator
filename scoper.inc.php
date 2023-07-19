@@ -60,14 +60,25 @@ return [
 
 	// For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
 	'exclude-namespaces'      => [
-		'/^Kunoichi/',
-		'/^WP_/',
+		'/^cli/',
 		'/^Composer/',
-		'/^cli/'
+		'/^DeepCopy/',
+		'/^Doctrine/',
+		'/^Kunoichi/',
+		'/^PharIo/',
+		'/^PHP_CodeSniffer/',
+		'/^PHPCompatibility/',
+		'/^PHPCSStandards/',
+		'/^PHPUnit/',
+		'/^Yoast/',
+		'/^SebastianBergmann/',
+		'/^TheSeer/',
+		'/^WP_/',
 	],
 	'exclude-classes'         => [
 		'/^WP_/',
-		'/^Composer/'
+		'/^Composer/',
+		'/^PHPUnit/',
 	],
 	'exclude-functions'       => [
 		// 'mb_str_split',
@@ -80,7 +91,7 @@ return [
 	//
 	// For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#exposed-symbols
 	'expose-global-constants' => true,
-	'expose-global-classes'   => true,
+	'expose-global-classes'   => false,
 	'expose-global-functions' => false,
 	'expose-namespaces'       => [
 	],

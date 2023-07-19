@@ -1,0 +1,28 @@
+name: Setup PHP Scoper
+
+on:
+  workflow_call:
+    inputs:
+      scoper:
+        required: true
+        type: boolean
+
+jobs:
+  setup-php-scoper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do PHP Scoper
+        if: inputs.scoper
+        run: |
+          composer global require humbug/php-scoper
+          ~/.composer/vendor/bin/php-scoper add-prefix --output-dir=vendor-prefixed --force
+          composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
+          composer scoper-patch
+
+      - name: Cleanup PHP Scoper
+        if: inputs.scoper
+        run: rm -rf vendor
+
+      - name: Skip Scoper
+        if: ! inputs.scoper
+        run: echo "Skipping Scoper"
