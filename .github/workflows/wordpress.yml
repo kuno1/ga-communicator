@@ -31,7 +31,7 @@ jobs:
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
     name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
@@ -74,7 +74,7 @@ jobs:
     name: Check Assets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Install Node
         uses: actions/setup-node@v3
@@ -101,7 +101,7 @@ jobs:
     if: contains(github.ref, 'tags/')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
