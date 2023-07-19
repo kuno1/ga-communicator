@@ -48,6 +48,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - uses: ./.github/workflows/php-scoper.yml
+        name: Do PHP Scoper if possible
         with:
           scoper: ${{ matrix.scoper }}
 
@@ -113,7 +114,7 @@ jobs:
       - name: Build Package
         run: bash bin/build.sh
 
-      - uses: kuno1/ga-communicator/.github/workflows/php-scoper.yml
+      - uses: ./.github/workflows/php-scoper.yml
         name: Do PHP Scoper
         with:
           scoper: true
