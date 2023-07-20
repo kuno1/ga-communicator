@@ -28,7 +28,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-    name: UnitTest WP ${{ matrix.wp }} in PHP ${{ matrix.php }} with PHP Scoper=${{ $matrix.scoper }}
+    name: UnitTest WP ${{ matrix.wp }} in PHP ${{ matrix.php }} with PHP Scoper=${{ matrix.scoper }}
     steps:
       - uses: actions/checkout@v3
 
