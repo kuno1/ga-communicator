@@ -1,0 +1,28 @@
+name: Setup PHP Scoper
+description: Setup PHP Scoper
+inputs:
+  scoper:
+    description: Whether to do PHP Scoper
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Add Prefix
+      if: inputs.scoper == 'yes'
+      shell: bash
+      run: |
+        composer global require humbug/php-scoper
+        ~/.composer/vendor/bin/php-scoper add-prefix --output-dir=vendor-prefixed --force
+        composer dump-autoload --working-dir vendor-prefixed --classmap-authoritative
+        composer scoper-patch
+
+    - name: Cleanup Vendor
+      if: inputs.scoper == 'yes'
+      run: rm -rf vendor
+      shell: bash
+
+    - name: Skip PHP Scoper
+      if: inputs.scoper != 'yes'
+      run: echo "Skipping Scoper"
+      shell: bash

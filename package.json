@@ -9,6 +9,7 @@
 		"update": "wp-env start --update",
 		"stop": "wp-env stop",
 		"test": "wp-env run tests-cli ./wp-content/plugins/ga-communicator/vendor/bin/phpunit -c ./wp-content/plugins/ga-communicator/phpunit.xml.dist",
+		"test:scoper": "wp-env run tests-cli ./wp-content/plugins/ga-communicator/vendor-prefixed/vendor/bin/phpunit -c ./wp-content/plugins/ga-communicator/phpunit.xml.dist",
 		"env": "wp-env",
 		"cli": "wp-env run cli wp",
 		"cli:test": "wp-env run tests-cli wp",

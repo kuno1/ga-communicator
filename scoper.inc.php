@@ -36,14 +36,6 @@ return [
 		] ),
 	],
 
-	// List of excluded files, i.e. files for which the content will be left untouched.
-	// Paths are relative to the configuration file unless if they are already absolute
-	//
-	// For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#patchers
-	'exclude-files'           => [
-		'src/a-whitelisted-file.php',
-	],
-
 	// When scoping PHP files, there will be scenarios where some of the code being scoped indirectly references the
 	// original namespace. These will include, for example, strings or string manipulations. PHP-Scoper has limited
 	// support for prefixing such strings. To circumvent that, you can define patchers to manipulate the file to your
@@ -60,14 +52,25 @@ return [
 
 	// For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
 	'exclude-namespaces'      => [
-		'/^Kunoichi/',
-		'/^WP_/',
+		'/^cli/',
 		'/^Composer/',
-		'/^cli/'
+		'/^DeepCopy/',
+		'/^Doctrine/',
+		'/^Kunoichi/',
+		'/^PharIo/',
+		'/^PHP_CodeSniffer/',
+		'/^PHPCompatibility/',
+		'/^PHPCSStandards/',
+		'/^PHPUnit/',
+		'/^Yoast/',
+		'/^SebastianBergmann/',
+		'/^TheSeer/',
+		'/^WP_/',
 	],
 	'exclude-classes'         => [
 		'/^WP_/',
-		'/^Composer/'
+		'/^Composer/',
+		'/^PHPUnit/',
 	],
 	'exclude-functions'       => [
 		// 'mb_str_split',
@@ -80,7 +83,7 @@ return [
 	//
 	// For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#exposed-symbols
 	'expose-global-constants' => true,
-	'expose-global-classes'   => true,
+	'expose-global-classes'   => false,
 	'expose-global-functions' => false,
 	'expose-namespaces'       => [
 	],
