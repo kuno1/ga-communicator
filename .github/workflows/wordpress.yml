@@ -46,13 +46,13 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - uses: ./.github/actions/php-scoper
-        name: Do PHP Scoper if possible
+      - name: Do PHP Scoper
+        uses: ./.github/actions/php-scoper
         with:
           scoper: ${{ matrix.scoper }}
 
       - name: Make Binaries Executionable
-        if: 'yes' == matrix.scoper
+        if: matrix.scoper == 'yes'
         run: chmod +x vendor-prefixed/vendor/bin/*
 
       - name: Start MySQL

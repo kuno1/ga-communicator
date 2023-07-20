@@ -23,6 +23,6 @@ runs:
       shell: bash
 
     - name: Skip PHP Scoper
-      if: ${{ inputs.scoper }} != 'no'
+      if: inputs.scoper != 'yes'
       run: echo "Skipping Scoper"
       shell: bash
