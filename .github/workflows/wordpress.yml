@@ -18,7 +18,7 @@ jobs:
         php: [ '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
         tools: [ composer ]
-        scoper: [ true, false ]
+        scoper: [ 'yes', 'no' ]
     services:
       mysql:
         image: mysql:8.0
@@ -28,7 +28,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-    name: UnitTest WP ${{ matrix.wp }} in PHP ${{ matrix.php }} with PHP Scoper={{ $matrix.scoper }}
+    name: UnitTest WP ${{ matrix.wp }} in PHP ${{ matrix.php }} with PHP Scoper=${{ $matrix.scoper }}
     steps:
       - uses: actions/checkout@v3
 
@@ -52,7 +52,7 @@ jobs:
           scoper: ${{ matrix.scoper }}
 
       - name: Make Binaries Executionable
-        if: matrix.scoper
+        if: 'yes' == matrix.scoper
         run: chmod +x vendor-prefixed/vendor/bin/*
 
       - name: Start MySQL
@@ -64,11 +64,11 @@ jobs:
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
 
       - name: Run test suite with Vendor
-        if: true != matrix.scoper
+        if: 'no' == matrix.scoper
         run: composer test
 
       - name: Run test suite with PHP Scoper
-        if: matrix.scoper
+        if: 'yes' == matrix.scoper
         run: composer test:scoper
 
   lint:
