@@ -12,10 +12,9 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
         php: [ '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
         tools: [ composer ]
@@ -29,7 +28,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-    name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
+    name: UnitTest WP ${{ matrix.wp }} in PHP ${{ matrix.php }} with PHP Scoper={{ $matrix.scoper }}
     steps:
       - uses: actions/checkout@v3
 
@@ -64,8 +63,33 @@ jobs:
       - name: Install WordPress
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
 
-      - name: Run test suite
+      - name: Run test suite with Vendor
+        if: true != matrix.scoper
         run: composer test
+
+      - name: Run test suite with PHP Scoper
+        if: matrix.scoper
+        run: composer test:scoper
+
+  lint:
+    name: PHP Syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Check Lint
         run: composer lint
@@ -89,7 +113,7 @@ jobs:
 
   status-check:
     name: Status Check
-    needs: [ test, assets ]
+    needs: [ test, lint, assets ]
     runs-on: ubuntu-latest
     steps:
       - name: Display Status

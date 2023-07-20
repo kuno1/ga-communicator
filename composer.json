@@ -12,6 +12,7 @@
 	"minimum-stability": "stable",
 	"scripts": {
 		"test": "phpunit",
+		"test:scoper": "./vendor-prefixed/vendor/bin/phpunit",
 		"lint": "phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
 		"fix": "phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')",
 		"scoper": [
