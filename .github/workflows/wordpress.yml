@@ -64,11 +64,11 @@ jobs:
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
 
       - name: Run test suite with Vendor
-        if: 'no' == matrix.scoper
+        if: matrix.scoper == 'no'
         run: composer test
 
       - name: Run test suite with PHP Scoper
-        if: 'yes' == matrix.scoper
+        if: matrix.scoper == 'yes'
         run: composer test:scoper
 
   lint:
@@ -141,7 +141,7 @@ jobs:
       - uses: ./.github/actions/php-scoper
         name: Do PHP Scoper
         with:
-          scoper: true
+          scoper: 'yes'
 
       - name: Clean Unwanted files
         run: bash bin/clean.sh

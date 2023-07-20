@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Add Prefix
-      if: 'yes' == inputs.scoper
+      if: inputs.scoper == 'yes'
       shell: bash
       run: |
         composer global require humbug/php-scoper
@@ -18,7 +18,7 @@ runs:
         composer scoper-patch
 
     - name: Cleanup Vendor
-      if: 'yes' == inputs.scoper
+      if: inputs.scoper == 'yes'
       run: rm -rf vendor
       shell: bash
 
