@@ -38,6 +38,7 @@ class Settings extends Singleton {
 		'tag',
 		'extra',
 		'place',
+		'meta',
 		'body-open',
 	];
 
@@ -230,7 +231,7 @@ class Settings extends Singleton {
 				'description' => __( 'If you choose double tracking, specify which API to use.', 'ga-communicator' ),
 				'options'     => [
 					''   => __( 'Use Google Analytic 4', 'ga-communicator' ),
-					'ga' => __( 'Use Universal Analytics(will be deprecated)', 'ga-communicator' ),
+					'ga' => __( 'Use Universal Analytics(Deprecated)', 'ga-communicator' ),
 				],
 			],
 		] as $key => $setting ) {
@@ -276,35 +277,6 @@ class Settings extends Singleton {
 			);
 		}
 
-		// Register profiles,
-		$account_section = $this->slug . '-accounts';
-		add_settings_section( $account_section, __( 'Universal Analytics Account Setting', 'ga-communicator' ), function() {
-			printf( '<p class="description">%s</p>', esc_html__( 'If you set credentials, please choose Google Analytics account of your site. Account, property, and profile are required.', 'ga-communicator' ) );
-			printf(
-				'<p class="ga-error">%s</p>',
-				esc_html__( 'Notice: This API will be deprecated on June 2023. Please create new GA4 property.', 'ga-communicator' )
-			);
-		}, $this->slug );
-		foreach ( [
-			'ga-account'  => [
-				'label'       => __( 'Account', 'ga-communicator' ),
-				'description' => __( 'Google Analytics account.', 'ga-communicator' ),
-			],
-			'ga-property' => [
-				'label'       => __( 'Property', 'ga-communicator' ),
-				'description' => __( 'Google Analytics property like <code>UA-0000000-11</code>.', 'ga-communicator' ),
-			],
-			'ga-profile'  => [
-				'label'       => __( 'Profile', 'ga-communicator' ),
-				'description' => __( 'Profile formerly known as "View". e.g. All website data.', 'ga-communicator' ),
-			],
-		] as $key => $setting ) {
-			add_settings_field( $key, $setting['label'], [ $this, 'account_field' ], $this->slug, $account_section, [
-				'key'         => $key,
-				'description' => $setting['description'],
-			] );
-		}
-
 		// Render analytics tag.
 		$tag_section = $this->slug . 'tags';
 		add_settings_section( $tag_section, __( 'Analytics Tag', 'ga-communicator' ), function() {
@@ -313,7 +285,7 @@ class Settings extends Singleton {
 		$choices = [
 			''          => __( 'No Output', 'ga-communicator' ),
 			'gtag'      => 'gtag.js',
-			'universal' => 'Universal Analytics(ga.js)',
+			'universal' => 'Universal Analytics(Deprecated)',
 			'manual'    => __( 'Manual Code(for GTM)', 'ga-communicator' ),
 		];
 		add_settings_field( 'ga-tag', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
@@ -344,6 +316,7 @@ class Settings extends Singleton {
 				<?php
 			endif;
 		}, $this->slug, $tag_section );
+
 		// Additional scrips.
 		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function() use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'extra' );
@@ -354,11 +327,7 @@ class Settings extends Singleton {
 				<textarea id="ga-extra" readonly class="widefat"><?php echo esc_textarea( $predefined ); ?></textarea>
 				<p class="description"><?php esc_html_e( 'Extra scripts are defined programmatically.', 'ga-communicator' ); ?></p>
 			<?php else : ?>
-				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat">
-				<?php
-					echo esc_textarea( $value );
-				?>
-				</textarea>
+				<textarea id="ga-extra" name="ga-extra" rows="5" class="widefat"><?php echo esc_textarea( $value ); ?></textarea>
 			<?php endif; ?>
 			<?php
 			printf(
@@ -382,9 +351,6 @@ class Settings extends Singleton {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<div id="ga-dimensions">
-
-			</div>
 			<?php
 			foreach ( [
 				'gtag'      => "gtagConfig = { custom_map: { dimension1: 'post_id' }, post_id: %post_id% };",
@@ -393,6 +359,30 @@ class Settings extends Singleton {
 			] as $key => $example ) {
 				printf( '<pre style="display: none;" data-example="%s">%s</pre>', esc_attr( $key ), esc_html( $example ) );
 			};
+		}, $this->slug, $tag_section );
+
+		// Meta tags.
+		add_settings_field( 'ga-meta', __( 'Meta tags', 'ga-communicator' ), function() use ( $choices ) {
+			$predefined = $this->get_predefined_option( 'meta' );
+			$cur_value  = $this->get_option( 'meta', true );
+			?>
+			<textarea name="ga-meta" id="ga-meta" class="widefat" rows="5" placeholder="e.g. post_id, post_type, term"><?php echo esc_textarea( $cur_value ); ?></textarea>
+			<p class="description">
+				<?php
+				echo wp_kses_post( sprintf(
+					// translators: %s is link URL.
+					__( 'These tags are rendered as meta tags for Google Tag Manager. See <a href="%s" target="_blank" rel="noopener noreferrer">our wiki</a> for more details.', 'ga-communicator' ),
+					'https://github.com/kuno1/ga-communicator/wiki/meta%E3%82%BF%E3%82%B0%E3%81%B8%E3%81%AE%E5%87%BA%E5%8A%9B'
+				) );
+				?>
+			</p>
+			<?php if ( $predefined ) : ?>
+				<p class="description">
+					<?php esc_html_e( 'Meta tags are defined programmatically.', 'ga-communicator' ); ?>
+				</p>
+				<pre><?php esc_html( $predefined ); ?></pre>
+				<?php
+			endif;
 		}, $this->slug, $tag_section );
 
 		// Body open.

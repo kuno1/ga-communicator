@@ -1,6 +1,7 @@
 /*!
  * Custom dimensions.
  *
+ * @deprecated 3.6.0
  * @package ga-communicator
  * @handle ga-custom-dimensions
  * @deps wp-api-fetch, wp-element, wp-components, wp-i18n

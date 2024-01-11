@@ -3,7 +3,7 @@
 /*!
  * Package screen helper.
  *
- * @deps wp-api-fetch, jquery, wp-i18n, ga-custom-dimensions, ga-sandbox
+ * @deps wp-api-fetch, jquery, wp-i18n, ga-sandbox
  */
 
 const $ = jQuery;

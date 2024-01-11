@@ -9,6 +9,7 @@ use Kunoichi\GaCommunicator\Pattern\RestApiOptions;
  * Rest API.
  *
  * @package ga-communicator
+ * @deprecated 3.5.0
  */
 class Accounts extends RestApiOptions {
 
