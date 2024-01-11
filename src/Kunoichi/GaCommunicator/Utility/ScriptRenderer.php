@@ -149,7 +149,7 @@ class ScriptRenderer extends Singleton {
 		if ( ! empty( $meta_tags ) ) {
 			echo "\n<!-- ga-communicaotr meta-tags -->\n";
 			foreach ( $meta_tags as $key => $value ) {
-				printf( '<meta name="%s" contnet="%s" />' . "\n", $key, $value );
+				printf( '<meta name="%s" contnet="%s" />' . "\n", esc_attr( $key ), esc_attr( $value ) );
 			}
 		}
 	}
