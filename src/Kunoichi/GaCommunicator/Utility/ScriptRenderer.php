@@ -144,7 +144,7 @@ class ScriptRenderer extends Singleton {
 					try {
 						$meta_tags[ 'gacommunicator:' . $placeholder['name'] ] = $placeholder['callback']();
 					} catch ( \Exception $e ) {
-						error_log( 'Error while executing: ' .$e->getMessage() );
+						error_log( 'Error while executing: ' . $e->getMessage() );
 					}
 				}
 			}
