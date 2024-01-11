@@ -135,8 +135,8 @@ class ScriptRenderer extends Singleton {
 	 * @return void
 	 */
 	public function render_meta() {
-		$meta_keys = array_filter( array_map( 'trim', explode( ',', $this->setting->get_option( 'meta' ) ) ) );
-		$meta_tags = [];
+		$meta_keys     = array_filter( array_map( 'trim', explode( ',', $this->setting->get_option( 'meta' ) ) ) );
+		$meta_tags     = [];
 		$place_holders = $this->setting->placeholder->get();
 		foreach ( $place_holders as $placeholder ) {
 			if ( in_array( $placeholder['name'], $meta_keys, true ) ) {

@@ -370,8 +370,9 @@ class Settings extends Singleton {
 			<p class="description">
 				<?php
 				echo wp_kses_post( sprintf(
+					// translators: %s is link URL.
 					__( 'These tags are rendered as meta tags for Google Tag Manager. See <a href="%s" target="_blank" rel="noopener noreferrer">our wiki</a> for more details.', 'ga-communicator' ),
-				'https://github.com/kuno1/ga-communicator/wiki/meta%E3%82%BF%E3%82%B0%E3%81%B8%E3%81%AE%E5%87%BA%E5%8A%9B'
+					'https://github.com/kuno1/ga-communicator/wiki/meta%E3%82%BF%E3%82%B0%E3%81%B8%E3%81%AE%E5%87%BA%E5%8A%9B'
 				) );
 				?>
 			</p>
@@ -396,7 +397,7 @@ class Settings extends Singleton {
 					<?php esc_html_e( 'Tag place to be output is defined programmatically.', 'ga-communicator' ); ?>
 				</p>
 				<pre><?php esc_html( $predefined ); ?></pre>
-			<?php
+				<?php
 			endif;
 		}, $this->slug, $tag_section );
 
