@@ -6,6 +6,7 @@ namespace Kunoichi\GaCommunicator\Api;
  * Accounts api.
  *
  * @package ga-communicator
+ * @deprecated 3.5.0
  */
 class Properties extends Accounts {
 

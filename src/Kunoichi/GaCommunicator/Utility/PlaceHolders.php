@@ -137,7 +137,7 @@ class PlaceHolders extends Singleton {
 	 * Sandbox content.
 	 */
 	public function sandbox() {
-		return json_encode( GaCommunicator::get_instance()->default_json(), JSON_PRETTY_PRINT );
+		return json_encode( GaCommunicator::get_instance()->ga4_default_json(), JSON_PRETTY_PRINT );
 	}
 
 	/**

@@ -23,6 +23,11 @@ class ScriptRenderer extends Singleton {
 		add_action( 'wp_head', [ $this, 'render' ], $priority );
 		add_action( 'admin_head', [ $this, 'admin_render' ], $priority );
 		add_action( 'login_head', [ $this, 'login_render' ], $priority );
+		// Meta tags.
+		$meta_priority = (int) apply_filters( 'ga_communicator_meta_priority', 1 );
+		add_action( 'wp_head', [ $this, 'render_meta' ], $meta_priority );
+		add_action( 'admin_head', [ $this, 'render_meta' ], $meta_priority );
+		add_action( 'login_head', [ $this, 'render_meta' ], $meta_priority );
 		// Body open.
 		add_action( 'wp_body_open', [ $this, 'body_open' ], 1 );
 		add_action( 'in_admin_header', [ $this, 'admin_body_open' ], 1 );
@@ -120,6 +125,32 @@ class ScriptRenderer extends Singleton {
 	public function login_body_open() {
 		if ( in_array( 'login', $this->get_places(), true ) ) {
 			$this->body_open();
+		}
+	}
+
+	/**
+	 * Render mea tag.
+	 *
+	 * @since 3.6.0
+	 * @return void
+	 */
+	public function render_meta() {
+		$meta_keys = array_filter( array_map( 'trim', explode( ',', $this->setting->get_option( 'meta' ) ) ) );
+		$meta_tags = [];
+		$place_holders = $this->setting->placeholder->get();
+		foreach ( $place_holders as $placeholder ) {
+			if ( in_array( $placeholder['name'], $meta_keys, true ) ) {
+				if ( isset( $placeholder['callback'] ) && is_callable( $placeholder['callback'] ) ) {
+					$meta_tags[ 'gacommunicator:' . $placeholder['name'] ] = $placeholder['callback']();
+				}
+			}
+		}
+		$meta_tags = apply_filters( 'ga_communicator_meta_tags', $meta_tags );
+		if ( ! empty( $meta_tags ) ) {
+			echo "\n<!-- ga-communicaotr meta-tags -->\n";
+			foreach ( $meta_tags as $key => $value ) {
+				printf( '<meta name="%s" contnet="%s" />' . "\n", $key, $value );
+			}
 		}
 	}
 

@@ -7,6 +7,7 @@ namespace Kunoichi\GaCommunicator\Api;
  * Profiles list.
  *
  * @package ga-communicator
+ * @deprecated 3.5.0
  */
 class Profiles extends Properties {
 
