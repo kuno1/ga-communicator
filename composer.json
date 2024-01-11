@@ -21,8 +21,7 @@
 			"@scoper-patch"
 		],
 		"scoper-patch": [
-			"php bin/patcher.php",
-			"chmod +x vendor-prefixed/vendor/bin/*"
+			"php bin/patcher.php"
 		],
 		"prefix": [
 			"composer install --no-dev",
