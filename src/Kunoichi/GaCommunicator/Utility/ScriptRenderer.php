@@ -141,7 +141,11 @@ class ScriptRenderer extends Singleton {
 		foreach ( $place_holders as $placeholder ) {
 			if ( in_array( $placeholder['name'], $meta_keys, true ) ) {
 				if ( isset( $placeholder['callback'] ) && is_callable( $placeholder['callback'] ) ) {
-					$meta_tags[ 'gacommunicator:' . $placeholder['name'] ] = $placeholder['callback']();
+					try {
+						$meta_tags[ 'gacommunicator:' . $placeholder['name'] ] = $placeholder['callback']();
+					} catch ( \Exception $e ) {
+						error_log( 'Error while executing: ' .$e->getMessage() );
+					}
 				}
 			}
 		}
@@ -149,7 +153,7 @@ class ScriptRenderer extends Singleton {
 		if ( ! empty( $meta_tags ) ) {
 			echo "\n<!-- ga-communicaotr meta-tags -->\n";
 			foreach ( $meta_tags as $key => $value ) {
-				printf( '<meta name="%s" contnet="%s" />' . "\n", esc_attr( $key ), esc_attr( $value ) );
+				printf( '<meta name="%s" content="%s" />' . "\n", esc_attr( $key ), esc_attr( $value ) );
 			}
 		}
 	}
