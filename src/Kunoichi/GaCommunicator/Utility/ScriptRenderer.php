@@ -148,6 +148,20 @@ class ScriptRenderer extends Singleton {
 					}
 				}
 			}
+			// Detect placeholder with parameter.
+			$matched_keys = preg_grep( '/' . preg_quote( $placeholder['name'] ) . ':/', $meta_keys );
+			if ( ! empty( $matched_keys ) ) {
+				foreach ( $matched_keys as $matched_key ) {
+					list( $placeholder_key, $parameter ) = explode( ':', $matched_key, 2 );
+					if ( isset( $placeholder['callback'] ) && is_callable( $placeholder['callback'] ) ) {
+						try {
+							$meta_tags[ 'gacommunicator:' . $placeholder['name'] . ':' . $parameter ] = $placeholder['callback']( $parameter );
+						} catch ( \Exception $e ) {
+							error_log( 'Error while executing: ' . $e->getMessage() );
+						}
+					}
+				}
+			}
 		}
 		$meta_tags = apply_filters( 'ga_communicator_meta_tags', $meta_tags );
 		if ( ! empty( $meta_tags ) ) {

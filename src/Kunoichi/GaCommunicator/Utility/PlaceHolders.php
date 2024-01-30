@@ -37,6 +37,14 @@ class PlaceHolders extends Singleton {
 				},
 			],
 			[
+				'name'        => 'post_date',
+				'type'        => 'string',
+				'description' => __( 'Single post date. If page is not singular, always empty string.', 'ga-communicator' ),
+				'callback'    => function ( $format = 'Y-m-d H:i:s' ) {
+					return is_singular() ? mysql2date( $format, get_queried_object()->post_date ) : '';
+				},
+			],
+			[
 				'name'        => 'blog_id',
 				'type'        => 'int',
 				'description' => __( 'Blog ID.', 'ga-communicator' ),
@@ -129,6 +137,13 @@ class PlaceHolders extends Singleton {
 	public function replace( $tag ) {
 		foreach ( $this->place_holders as $place_holder ) {
 			$tag = str_replace( "%{$place_holder['name']}%", $place_holder['callback'](), $tag );
+			// Detect placeholder with parameter.
+			if ( preg_match_all( "/%{$place_holder['name']}:(.*)%/", $tag, $matches ) ) {
+				foreach ( $matches[0] as $matched_key ) {
+					list( $placeholder_key, $parameter ) = explode( ':', str_replace( '%', '', $matched_key ), 2 );
+					$tag                                 = str_replace( $matched_key, $place_holder['callback']( $parameter ), $tag );
+				}
+			}
 		}
 		return $tag;
 	}
