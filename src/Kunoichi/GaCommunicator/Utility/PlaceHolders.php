@@ -45,6 +45,14 @@ class PlaceHolders extends Singleton {
 				},
 			],
 			[
+				'name'        => 'post_title_count',
+				'type'        => 'int',
+				'description' => __( 'Character count of single post title. If page is not singular, always 0.', 'ga-communicator' ),
+				'callback'    => function () {
+					return is_singular() ? mb_strlen( get_queried_object()->post_title ) : 0;
+				},
+			],
+			[
 				'name'        => 'blog_id',
 				'type'        => 'int',
 				'description' => __( 'Blog ID.', 'ga-communicator' ),
