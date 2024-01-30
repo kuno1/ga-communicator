@@ -39,7 +39,7 @@ class PlaceHolders extends Singleton {
 			[
 				'name'        => 'post_date',
 				'type'        => 'string',
-				'description' => __( 'Single post date. If page is not singular, always empty string.', 'ga-communicator' ),
+				'description' => __( 'Single post date. If page is not singular, always empty string. You can also specify the format like <code>%post_date:Y-m-d%</code>.', 'ga-communicator' ),
 				'callback'    => function ( $format = 'Y-m-d H:i:s' ) {
 					return is_singular() ? mysql2date( $format, get_queried_object()->post_date ) : '';
 				},
