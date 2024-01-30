@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Analytics Communicator\n"
-"POT-Creation-Date: 2024-01-11 16:35+0900\n"
+"POT-Creation-Date: 2024-01-30 14:00+0900\n"
 "PO-Revision-Date: 2020-06-12 13:57+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: ga-communicator.php\n"
@@ -24,6 +24,10 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 "X-Poedit-SearchPathExcluded-3: wp\n"
 "X-Poedit-SearchPathExcluded-4: tests\n"
+
+#: assets/js/ga-custom-dimensions.js:52
+msgid "Registered Dimension"
+msgstr ""
 
 #: ga-communicator.php:50
 msgid "Composer file is missing. Please run composer install."
@@ -45,6 +49,7 @@ msgstr ""
 msgid "data attributes must be valid JSON format."
 msgstr ""
 
+#. translators: %1$s is account, %2$s property.
 #: src/Kunoichi/GaCommunicator/Api/Dimensions.php:49
 #, php-format
 msgid "Account and Property is required. (%1$s/%2$s)"
@@ -69,6 +74,7 @@ msgstr ""
 msgid "No results found."
 msgstr ""
 
+#. translators: %s is property id.
 #: src/Kunoichi/GaCommunicator/Command.php:62
 #, php-format
 msgid "Getting web properties of %s..."
@@ -98,12 +104,13 @@ msgstr ""
 msgid "Sandbox"
 msgstr ""
 
+#. translators: %s is document url.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:124
 #, php-format
 msgid ""
-"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" "
-"rel=\"noopener noreferrer\">the documentation</a> and confirm what you get "
-"with your JSON. WP-CLI is also helpful."
+"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener noreferrer\">the documentation</a> and confirm what you get with "
+"your JSON. WP-CLI is also helpful."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:127
@@ -138,12 +145,13 @@ msgstr ""
 msgid "Service account is defined programmatically."
 msgstr ""
 
+#. translators: %s is URL.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:199
 #, php-format
 msgid ""
 "You can get a service account key in JSON format from Google API Library. "
-"For more detail, please check the <a href=\"%s\" target=\"_blank\" "
-"rel=\"noopener,noreferrer\">document</a>."
+"For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener,noreferrer\">document</a>."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:208
@@ -266,12 +274,13 @@ msgstr ""
 msgid "Meta tags"
 msgstr ""
 
+#. translators: %s is link URL.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:374
 #, php-format
 msgid ""
-"These tags are rendered as meta tags for Google Tag Manager. See <a "
-"href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">our wiki</a> for "
-"more details."
+"These tags are rendered as meta tags for Google Tag Manager. See <a href="
+"\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">our wiki</a> for more "
+"details."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:381
@@ -349,24 +358,40 @@ msgid "Post type in singular page."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:42
-msgid "Blog ID."
+msgid ""
+"Single post date. If page is not singular, always empty string. You can "
+"also specify the format like <code>%post_date:Y-m-d%</code>."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:50
-msgid "If current page is a singular post, return author ID. Else, always 0."
+msgid ""
+"Character count of single post title. If page is not singular, always 0."
 msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:58
+msgid ""
+"Character count of single post content. If page is not singular, always 0."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:66
+msgid "Blog ID."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:74
+msgid "If current page is a singular post, return author ID. Else, always 0."
+msgstr ""
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:82
 msgid ""
 "On single page, returns CSV value for all assigned terms in any taxonomy "
 "like <code>_11_,20_,_30_</code>. Else, always empty string."
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:80
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:104
 msgid "On taxonomy archive page, returns term ID. Else, always 0"
 msgstr ""
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:92
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:116
 msgid "On taxonomy archive page, returns taxonomy name. Else, always empty."
 msgstr ""
 
@@ -438,14 +463,6 @@ msgstr ""
 
 #: src/Kunoichi/GaCommunicator/Widgets/PopularPosts.php:155
 msgid "Default"
-msgstr ""
-
-#: assets/js/ga-custom-dimensions.js:52
-msgid "Registered Dimension"
-msgstr ""
-
-#: assets/js/ga-custom-dimensions.js:62
-msgid "Scope"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
