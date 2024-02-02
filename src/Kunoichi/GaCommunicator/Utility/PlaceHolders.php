@@ -128,7 +128,9 @@ class PlaceHolders extends Singleton {
 	 */
 	public function replace( $tag ) {
 		foreach ( $this->place_holders as $place_holder ) {
-			$tag = str_replace( "%{$place_holder['name']}%", $place_holder['callback'](), $tag );
+			if ( false !== strpos( $tag, "%{$place_holder['name']}%" ) ) {
+				$tag = str_replace( "%{$place_holder['name']}%", $place_holder['callback'](), $tag );
+			}
 		}
 		return $tag;
 	}
