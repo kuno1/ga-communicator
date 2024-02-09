@@ -37,6 +37,30 @@ class PlaceHolders extends Singleton {
 				},
 			],
 			[
+				'name'        => 'post_date',
+				'type'        => 'string',
+				'description' => __( 'Single post date. If page is not singular, always empty string. You can also specify the format like <code>%post_date:Y-m-d%</code>.', 'ga-communicator' ),
+				'callback'    => function ( $format = 'Y-m-d H:i:s' ) {
+					return is_singular() ? mysql2date( $format, get_queried_object()->post_date ) : '';
+				},
+			],
+			[
+				'name'        => 'post_title_count',
+				'type'        => 'int',
+				'description' => __( 'Character count of single post title. If page is not singular, always 0.', 'ga-communicator' ),
+				'callback'    => function () {
+					return is_singular() ? mb_strlen( get_queried_object()->post_title ) : 0;
+				},
+			],
+			[
+				'name'        => 'post_content_count',
+				'type'        => 'int',
+				'description' => __( 'Character count of single post content. If page is not singular, always 0.', 'ga-communicator' ),
+				'callback'    => function () {
+					return is_singular() ? mb_strlen( str_replace( [ "\n", "\r" ], '', get_the_content() ) ) : 0;
+				},
+			],
+			[
 				'name'        => 'blog_id',
 				'type'        => 'int',
 				'description' => __( 'Blog ID.', 'ga-communicator' ),
@@ -129,6 +153,13 @@ class PlaceHolders extends Singleton {
 	public function replace( $tag ) {
 		foreach ( $this->place_holders as $place_holder ) {
 			$tag = str_replace( "%{$place_holder['name']}%", $place_holder['callback'](), $tag );
+			// Detect placeholder with parameter.
+			if ( preg_match_all( "/%{$place_holder['name']}:(.*)%/", $tag, $matches ) ) {
+				foreach ( $matches[0] as $matched_key ) {
+					list( $placeholder_key, $parameter ) = explode( ':', str_replace( '%', '', $matched_key ), 2 );
+					$tag                                 = str_replace( $matched_key, $place_holder['callback']( $parameter ), $tag );
+				}
+			}
 		}
 		return $tag;
 	}

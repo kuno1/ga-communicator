@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-01-11 16:35+0900\n"
-"PO-Revision-Date: 2024-01-11 16:38+0900\n"
+"POT-Creation-Date: 2024-01-30 14:00+0900\n"
+"PO-Revision-Date: 2024-01-30 14:02+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -10,8 +10,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: .\n"
+
+#: assets/js/ga-custom-dimensions.js:52
+msgid "Registered Dimension"
+msgstr "登録済みディメンション"
 
 #: ga-communicator.php:50
 msgid "Composer file is missing. Please run composer install."
@@ -37,6 +41,7 @@ msgstr ""
 msgid "data attributes must be valid JSON format."
 msgstr "data属性は有効なJSON形式である必要があります。"
 
+#. translators: %1$s is account, %2$s property.
 #: src/Kunoichi/GaCommunicator/Api/Dimensions.php:49
 #, php-format
 msgid "Account and Property is required. (%1$s/%2$s)"
@@ -63,6 +68,7 @@ msgstr ""
 msgid "No results found."
 msgstr "結果が見つかりませんでした。"
 
+#. translators: %s is property id.
 #: src/Kunoichi/GaCommunicator/Command.php:62
 #, php-format
 msgid "Getting web properties of %s..."
@@ -92,16 +98,17 @@ msgstr "設定"
 msgid "Sandbox"
 msgstr "﻿サンドボックス"
 
+#. translators: %s is document url.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:124
 #, php-format
 msgid ""
-"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" "
-"rel=\"noopener noreferrer\">the documentation</a> and confirm what you get "
-"with your JSON. WP-CLI is also helpful."
+"Try to interact GA data. Check <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener noreferrer\">the documentation</a> and confirm what you get with "
+"your JSON. WP-CLI is also helpful."
 msgstr ""
-"GAとデータをやり取りしてみてください。<a href=\"%s\" target=\"_blank\" "
-"rel=\"noopener noreferrer\">ドキュメント</a>を参照し、JSONで取得できるデータ"
-"を確認しましょう。WP-CLIも利用できます。"
+"GAとデータをやり取りしてみてください。<a href=\"%s\" target=\"_blank\" rel="
+"\"noopener noreferrer\">ドキュメント</a>を参照し、JSONで取得できるデータを確"
+"認しましょう。WP-CLIも利用できます。"
 
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:127
 msgid "JSON to API"
@@ -135,12 +142,13 @@ msgstr "サービスアカウントキー"
 msgid "Service account is defined programmatically."
 msgstr "サービスアカウントはプログラムで定義済みです。"
 
+#. translators: %s is URL.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:199
 #, php-format
 msgid ""
 "You can get a service account key in JSON format from Google API Library. "
-"For more detail, please check the <a href=\"%s\" target=\"_blank\" "
-"rel=\"noopener,noreferrer\">document</a>."
+"For more detail, please check the <a href=\"%s\" target=\"_blank\" rel="
+"\"noopener,noreferrer\">document</a>."
 msgstr ""
 "Google APIライブラリのJSON形式サービスアカウントキー。詳細は<a href=\"%s\" "
 "target=\"_blank\" rel=\"noopener,noreferrer\">ドキュメント</a>をチェックして"
@@ -270,12 +278,13 @@ msgstr "置換結果"
 msgid "Meta tags"
 msgstr "metaタグ"
 
+#. translators: %s is link URL.
 #: src/Kunoichi/GaCommunicator/Screen/Settings.php:374
 #, php-format
 msgid ""
-"These tags are rendered as meta tags for Google Tag Manager. See <a "
-"href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">our wiki</a> for "
-"more details."
+"These tags are rendered as meta tags for Google Tag Manager. See <a href=\"%s"
+"\" target=\"_blank\" rel=\"noopener noreferrer\">our wiki</a> for more "
+"details."
 msgstr ""
 "これらのタグはmetaタグとしてGoogle タグマネージャー用に出力されます。詳細は "
 "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Wiki</a> をご覧"
@@ -356,15 +365,34 @@ msgid "Post type in singular page."
 msgstr "シングルページの投稿タイプ。"
 
 #: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:42
+msgid ""
+"Single post date. If page is not singular, always empty string. You can also "
+"specify the format like <code>%post_date:Y-m-d%</code>."
+msgstr ""
+"投稿の投稿日時。もしページがシングルページでなければ、空文字になります。"
+"<code>%post_date:Y-m-d%</code> のように形式を指定することもできます。"
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:50
+msgid ""
+"Character count of single post title. If page is not singular, always 0."
+msgstr ""
+"投稿のタイトル文字数。もしページがシングルページでなければ、0になります。"
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:58
+msgid ""
+"Character count of single post content. If page is not singular, always 0."
+msgstr "投稿の本文文字数。もしページがシングルページでなければ、0になります。"
+
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:66
 msgid "Blog ID."
 msgstr "ブログID。"
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:50
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:74
 msgid "If current page is a singular post, return author ID. Else, always 0."
 msgstr ""
 "現在のページが記事ページなら投稿者IDを返します。それ以外は0になります。"
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:58
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:82
 msgid ""
 "On single page, returns CSV value for all assigned terms in any taxonomy "
 "like <code>_11_,20_,_30_</code>. Else, always empty string."
@@ -373,12 +401,12 @@ msgstr ""
 "をCSV形式 <code>_11_,20_,_30_</code>で表示します。その他の場合は空文字になり"
 "ます。"
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:80
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:104
 msgid "On taxonomy archive page, returns term ID. Else, always 0"
 msgstr ""
 "タクソノミーアーカイブの場合はタームIDを返します。それ以外では0になります。"
 
-#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:92
+#: src/Kunoichi/GaCommunicator/Utility/PlaceHolders.php:116
 msgid "On taxonomy archive page, returns taxonomy name. Else, always empty."
 msgstr ""
 "タクソノミーアーカイブの場合はタクソノミー名を返します。それ以外では空文字に"
@@ -458,14 +486,6 @@ msgstr "これは上記の相対的な日時設定を上書きします。"
 msgid "Default"
 msgstr "デフォルト"
 
-#: assets/js/ga-custom-dimensions.js:52
-msgid "Registered Dimension"
-msgstr "登録済みディメンション"
-
-#: assets/js/ga-custom-dimensions.js:62
-msgid "Scope"
-msgstr "スコープ"
-
 #. Plugin Name of the plugin/theme
 msgid "Google Analytics Communicator"
 msgstr "Google アナリティクス　コミュニケーター"
@@ -485,6 +505,9 @@ msgstr "株式会社 KUNOICHI"
 #. Author URI of the plugin/theme
 msgid "https://kunoichiwp.com"
 msgstr "https://kunoichiwp.com"
+
+#~ msgid "Scope"
+#~ msgstr "スコープ"
 
 #~ msgid "Universal Analytics Account Setting"
 #~ msgstr "ユニバーサル・アナリティクス・アカウント設定"
@@ -1475,8 +1498,8 @@ msgstr "https://kunoichiwp.com"
 #, fuzzy
 #~ msgid "rel:"
 #~ msgstr ""
-#~ "スレッドを開始するには、 <a class=\"alert-link\" rel=\"nofollow\" "
-#~ "href=\"%s\">ログイン</a>してください。"
+#~ "スレッドを開始するには、 <a class=\"alert-link\" rel=\"nofollow\" href="
+#~ "\"%s\">ログイン</a>してください。"
 
 #, fuzzy
 #~ msgid "identity"
@@ -1858,8 +1881,8 @@ msgstr "https://kunoichiwp.com"
 #, fuzzy
 #~ msgid "Blank"
 #~ msgstr ""
-#~ "お探しの条件に合うものはありませんでした。<br />条件を変更するか、<a "
-#~ "href=\"%s\" target=\"_blank\">新規作成</a>してください。"
+#~ "お探しの条件に合うものはありませんでした。<br />条件を変更するか、<a href="
+#~ "\"%s\" target=\"_blank\">新規作成</a>してください。"
 
 #, fuzzy
 #~ msgid "Membership"
