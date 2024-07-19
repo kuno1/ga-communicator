@@ -26,14 +26,14 @@ if ( is_multisite() && in_array( __FILE__, wp_get_active_network_plugins(), true
 }
 
 // Initialize plugin.
-add_action( 'plugins_loaded', function() {
+add_action( 'plugins_loaded', function () {
 	// Add i18n
 	load_plugin_textdomain( 'ga-communicator', false, basename( __DIR__ ) . '/languages' );
 	// Load composer.
 	if ( file_exists( __DIR__ . '/vendor-prefixed/vendor/scoper-autoload.php' ) ) {
 		require_once __DIR__ . '/vendor-prefixed/vendor/scoper-autoload.php';
 		// Needs original autoloader.
-		spl_autoload_register( function( $class_name ) {
+		spl_autoload_register( function ( $class_name ) {
 			$class_name = ltrim( $class_name, '\\' );
 			$prefix     = 'Kunoichi\\GaCommunicator';
 			if ( 0 !== strpos( $class_name, $prefix ) ) {
@@ -54,7 +54,7 @@ add_action( 'plugins_loaded', function() {
 } );
 
 // Register Widgets.
-add_action( 'widgets_init', function() {
+add_action( 'widgets_init', function () {
 	register_widget( \Kunoichi\GaCommunicator\Widgets\PopularPosts::class );
 } );
 

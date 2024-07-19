@@ -20,5 +20,4 @@ trait GaClientHolder {
 	public function ga() {
 		return GaCommunicator::get_instance();
 	}
-
 }

@@ -28,7 +28,7 @@ class GaCommunicator extends Singleton {
 	 * @return string
 	 */
 	public function base_dir() {
-		$base_dir = dirname( dirname( __DIR__ ) );
+		$base_dir = dirname( __DIR__, 2 );
 		if ( 'vendor-prefixed' === basename( $base_dir ) ) {
 			$base_dir = dirname( $base_dir );
 		}
@@ -158,7 +158,7 @@ class GaCommunicator extends Singleton {
 			$more = 0;
 			foreach ( $post_ids as $p ) {
 				if ( $post['pv'] < $p['pv'] ) {
-					$more++;
+					++$more;
 				}
 			}
 			$post['rank'] = $more + 1;
@@ -238,5 +238,4 @@ class GaCommunicator extends Singleton {
 			}
 		}
 	}
-
 }

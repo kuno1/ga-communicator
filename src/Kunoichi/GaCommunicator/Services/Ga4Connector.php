@@ -119,7 +119,7 @@ trait Ga4Connector {
 					'dimensionValues' => 'dimensions',
 					'metricValues'    => 'metrics',
 				] as $key => $label ) {
-					$parsed[ $label ] = array_map( function( $v ) {
+					$parsed[ $label ] = array_map( function ( $v ) {
 						return $v['value'];
 					}, $row[ $key ] );
 				}
@@ -208,5 +208,39 @@ trait Ga4Connector {
 			],
 		];
 		return apply_filters( 'ga_communicator_ga4_popular_posts_args', $args, $conditions );
+	}
+
+	/**
+	 * Send post request to GA4 Measurement Protocol.
+	 *
+	 * @param array $payload An associative array of data to send to Google Analytics.
+	 * @param bool  $test    If true, send request to test server.
+	 * @see https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference?hl=ja&client_type=gtag
+	 *
+	 * @return void|\WP_Error
+	 */
+	public function ga4_measurement_protocol( $payload = [], $test = false ) {
+		$measurement_id = $this->setting->get_option( 'ga4-tracking-id' );
+		$api_secret     = $this->setting->get_option( 'ga4-api-secret' );
+		if ( ! $measurement_id || ! $api_secret ) {
+			return new \WP_Error( 'ga4_bad_credentials', __( 'Credentials are not set.', 'ga-communicator' ), [
+				'status' => 400,
+			] );
+		}
+		$endpoint = add_query_arg( [
+			'measurement_id' => $measurement_id,
+			'api_secret'     => $api_secret,
+		], sprintf( 'https://www.google-analytics.com/%smp/collect', ( $test ? 'debug/' : '' ) ) );
+		$response = wp_remote_post( $endpoint, [
+			'headers'     => [
+				'Content-Type' => 'application/json; charset=utf-8',
+			],
+			'body'        => json_encode( $payload ),
+			'data_format' => 'body',
+		] );
+		if ( is_wp_error( $response ) ) {
+			return $response;
+		}
+		return json_decode( $response['body'], true );
 	}
 }

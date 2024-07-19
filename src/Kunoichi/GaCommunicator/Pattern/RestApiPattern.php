@@ -43,7 +43,7 @@ abstract class RestApiPattern extends Singleton {
 			return;
 		}
 		// Register REST API.
-		register_rest_route( $this->namespace, $this->route(), array_map( function( $method ) {
+		register_rest_route( $this->namespace, $this->route(), array_map( function ( $method ) {
 			return [
 				'methods'             => $method,
 				'args'                => $this->get_args( $method ),

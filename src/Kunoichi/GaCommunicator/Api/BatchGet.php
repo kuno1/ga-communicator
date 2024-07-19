@@ -41,8 +41,8 @@ class BatchGet extends RestApiOptions {
 			'data' => [
 				'required'          => true,
 				'type'              => 'string',
-				'validate_callback' => function( $var ) {
-					return (bool) json_decode( $var, true ) ? true : new \WP_Error( 'ga_rest_api_error', __( 'data attributes must be valid JSON format.', 'ga-communicator' ), [
+				'validate_callback' => function ( $arg ) {
+					return (bool) json_decode( $arg, true ) ? true : new \WP_Error( 'ga_rest_api_error', __( 'data attributes must be valid JSON format.', 'ga-communicator' ), [
 						'status' => 400,
 					] );
 				},

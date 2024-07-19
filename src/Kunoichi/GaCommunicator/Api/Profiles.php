@@ -27,8 +27,8 @@ class Profiles extends Properties {
 				'required'          => true,
 				'type'              => 'string',
 				'description'       => 'Web property ID',
-				'validate_callback' => function( $var ) {
-					return ! empty( $var );
+				'validate_callback' => function ( $arg ) {
+					return ! empty( $arg );
 				},
 			],
 		] );
