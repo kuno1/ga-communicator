@@ -42,7 +42,7 @@ class Command extends \WP_CLI_Command {
 		}
 		$table = new Table();
 		$table->setHeaders( [ 'ID', 'Name', 'Created' ] );
-		$table->setRows( array_map( function( $account ) {
+		$table->setRows( array_map( function ( $account ) {
 			return [ $account['id'], $account['name'], $account['created'] ];
 		}, $accounts ) );
 		$table->display();
@@ -72,7 +72,7 @@ class Command extends \WP_CLI_Command {
 		}
 		$table = new Table();
 		$table->setHeaders( [ 'ID', 'Name', 'URL', 'Created' ] );
-		$table->setRows( array_map( function( $property ) {
+		$table->setRows( array_map( function ( $property ) {
 			return [ $property['id'], $property['name'], $property['websiteUrl'], $property['created'] ];
 		}, $properties ) );
 		$table->display();
@@ -97,7 +97,7 @@ class Command extends \WP_CLI_Command {
 		}
 		$table = new Table();
 		$table->setHeaders( [ 'ID', 'Name', 'URL', 'Created' ] );
-		$table->setRows( array_map( function( $profile ) {
+		$table->setRows( array_map( function ( $profile ) {
 			return [ $profile['id'], $profile['name'], $profile['websiteUrl'], $profile['created'] ];
 		}, $profiles ) );
 		$table->display();
@@ -281,7 +281,7 @@ class Command extends \WP_CLI_Command {
 	 */
 	public function measurement_protocol( $args = [], $assoc = [] ) {
 		list( $event ) = $args;
-		$payload = [
+		$payload       = [
 			'client_id' => '12345.67890',
 			'events'    => [
 				[
@@ -289,8 +289,8 @@ class Command extends \WP_CLI_Command {
 				],
 			],
 		];
-		$is_test = $assoc['dry-run'] ?? false;
-		$response = GaCommunicator::get_instance()->ga4_measurement_protocol( $payload, $is_test );
+		$is_test       = $assoc['dry-run'] ?? false;
+		$response      = GaCommunicator::get_instance()->ga4_measurement_protocol( $payload, $is_test );
 		if ( is_wp_error( $response ) ) {
 			\WP_CLI::error( $response->get_error_message() );
 		}

@@ -119,7 +119,7 @@ trait Ga4Connector {
 					'dimensionValues' => 'dimensions',
 					'metricValues'    => 'metrics',
 				] as $key => $label ) {
-					$parsed[ $label ] = array_map( function( $v ) {
+					$parsed[ $label ] = array_map( function ( $v ) {
 						return $v['value'];
 					}, $row[ $key ] );
 				}
@@ -227,13 +227,13 @@ trait Ga4Connector {
 				'status' => 400,
 			] );
 		}
-		$endpoint= add_query_arg( [
+		$endpoint = add_query_arg( [
 			'measurement_id' => $measurement_id,
 			'api_secret'     => $api_secret,
 		], sprintf( 'https://www.google-analytics.com/%smp/collect', ( $test ? 'debug/' : '' ) ) );
 		$response = wp_remote_post( $endpoint, [
 			'headers'     => [
-				'Content-Type' => 'application/json; charset=utf-8'
+				'Content-Type' => 'application/json; charset=utf-8',
 			],
 			'body'        => json_encode( $payload ),
 			'data_format' => 'body',

@@ -180,10 +180,10 @@ class Settings extends Singleton {
 	public function register_setting_fields() {
 		// Register credential section.
 		$cred_section = $this->slug . '-credentials';
-		add_settings_section( $cred_section, __( 'Credentials', 'ga-communicator' ), function() {
+		add_settings_section( $cred_section, __( 'Credentials', 'ga-communicator' ), function () {
 			printf( '<p class="description">%s</p>', esc_html__( 'Please enter Google Analytics Credentials.', 'ga-communicator' ) );
 		}, $this->slug );
-		add_settings_field( 'ga-service-key', __( 'Service Account Key', 'ga-communicator' ), function() {
+		add_settings_field( 'ga-service-key', __( 'Service Account Key', 'ga-communicator' ), function () {
 			$predefined = $this->predefined_key();
 			if ( $predefined ) :
 				?>
@@ -206,7 +206,7 @@ class Settings extends Singleton {
 
 		// Register GA4 property,
 		$ga4_account_section = $this->slug . '-ga4-accounts';
-		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function() {
+		add_settings_section( $ga4_account_section, __( 'GA4 Account Setting', 'ga-communicator' ), function () {
 		}, $this->slug );
 		foreach ( [
 			'ga-ga4-property'      => [
@@ -235,7 +235,7 @@ class Settings extends Singleton {
 					'ga' => __( 'Use Universal Analytics(Deprecated)', 'ga-communicator' ),
 				],
 			],
-			'ga-ga4-api-secret' => [
+			'ga-ga4-api-secret'    => [
 				'label'       => __( 'API Secret', 'ga-communicator' ),
 				'description' => __( 'API Secret for measurement protocol. Go to Setting > Data Stream > Measurement Protocol API Secret.', 'ga-communicator' ),
 				'options'     => [],
@@ -244,7 +244,7 @@ class Settings extends Singleton {
 			add_settings_field(
 				$key,
 				$setting['label'],
-				function( $args ) {
+				function ( $args ) {
 					$option_key = str_replace( 'ga-', '', $args['key'] );
 					$value      = $this->get_option( $option_key, true );
 					if ( ! empty( $args['options'] ) ) {
@@ -285,7 +285,7 @@ class Settings extends Singleton {
 
 		// Render analytics tag.
 		$tag_section = $this->slug . 'tags';
-		add_settings_section( $tag_section, __( 'Analytics Tag', 'ga-communicator' ), function() {
+		add_settings_section( $tag_section, __( 'Analytics Tag', 'ga-communicator' ), function () {
 			printf( '<p class="description">%s</p>', esc_html__( 'Select analytics tag to render. If you user other plugins like Yoast, leave empty.', 'ga-communicator' ) );
 		}, $this->slug );
 		$choices = [
@@ -294,7 +294,7 @@ class Settings extends Singleton {
 			'universal' => 'Universal Analytics(Deprecated)',
 			'manual'    => __( 'Manual Code(for GTM)', 'ga-communicator' ),
 		];
-		add_settings_field( 'ga-tag', __( 'Tag Type', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-tag', __( 'Tag Type', 'ga-communicator' ), function () use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'tag' );
 			$cur_value  = $this->get_option( 'tag', true );
 			?>
@@ -324,7 +324,7 @@ class Settings extends Singleton {
 		}, $this->slug, $tag_section );
 
 		// Additional scrips.
-		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-extra', __( 'Additional Scripts', 'ga-communicator' ), function () use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'extra' );
 			$value      = $this->get_option( 'extra', true );
 			if ( $predefined ) :
@@ -364,11 +364,11 @@ class Settings extends Singleton {
 				'manual'    => 'window.GaValues = { post: %post_id%, author: %author_id% };',
 			] as $key => $example ) {
 				printf( '<pre style="display: none;" data-example="%s">%s</pre>', esc_attr( $key ), esc_html( $example ) );
-			};
+			}
 		}, $this->slug, $tag_section );
 
 		// Meta tags.
-		add_settings_field( 'ga-meta', __( 'Meta tags', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-meta', __( 'Meta tags', 'ga-communicator' ), function () use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'meta' );
 			$cur_value  = $this->get_option( 'meta', true );
 			?>
@@ -392,7 +392,7 @@ class Settings extends Singleton {
 		}, $this->slug, $tag_section );
 
 		// Body open.
-		add_settings_field( 'ga-body-open', __( 'Tag after <body> open tag', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-body-open', __( 'Tag after <body> open tag', 'ga-communicator' ), function () use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'body-open' );
 			$cur_value  = $this->get_option( 'body-open', true );
 			?>
@@ -408,7 +408,7 @@ class Settings extends Singleton {
 		}, $this->slug, $tag_section );
 
 		// Tag to be output.
-		add_settings_field( 'ga-place', __( 'Tag Appears In', 'ga-communicator' ), function() use ( $choices ) {
+		add_settings_field( 'ga-place', __( 'Tag Appears In', 'ga-communicator' ), function () use ( $choices ) {
 			$predefined = $this->get_predefined_option( 'place' );
 			$cur_value  = $this->get_option( 'place', true );
 			$choices    = [

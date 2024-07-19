@@ -26,8 +26,8 @@ class Properties extends Accounts {
 				'required'          => true,
 				'type'              => 'string',
 				'description'       => 'Account ID.',
-				'validate_callback' => function( $var ) {
-					return ! empty( $var );
+				'validate_callback' => function ( $arg ) {
+					return ! empty( $arg );
 				},
 			],
 		] );
