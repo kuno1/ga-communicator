@@ -165,7 +165,7 @@ class ScriptRenderer extends Singleton {
 		}
 		$meta_tags = apply_filters( 'ga_communicator_meta_tags', $meta_tags );
 		if ( ! empty( $meta_tags ) ) {
-			echo "\n<!-- ga-communicaotr meta-tags -->\n";
+			echo "\n<!-- ga-communicator meta-tags -->\n";
 			foreach ( $meta_tags as $key => $value ) {
 				printf( '<meta name="%s" content="%s" />' . "\n", esc_attr( $key ), esc_attr( $value ) );
 			}

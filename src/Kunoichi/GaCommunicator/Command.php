@@ -4,6 +4,7 @@ namespace Kunoichi\GaCommunicator;
 
 
 use cli\Table;
+use Kunoichi\GaCommunicator;
 use Kunoichi\GaCommunicator\Screen\Settings;
 use Kunoichi\GaCommunicator\Utility\GaClientHolder;
 
@@ -267,5 +268,32 @@ class Command extends \WP_CLI_Command {
 			$table->addRow( [ get_post()->rank, get_the_title(), get_permalink(), get_post()->pv ] );
 		}
 		$table->display();
+	}
+
+	/**
+	 * Send measurement protocol.
+	 *
+	 * @synopsis <event> [--dry-run]
+	 * @param array $args  Command arguments.
+	 * @param array $assoc Options.
+	 * @subcommand measurement-protocol
+	 * @return void
+	 */
+	public function measurement_protocol( $args = [], $assoc = [] ) {
+		list( $event ) = $args;
+		$payload = [
+			'client_id' => '12345.67890',
+			'events'    => [
+				[
+					'name' => $event,
+				],
+			],
+		];
+		$is_test = $assoc['dry-run'] ?? false;
+		$response = GaCommunicator::get_instance()->ga4_measurement_protocol( $payload, $is_test );
+		if ( is_wp_error( $response ) ) {
+			\WP_CLI::error( $response->get_error_message() );
+		}
+		var_dump( $response );
 	}
 }

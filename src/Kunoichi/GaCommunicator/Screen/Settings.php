@@ -35,6 +35,7 @@ class Settings extends Singleton {
 		'ga4-tracking-id',
 		'ga4-both-tracking',
 		'ga4-api-use',
+		'ga4-api-secret',
 		'tag',
 		'extra',
 		'place',
@@ -233,6 +234,11 @@ class Settings extends Singleton {
 					''   => __( 'Use Google Analytic 4', 'ga-communicator' ),
 					'ga' => __( 'Use Universal Analytics(Deprecated)', 'ga-communicator' ),
 				],
+			],
+			'ga-ga4-api-secret' => [
+				'label'       => __( 'API Secret', 'ga-communicator' ),
+				'description' => __( 'API Secret for measurement protocol. Go to Setting > Data Stream > Measurement Protocol API Secret.', 'ga-communicator' ),
+				'options'     => [],
 			],
 		] as $key => $setting ) {
 			add_settings_field(
