@@ -116,7 +116,12 @@ class PlaceHolders extends Singleton {
 				'description' => __( 'On taxonomy archive page, returns taxonomy name. Else, always empty.', 'ga-communicator' ),
 				'callback'    => function () {
 					if ( is_category() || is_tag() || is_tax() ) {
-						return get_queried_object()->taxonomy;
+						$term = get_queried_object();
+						if ( is_a( $term, 'WP_Term' ) ) {
+							return $term->taxonomy;
+						} else {
+							return '';
+						}
 					} else {
 						return '';
 					}
