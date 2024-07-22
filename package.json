@@ -34,6 +34,6 @@
 	"devDependencies": {
 		"@kunoichi/gulp-assets-task-set": "^1.0.2",
 		"@wordpress/env": "^8.0.0",
-		"gulp": "^4.0.2"
+		"gulp": "^5.0.0"
 	}
 }
