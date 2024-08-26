@@ -33,7 +33,7 @@
 	"homepage": "https://github.com/kuno1/ga-communicator#readme",
 	"devDependencies": {
 		"@kunoichi/gulp-assets-task-set": "^1.0.2",
-		"@wordpress/env": "^8.0.0",
+		"@wordpress/env": "^10.6.0",
 		"gulp": "^4.0.2"
 	}
 }
