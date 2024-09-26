@@ -114,10 +114,12 @@ jobs:
   status-check:
     name: Status Check
     needs: [ test, lint, assets ]
+    if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Display Status
-        run: echo "All Green!"
+      - uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
 
   release:
     name: Release Build as Plugin
