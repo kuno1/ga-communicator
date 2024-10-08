@@ -93,7 +93,7 @@ class Settings extends Singleton {
 	public function admin_screen() {
 		wp_enqueue_style( 'ga-communicator-setting' );
 		wp_enqueue_script( 'ga-communicator-setting' );
-		if ( is_multisite() ) {
+		if ( $this->should_network_activate() ) {
 			$action = add_query_arg( [
 				'action' => 'update_' . $this->slug,
 			], network_admin_url( 'edit.php' ) );
