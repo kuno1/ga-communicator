@@ -70,6 +70,10 @@ Create a new [issue](https://github.com/kuno1/ga-communicator/issues) or send [p
 
 ## Changelog
 
+### 3.7.1
+
+* Fix setting error on individual activation under network install.
+
 ### 3.0.0
 
 * Add [Google Analytics Data API](https://developers.google.com/analytics/devguides/reporting/data/v1) support. [Core Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v4?hl=ja) will be deprecated in 2023.
