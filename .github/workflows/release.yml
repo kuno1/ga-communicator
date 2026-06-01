@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write
+
+jobs:
+
+  release:
+    name: Build & Attach Zip
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ github.event.release.html_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Package
+        run: bash bin/build.sh ${{ github.event.release.tag_name }}
+
+      - uses: ./.github/actions/php-scoper
+        name: Do PHP Scoper
+        with:
+          scoper: 'yes'
+
+      - name: Clean Unwanted files
+        run: bash bin/clean.sh
+
+      - name: Create Zip
+        run: zip -r ${{ github.event.repository.name }}.zip ./
+
+      - name: Upload Release Asset
+        run: gh release upload "${{ github.event.release.tag_name }}" "./${{ github.event.repository.name }}.zip"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
