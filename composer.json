@@ -30,7 +30,7 @@
 		]
 	},
 	"require": {
-		"php": ">=7.2",
+		"php": ">=8.1",
 		"google/auth": "^1.9"
 	},
 	"autoload": {
@@ -46,7 +46,7 @@
 	},
 	"config": {
 		"platform": {
-			"php": "7.2"
+			"php": "8.1"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true

@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [ '7.4', '8.0' ] # PHP versions to check.
-        wp: [ 'latest', '5.9' ]      # WordPress version to check.
+        php: [ '8.1', '8.2', '8.3' ] # PHP versions to check.
+        wp: [ 'latest', '6.5' ]      # WordPress version to check.
         tools: [ composer ]
         scoper: [ 'yes', 'no' ]
     services:
@@ -78,7 +78,7 @@ jobs:
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
