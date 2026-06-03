@@ -13,10 +13,12 @@
 		"env": "wp-env",
 		"cli": "wp-env run cli wp",
 		"cli:test": "wp-env run tests-cli wp",
-		"gulp": "gulp",
-		"gulp:task": "gulp --task",
-		"lint": "gulp lint",
-		"watch": "gulp watch"
+		"build": "gulp build",
+		"watch": "gulp watch",
+		"dump": "gulp dump",
+		"lint": "npm run lint:js && npm run lint:css",
+		"lint:js": "eslint assets/js",
+		"lint:css": "stylelint \"assets/scss/**/*.scss\""
 	},
 	"repository": {
 		"type": "git",
@@ -32,8 +34,21 @@
 	},
 	"homepage": "https://github.com/kuno1/ga-communicator#readme",
 	"devDependencies": {
-		"@kunoichi/gulp-assets-task-set": "^1.0.2",
+		"@babel/core": "^7.24.0",
+		"@babel/eslint-parser": "^7.24.0",
+		"@babel/preset-react": "^7.24.0",
+		"@kunoichi/grab-deps": "^1.2.0",
 		"@wordpress/env": "^10.8.0",
-		"gulp": "^4.0.2"
+		"@wordpress/eslint-plugin": "^17.1.0",
+		"@wordpress/stylelint-config": "^23.0.0",
+		"esbuild": "^0.28.0",
+		"eslint": "^8.57.0",
+		"gulp": "^5.0.0",
+		"gulp-autoprefixer": "^9.0.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"sass": "^1.77.0",
+		"stylelint": "^16.8.2",
+		"stylelint-scss": "^6.4.0"
 	}
 }

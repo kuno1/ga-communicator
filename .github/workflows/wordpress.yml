@@ -104,10 +104,10 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.node-version'
 
       - name: Install NPM Packages
-        run: npm install
+        run: npm ci
 
       - name: Check JS & CSS syntax
         run: npm run lint
