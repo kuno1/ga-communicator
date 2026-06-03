@@ -1,30 +1,13 @@
 [
 	{
-		"handle": "ga-communicator-setting",
-		"path": "dist/css/ga-communicator-setting.css",
-		"ext": "css",
-		"hash": "5a6f349028079393a2f0bcf3ed51e552",
-		"version": "0.0.0",
-		"deps": [
-			"dashicons",
-			"wp-codemirror",
-			"wp-components"
-		],
-		"footer": true,
-		"media": "all"
-	},
-	{
-		"handle": "ga-communicator-setting",
-		"path": "dist/js/ga-communicator-setting.js",
+		"handle": "ga-sandbox",
+		"path": "dist/js/ga-sandbox.js",
 		"ext": "js",
-		"hash": "908f2810ea0970da5a83ebf57646f969",
+		"hash": "e0e29867552ca192bc023c8678dce9a8",
 		"version": "0.0.0",
 		"deps": [
-			"wp-api-fetch",
-			"jquery",
-			"wp-i18n",
-			"ga-custom-dimensions",
-			"ga-sandbox"
+			"wp-codemirror",
+			"wp-api-fetch"
 		],
 		"footer": true,
 		"media": "all"
@@ -33,7 +16,7 @@
 		"handle": "ga-custom-dimensions",
 		"path": "dist/js/ga-custom-dimensions.js",
 		"ext": "js",
-		"hash": "4d0d8e8657fdde8d35b029a78aff53fc",
+		"hash": "58dfdd927dee4a36afe1ae1bf64cc489",
 		"version": "0.0.0",
 		"deps": [
 			"wp-api-fetch",
@@ -45,14 +28,30 @@
 		"media": "all"
 	},
 	{
-		"handle": "ga-sandbox",
-		"path": "dist/js/ga-sandbox.js",
+		"handle": "ga-communicator-setting",
+		"path": "dist/js/ga-communicator-setting.js",
 		"ext": "js",
-		"hash": "181746772adde7362a7718f193f2a9c1",
+		"hash": "101da1525cf10adcbeae6eab4c2c55b8",
 		"version": "0.0.0",
 		"deps": [
+			"wp-api-fetch",
+			"jquery",
+			"wp-i18n",
+			"ga-sandbox"
+		],
+		"footer": true,
+		"media": "all"
+	},
+	{
+		"handle": "ga-communicator-setting",
+		"path": "dist/css/ga-communicator-setting.css",
+		"ext": "css",
+		"hash": "1b794dee209d368b69238c39995ef7fa",
+		"version": "0.0.0",
+		"deps": [
+			"dashicons",
 			"wp-codemirror",
-			"wp-api-fetch"
+			"wp-components"
 		],
 		"footer": true,
 		"media": "all"
