@@ -1,0 +1,12 @@
+name: Notify watchtower on release
+
+on:
+  release:
+    types: [ released ]   # prerelease は除外
+
+jobs:
+  notify:
+    permissions:
+      id-token: write
+      contents: read
+    uses: tarosky/workflows/.github/workflows/watchtower-notify.yml@main
