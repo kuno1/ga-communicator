@@ -3,8 +3,8 @@
 Tags: google-analytics, api  
 Contributors: tarosky, Takahashi_Fumiki  
 Tested up to: 6.2  
-Requires at least: 5.9  
-Requires PHP: 7.2  
+Requires at least: 6.5  
+Requires PHP: 8.1  
 Stable Tag: nightly  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
