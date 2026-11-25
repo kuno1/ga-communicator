@@ -13,10 +13,14 @@
 		"env": "wp-env",
 		"cli": "wp-env run cli wp",
 		"cli:test": "wp-env run tests-cli wp",
-		"gulp": "gulp",
-		"gulp:task": "gulp --task",
-		"lint": "gulp lint",
-		"watch": "gulp watch"
+		"lint": "npm run lint:js && npm run lint:css",
+		"build:js": "grab-deps js assets/js dist/js",
+		"build:css": "sass ./assets/scss/:./dist/css/ --style=compressed --source-map && postcss ./dist/css/*.css --use autoprefixer --replace --map",
+		"dump": "grab-deps dump dist/js,dist/css",
+		"package": "npm run build:css && npm run build:js && npm run dump",
+		"lint:js": "wp-scripts lint-js assets/js",
+		"lint:css": "wp-scripts lint-style \"assets/scss/**/*.scss\"",
+		"format": "wp-scripts lint-js assets/js --fix && wp-scripts lint-style \"assets/scss/**/*.scss\" --fix"
 	},
 	"repository": {
 		"type": "git",
@@ -32,8 +36,15 @@
 	},
 	"homepage": "https://github.com/kuno1/ga-communicator#readme",
 	"devDependencies": {
-		"@kunoichi/gulp-assets-task-set": "^1.0.2",
+		"@kunoichi/grab-deps": "^3.3.0",
 		"@wordpress/env": "^10.8.0",
-		"gulp": "^4.0.2"
+		"@wordpress/scripts": "^37.2.0",
+		"autoprefixer": "^10.7.0",
+		"postcss": "^8.5.33",
+		"postcss-cli": "^12.0.0",
+		"sass": "^1.108.2"
+	},
+	"engines": {
+		"node": ">=22"
 	}
 }
