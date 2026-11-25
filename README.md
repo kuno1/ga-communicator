@@ -50,13 +50,65 @@ Please visit our [Wiki](https://github.com/kuno1/ga-communicator/wiki) to find m
 
 ## Installation
 
-### From Plugin Repository
+This plugin is not hosted on WordPress.org. Choose one of the following depending on how you use it.
 
-Click install and activate it.
+### As a Plugin
 
-### Via Composer
+Download `ga-communicator.zip` from [GitHub Releases](https://github.com/kuno1/ga-communicator/releases) and upload it from **Plugins > Add New**, or install it with WP-CLI:
 
-You can install this plugin as a composer library. See our [Wiki](https://github.com/kuno1/ga-communicator/wiki/Install-via-Composer).
+```
+wp plugin install https://github.com/kuno1/ga-communicator/releases/latest/download/ga-communicator.zip --activate
+```
+
+The release zip is self-contained (dependencies are bundled and prefixed with PHP-Scoper).
+
+If you manage plugins with Composer (e.g. alongside wpackagist), define the release zip as a `package` repository. Update `version` and `url` when you upgrade.
+
+```json
+{
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "kunoichi/ga-communicator-plugin",
+				"version": "3.7.2",
+				"type": "wordpress-plugin",
+				"dist": {
+					"type": "zip",
+					"url": "https://github.com/kuno1/ga-communicator/releases/download/3.7.2/ga-communicator.zip"
+				}
+			}
+		}
+	],
+	"require": {
+		"kunoichi/ga-communicator-plugin": "3.7.2"
+	},
+	"extra": {
+		"installer-paths": {
+			"wp-content/plugins/ga-communicator/": [ "kunoichi/ga-communicator-plugin" ],
+			"wp-content/plugins/{$name}/": [ "type:wordpress-plugin" ]
+		}
+	}
+}
+```
+
+With `composer/installers`, the first matching rule in `installer-paths` wins. The package-name rule keeps the directory name `ga-communicator`, which matches the plugin path WordPress records on activation.
+
+### Bundled in a Theme or Plugin (Composer Library)
+
+```
+composer require kunoichi/ga-communicator
+```
+
+The package is installed into `vendor/kunoichi/ga-communicator` as a library. The plugin main file `ga-communicator.php` is not included, so initialize it yourself:
+
+```php
+if ( class_exists( 'Kunoichi\GaCommunicator' ) ) {
+	\Kunoichi\GaCommunicator::get_instance();
+}
+```
+
+See our [Wiki](https://github.com/kuno1/ga-communicator/wiki/Install-via-Composer) for details.
 
 ## FAQ
 
