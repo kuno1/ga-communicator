@@ -1,9 +1,56 @@
 [
 	{
+		"handle": "ga-sandbox",
+		"path": "dist/js/ga-sandbox.js",
+		"ext": "js",
+		"hash": "e6e8d284b9989615a0bf79f75b43c602",
+		"version": "0.0.0",
+		"deps": [
+			"wp-codemirror",
+			"wp-api-fetch"
+		],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "ga-custom-dimensions",
+		"path": "dist/js/ga-custom-dimensions.js",
+		"ext": "js",
+		"hash": "a0433aeadf2fb16c7aa653d7d9146e4f",
+		"version": "0.0.0",
+		"deps": [
+			"wp-api-fetch",
+			"wp-element",
+			"wp-components",
+			"wp-i18n",
+			"react-jsx-runtime"
+		],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "ga-communicator-setting",
+		"path": "dist/js/ga-communicator-setting.js",
+		"ext": "js",
+		"hash": "6f0e139e171ffc531e270e371ab79f26",
+		"version": "0.0.0",
+		"deps": [
+			"wp-api-fetch",
+			"jquery",
+			"wp-i18n",
+			"ga-sandbox"
+		],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
 		"handle": "ga-communicator-setting",
 		"path": "dist/css/ga-communicator-setting.css",
 		"ext": "css",
-		"hash": "5a6f349028079393a2f0bcf3ed51e552",
+		"hash": "71aac4ad8dff01930ffa336541f618cf",
 		"version": "0.0.0",
 		"deps": [
 			"dashicons",
@@ -11,50 +58,7 @@
 			"wp-components"
 		],
 		"footer": true,
-		"media": "all"
-	},
-	{
-		"handle": "ga-communicator-setting",
-		"path": "dist/js/ga-communicator-setting.js",
-		"ext": "js",
-		"hash": "908f2810ea0970da5a83ebf57646f969",
-		"version": "0.0.0",
-		"deps": [
-			"wp-api-fetch",
-			"jquery",
-			"wp-i18n",
-			"ga-custom-dimensions",
-			"ga-sandbox"
-		],
-		"footer": true,
-		"media": "all"
-	},
-	{
-		"handle": "ga-custom-dimensions",
-		"path": "dist/js/ga-custom-dimensions.js",
-		"ext": "js",
-		"hash": "4d0d8e8657fdde8d35b029a78aff53fc",
-		"version": "0.0.0",
-		"deps": [
-			"wp-api-fetch",
-			"wp-element",
-			"wp-components",
-			"wp-i18n"
-		],
-		"footer": true,
-		"media": "all"
-	},
-	{
-		"handle": "ga-sandbox",
-		"path": "dist/js/ga-sandbox.js",
-		"ext": "js",
-		"hash": "181746772adde7362a7718f193f2a9c1",
-		"version": "0.0.0",
-		"deps": [
-			"wp-codemirror",
-			"wp-api-fetch"
-		],
-		"footer": true,
-		"media": "all"
+		"media": "all",
+		"strategy": ""
 	}
 ]
