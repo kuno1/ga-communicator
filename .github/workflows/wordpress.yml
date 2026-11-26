@@ -104,9 +104,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
+          cache: npm
 
       - name: Install NPM Packages
-        run: npm install
+        run: npm ci
 
       - name: Check JS & CSS syntax
         run: npm run lint
