@@ -4,3 +4,4 @@ composer.lock
 /wp/
 /node_modules/
 *.cache
+/tests/conflict/vendor/

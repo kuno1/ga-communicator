@@ -67,9 +67,16 @@ jobs:
         if: matrix.scoper == 'no'
         run: composer test
 
+      - name: Install conflicting dependencies (another plugin)
+        if: matrix.scoper == 'yes'
+        run: composer update --working-dir=tests/conflict --no-dev --prefer-dist --no-progress
+
       - name: Run test suite with PHP Scoper
         if: matrix.scoper == 'yes'
-        run: composer test:scoper
+        # Load unscoped Guzzle first, as another plugin would, to check isolation (#50).
+        run: php -d auto_prepend_file=tests/conflict/vendor/autoload.php vendor-prefixed/vendor/bin/phpunit
+        env:
+          GA_COMMUNICATOR_EXPECT_CONFLICT: '1'
 
   lint:
     name: PHP Syntax check
