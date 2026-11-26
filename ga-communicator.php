@@ -10,6 +10,8 @@
  * License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  * Text Domain: ga-communicator
  * Domain Path: /languages
+ * Requires at least: 6.5
+ * Requires PHP: 8.1
  */
 
 // This file actually do nothing.
