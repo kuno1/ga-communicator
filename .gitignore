@@ -1,6 +1,5 @@
 /vendor/
 /vendor-prefixed/
-composer.lock
 /wp/
 /node_modules/
 *.cache
