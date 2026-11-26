@@ -1,0 +1,15 @@
+{
+	"name": "kunoichi/ga-communicator-conflict-fixture",
+	"description": "Stands in for another plugin that bundles unscoped dependencies. Loaded before the scoped build in CI to check PHP-Scoper isolation (#50).",
+	"type": "project",
+	"license": "GPL-3.0-or-later",
+	"require": {
+		"guzzlehttp/guzzle": "^7.0",
+		"symfony/deprecation-contracts": "*"
+	},
+	"config": {
+		"platform": {
+			"php": "8.1"
+		}
+	}
+}
