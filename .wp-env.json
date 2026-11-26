@@ -19,6 +19,14 @@
 		"BLOG_ID_CURRENT_SITE": 1
 	},
 	"env": {
+		"development": {
+			"plugins": [
+				".",
+				"https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip",
+				"https://downloads.wordpress.org/plugin/query-monitor.latest-stable.zip",
+				"https://downloads.wordpress.org/plugin/plugin-check.latest-stable.zip"
+			]
+		},
 		"tests": {
 			"port": 8889
 		}
